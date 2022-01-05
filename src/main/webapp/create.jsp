@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <c:url var="urlAPI" value="/api/product"></c:url>
+<c:url var="urlHome" value="<%=request.getServletPath()%>"></c:url>
 <!DOCTYPE html>
 <html>
 <head>
@@ -93,7 +94,6 @@
     </div>
 </div>
 
-
     <script src="JQUERY/jquery-3.3.1.min.js"></script>
 
     <script src="JQUERY/jquery-ui.min.js"></script>
@@ -103,6 +103,7 @@
     <script>
         $(document).ready(()=>{
             const type = $('#addOrUpdate').text();
+            new Promise((resolve => resolve(1))).then(data=> console.log(data));
             if(type.indexOf('Update', 0) >= 0)
             {
                 $('#addOrUpdate').on('click', (e)=>{
@@ -120,7 +121,7 @@
                         data: JSON.stringify(object),
                         success: (data)=>{
                             alert(data);
-                            window.location.href = "/ShoppingHalloween/Controller";
+                            window.location.href = '${urlHome}';
                         },
                         error: (error)=>{
                             console.log(error)

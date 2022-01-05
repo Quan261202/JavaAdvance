@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
-	
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
     <style type="text/css">
@@ -32,17 +32,17 @@
 			border-bottom-left-radius: 5px;
 			border-top-left-radius: 5px;
 		}
-		
+
 		.pagination :last-child{
 			border-bottom-right-radius: 5px;
 			border-top-right-radius: 5px;
 		}
-		
+
 		.pagination a.active{
 			background-color: #ef7819;
 			color: white;
 		}
-		
+
 		.pagination a:hover {
 			background-color: #ef7819;
 			color: white;
@@ -72,14 +72,15 @@
 			<c:if test="${img != null}">
 				<c:set var="class" value="null"></c:set>
 			</c:if>
-			<a href="Login.jsp" id="user" class="fas fa-user">
+            <a href="Login.jsp" id="user" class="<c:if test="${empty name}">fas fa-user</c:if>">
 				<c:choose>
 					<c:when test="${img != null}">
 						<img style="width: 30px;height: 30px;border-radius: 50%" alt="" src="${img}">
 						<c:set var="check" value="true"></c:set>
 					</c:when>
 					<c:when test="${name != null}">
-						<span style="font-size: 1.5rem;" class="username">${name}</span>
+<%--						<span style="font-size: 1.5rem;" class="username">${name}</span>--%>
+                        <img style="width: 40px;height: 40px;border-radius: 50%;transform: translateY(10%)" alt="" src="image/avatar-mac-dinh-1.png">
 						<c:set var="check" value="true"></c:set>
 					</c:when>
 				</c:choose>

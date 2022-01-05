@@ -48,8 +48,8 @@ public class addCartServlet extends HttpServlet {
         } else {
             int productID = Integer.parseInt(request.getParameter("id"));
             String username = session.getAttribute("name").toString();
-            Integer customerID = customerService.getCustomerID(username);
-            Integer orderID = orderService.getOrderID(customerID);
+            int customerID = customerService.getCustomerID(username);
+            int orderID = orderService.getOrderID(customerID);
             List<Products> lists = productService.getAllItems();
             List<CartItem> cartItems = cartItemService.saveCart(customerID, orderID, productID, lists);
             String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(cartItems);

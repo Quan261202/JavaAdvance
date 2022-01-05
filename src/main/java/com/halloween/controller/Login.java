@@ -44,20 +44,26 @@ public class Login extends HttpServlet {
         response.setContentType("text/html");
         String username = request.getParameter("name");
         String password = request.getParameter("password");
-        Integer customerID = customerService.checkLogin(username, password);
-        if (customerID != null) {
-            HttpSession session = request.getSession();
-            session.setAttribute("name", username);
-            session.setMaxInactiveInterval(60 * 60 * 24);
-            if (!customerService.isAdmin(customerID)) {
-                SessionUtil.checkSessionUtil().putValue(session, "CUSTOMER", CUSTOMER_DETAIL_SERVICE.getInfoCustomer(customerID));
-                response.sendRedirect("loadProducts");
-            } else {
-                response.sendRedirect("HomeAdmin");
-            }
-        } else {
+        if(username.equals("") || password.equals(""))
+        {
             request.setAttribute("error", "invalid");
             request.getRequestDispatcher("Login.jsp").forward(request, response);
+        }else {
+            Integer customerID = customerService.checkLogin(username, password);
+            if (customerID != null) {
+                HttpSession session = request.getSession();
+                session.setAttribute("name", username);
+                session.setMaxInactiveInterval(60 * 60 * 24);
+                if (!customerService.isAdmin(customerID)) {
+                    SessionUtil.checkSessionUtil().putValue(session, "CUSTOMER", CUSTOMER_DETAIL_SERVICE.getInfoCustomer(customerID));
+                    response.sendRedirect("loadProducts");
+                } else {
+                    response.sendRedirect("HomeAdmin");
+                }
+            } else {
+                request.setAttribute("error", "invalid");
+                request.getRequestDispatcher("Login.jsp").forward(request, response);
+            }
         }
     }
 }

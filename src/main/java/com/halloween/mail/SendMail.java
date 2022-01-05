@@ -10,7 +10,7 @@ import java.util.Properties;
 
 public class SendMail {
     private static final String name = "vuquan261202@gmail.com";
-    private static final String pass = "quan01";
+    private static final String pass = "quan261202";
     public static void senMail(String mailTo, String subject, String content){
         Properties properties = new Properties();
         properties.put("mail.smtp.host", "smtp.gmail.com");

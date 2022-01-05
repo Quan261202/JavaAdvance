@@ -5,6 +5,7 @@ import java.util.List;
 import com.halloween.model.CategoryModel;
 
 public interface ICategoryService {
-	public String getCategoryName(Integer categoryID);
-	public List<CategoryModel> getAllCategoryProduct();
+	String getCategoryName(Integer categoryID);
+	List<CategoryModel> getAllCategoryProduct();
+	List<Integer> getAllCategoryID();
 }

@@ -1,6 +1,6 @@
 package com.halloween.model;
 
-import java.util.Arrays;
+import java.util.List;
 
 import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
@@ -15,6 +15,7 @@ public class Customer {
 	private String password;
 	private String email;
 	private String urlImage;
+
 	public Customer() {}
 	public Customer(int id, String userName, String password, String email) {
 		super();
@@ -53,7 +54,7 @@ public class Customer {
 		FacebookClient client = new DefaultFacebookClient(accessToken, Version.VERSION_3_2);
 		User user = client.fetchObject("me", User.class);
 		Customer customer = new Customer();
-		JsonObject jsonObject = client.fetchObjects(Arrays.asList("me"), JsonObject.class, Parameter.with("fields", "id, email, picture"));
+		JsonObject jsonObject = client.fetchObjects(List.of("me"), JsonObject.class, Parameter.with("fields", "id, email, picture"));
 		String profile = jsonObject.toString();
 		customer.setUserName(user.getName());
 		System.out.println(profile);

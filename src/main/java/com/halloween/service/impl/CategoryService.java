@@ -20,4 +20,9 @@ public class CategoryService implements ICategoryService{
 	public List<CategoryModel> getAllCategoryProduct() {
 		return newDAO.getAllCategoryProduct();
 	}
+
+	@Override
+	public List<Integer> getAllCategoryID() {
+		return newDAO.getAllCategoryID();
+	}
 }

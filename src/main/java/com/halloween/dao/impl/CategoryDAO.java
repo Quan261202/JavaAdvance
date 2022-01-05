@@ -19,4 +19,10 @@ public class CategoryDAO extends AbstractDAO<CategoryModel> implements ICategory
 		String sql = "SELECT * FROM Category";
 		return query(sql, new CategoryMapper());
 	}
+
+	@Override
+	public List<Integer> getAllCategoryID() {
+		String sql = "SELECT categoryID FROM Category";
+		return getListObject(sql, Integer.class);
+	}
 }

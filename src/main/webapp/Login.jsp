@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:url var="urlRegister" value="singUp"></c:url>
+<c:url var="urlLogin" value="<%=request.getServletPath()%>"></c:url>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -59,7 +60,7 @@
                             <h2 class="title">Sign in</h2>
                             <div class="input-field">
                                 <i class="fas fa-user"></i>
-                                <input id="name" type="text" placeholder="Username" name="name"/>
+                                <input autofocus id="name" type="text" placeholder="Username" name="name"/>
                             </div>
                             <c:if test="${not empty error}">
                                 <p class="message" style="display: flex;align-items: center;justify-content: center;color: #c82333"><i style="margin-right: 5px" class="fas fa-exclamation-triangle"></i>User Name or PassWord Invalid</p>
@@ -91,15 +92,15 @@
                             <h2 class="title">Sign up</h2>
                             <div class="input-field">
                                 <i class="fas fa-user"></i>
-                                <input type="text" placeholder="Username" name="userName" />
+                                <input autofocus autocomplete="off" type="text" placeholder="Username" name="userName" />
                             </div>
                             <div class="input-field">
                                 <i class="fas fa-envelope"></i>
-                                <input type="email" placeholder="Email" name="email" />
+                                <input id="email" type="email" placeholder="Email" name="email" />
                             </div>
                             <div class="input-field">
                                 <i class="fas fa-lock"></i>
-                                <input type="password" placeholder="Password" name="password" />
+                                <input autocomplete="off" type="password" placeholder="Password" name="password" />
                             </div>
                             <input type="submit" id="submit" class="btn" value="Sign up" />
                             <p class="social-text">Or Sign up with social platforms</p>
@@ -162,20 +163,36 @@
                     e.preventDefault();
                     const arrays = $('.sign-up-form').serializeArray();
                     console.log(arrays)
-                    let user = {}
-                    $.each(arrays, (index, value) =>{
-                        user[value.name] = value.value;
-                    })
-                    $.ajax({
-                        type: 'POST',
-                        contentType: 'application/json',
-                        url: '${urlRegister}',
-                        data: JSON.stringify(user),
-                        success: (data)=>{
-                            alert(data)
-                            window.location.href = "/ShoppingHalloween/Login.jsp";
+                    console.log('${urlLogin}')
+                    const inputs = $('.sign-up-form .input-field input');
+                    console.log(inputs)
+                    let check = true
+                    for(let i = 0; i < inputs.length; ++i)
+                    {
+                        if($(inputs[i]).val() == '')
+                        {
+                            check = false;
+                            $(inputs[i]).focus();
+                            break;
                         }
-                    })
+                    }
+                    if(!/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test($('#email').val())) check = false;
+                    if(check) {
+                        let user = {}
+                        $.each(arrays, (index, value) =>{
+                            user[value.name] = value.value;
+                        })
+                        $.ajax({
+                            type: 'POST',
+                            contentType: 'application/json',
+                            url: '${urlRegister}',
+                            data: JSON.stringify(user),
+                            success: (data)=>{
+                                alert(data)
+                                window.location.href = '${urlLogin}'
+                            }
+                        })
+                    }
                 })
             })
         </script>

@@ -26,9 +26,13 @@ public class singUp extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		ObjectMapper mapper = new ObjectMapper();
-		String json = HttpUtil.of(request.getReader()).getValue();
-		Customer customer = mapper.readValue(json, Customer.class);
-		Integer integer = new CustomerService().insertCustomer(customer);
-		if(integer != null) mapper.writeValue(response.getOutputStream(), "Sign Up Success");
+		HttpUtil httpUtil = HttpUtil.of(request.getReader());
+		if(httpUtil != null)
+		{
+			String json = httpUtil.getValue();
+			Customer customer = mapper.readValue(json, Customer.class);
+			Integer integer = new CustomerService().insertCustomer(customer);
+			if(integer != null) mapper.writeValue(response.getOutputStream(), "Sign Up Success");
+		}
 	}
 }

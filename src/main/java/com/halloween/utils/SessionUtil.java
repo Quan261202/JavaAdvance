@@ -7,9 +7,8 @@ public class SessionUtil {
 	
 	public static SessionUtil checkSessionUtil()
 	{
-		if(sessionUtil == null) {
+		if(sessionUtil == null)
 			sessionUtil = new SessionUtil();
-		}
 		return sessionUtil;
 	}
 	
