@@ -16,35 +16,37 @@ public class ProductDAO  extends AbstractDAO<Products> implements IProductDAO{
 	@Override
 	public Integer countProductByCategory(Integer categoryID) {
 		String sql = "SELECT COUNT(*) FROM Products where category = ?";
-		return (Integer) getSingleObject(sql, 1, Integer.class, categoryID);
+		return getSingleObject(sql, 1, Integer.class, categoryID);
 	}
 
 	@Override
 	public Integer save(Products products) {
-		String sql = "INSERT INTO Products(productName, price, urlImage, status, quantity, category)"
-				+ " VALUES(?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO Products(productName, price, urlImage, status, quantity, category, shortDescription)"
+				+ " VALUES(?, ?, ?, ?, ?, ?, ?)";
 		return insert(sql, products.getProductName()
 									, products.getPrice()
 									, products.getUrlImage()
 									, products.getStatus()
 									, products.getQuantity()
-									, products.getCategoryID());
+									, products.getCategoryID()
+									, products.getShortDescription());
 	}
 
 	@Override
 	public Products findOne(Integer productID) {
 		String sql = "SELECT * FROM Products WHERE ProductID = ?";
-		return query(sql, new ProductMapper(),  productID).stream().findFirst().get();
+		return query(sql, new ProductMapper(),  productID).get(0);
 	}
 
 	@Override
 	public boolean update(Products products, Integer productID) {
-		String sql = "UPDATE products SET productName = ?, price = ?, status = ?, quantity = ?, category = ? WHERE productID = ?";
+		String sql = "UPDATE products SET productName = ?, price = ?, status = ?, quantity = ?, category = ?, shortDescription = ? WHERE productID = ?";
 		return updateOrDelete(sql, products.getProductName()
 						  							 , products.getPrice()
 						  							 , products.getStatus()
 						  							 , products.getQuantity()
 						  							 , products.getCategoryID()
+						  							 , products.getShortDescription()
 						  							 , productID);
 	}
 
@@ -54,7 +56,13 @@ public class ProductDAO  extends AbstractDAO<Products> implements IProductDAO{
 		return updateOrDelete(sql, productID);
 	}
 
-	@Override
+    @Override
+    public boolean deleteByCategoryID(Integer categoryID) {
+        String sql = "delete from products where category = ?";
+		return updateOrDelete(sql, categoryID);
+    }
+
+    @Override
 	public List<Products> getThreeItem(Integer category, Integer limit, Integer offset) {
 		String sql = "SELECT * FROM Products WHERE category = ? LIMIT ? OFFSET ?";
 		return query(sql, new ProductMapper(), category, limit, offset);
@@ -70,6 +78,13 @@ public class ProductDAO  extends AbstractDAO<Products> implements IProductDAO{
 	public List<Products> findByName(String name, Integer categoryID) {
 		String sql = "SELECT * FROM Products WHERE productName  LIKE '%" +name + "%'" + "AND category = ?";
 		return query(sql, new ProductMapper(), categoryID);
+	}
+
+
+	@Override
+	public Integer getCountProductSold(Integer productID) {
+		String sql = "select sum(oi.amount) from orderItem oi inner join Orders o on oi.orderID = o.id where o.status = 2 and oi.productID = ?";
+		return getSingleObject(sql, 1, Integer.class, productID);
 	}
 
 	@Override

@@ -51,7 +51,7 @@ public class addCartServlet extends HttpServlet {
             int customerID = customerService.getCustomerID(username);
             int orderID = orderService.getOrderID(customerID);
             List<Products> lists = productService.getAllItems();
-            List<CartItem> cartItems = cartItemService.saveCart(customerID, orderID, productID, lists);
+            List<CartItem> cartItems = cartItemService.saveCart(customerID, orderID, 1, productID, lists);
             String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(cartItems);
             mapper.writeValue(response.getOutputStream(), json);
         }

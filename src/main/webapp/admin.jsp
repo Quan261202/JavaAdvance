@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:url var="urlAPI" value="/api/product"></c:url>
+<c:url var="urlHome" value="/Controller"></c:url>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -16,7 +17,6 @@
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<!-- https://getbootstrap.com/ -->
 		<link rel="stylesheet" href="css/addProduct.css">
-
 	</head>
 
 	<body id="reportsPage">
@@ -94,9 +94,9 @@
 								<tbody>
 									<c:forEach items="${map}" var="item">
 										<tr>
-											<td class="tm-product-name"><a href="Controller?a=Category&id=${item.categoryID}">${item.categoryName}</a></td>
+														<td class="tm-product-name"><a href="Controller?a=Category&id=${item.categoryID}">${item.categoryName}</a></td>
 											<td class="text-center">
-												<a href="#" class="tm-product-delete-link">
+												<a href="#${item.categoryID}" class="tm-product-delete-link deleteCategory" id="deleteCategory">
 													<i class="far fa-trash-alt tm-product-delete-icon"></i>
 												</a>
 											</td>
@@ -121,13 +121,35 @@
 		<!-- https://getbootstrap.com/ -->
 		<script>
 			$(document).ready(()=>{
-				$('[data-toggle="tooltip"]').tooltip();
 
+				// delete category
+				const deleteCategory = $('.deleteCategory')
+				for(let i = 0; i < deleteCategory.length; ++i)
+				{
+					$(deleteCategory[i]).on('click', (e)=>{
+						e.preventDefault()
+						const categoryID = $(deleteCategory[i]).attr('href')[1]
+						const object = {"categoryID": categoryID}
+						$.ajax({
+							method: "delete",
+							contentType: "application/json",
+							url: '${urlAPI}',
+							data: JSON.stringify(object),
+							success: (data)=>{
+								alert(data)
+								window.location.href = "${urlHome}"
+							}
+						})
+					})
+				}
+				// delete product
 				const deleteProduct = $('.tm-product-delete-link.deleteProduct');
+				console.log(deleteProduct)
 				for(let i = 0; i < deleteProduct.length; ++i)
 				{
 					$(deleteProduct[i]).on('click', (e)=>{
-						e.preventDefault();
+						e.preventDefault()
+						console.log("ok")
 						const id = $(deleteProduct[i]).data('id');
 						const object = {"id": id}
 						$.ajax({
@@ -137,11 +159,12 @@
 							data: JSON.stringify(object),
 							success: (data)=>{
 								alert(data)
-								window.location.href = "/ShopingHalloween_war_exploded/Controller"
+								window.location.href = "${urlHome}"
 							}
 						})
 					})
 				}
+				$('[data-toggle="tooltip"]').tooltip();
 			})
 		</script>
 	</body>

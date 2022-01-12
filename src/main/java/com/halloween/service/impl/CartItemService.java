@@ -53,7 +53,7 @@ public class CartItemService implements ICartItemService{
 	}
 
 	@Override
-	public List<CartItem> saveCart(Integer customerID, Integer orderID, Integer productID, List<Products> lists) {
+	public List<CartItem> saveCart(Integer customerID, Integer orderID, Integer quantity, Integer productID, List<Products> lists) {
 		List<CartItem> cartItems = new ArrayList<CartItem>();
 		if (orderID == null) {
 			cartItems = new ArrayList<CartItem>();
@@ -66,10 +66,10 @@ public class CartItemService implements ICartItemService{
 				if (products.getStatus() > 0 && products.getQuantity() > 0) {
 					int index = findByID(productID, cartItems);
 					if (index != -1) {
-						cartItems.get(index).setQuantity(cartItems.get(index).getQuantity() + 1);
+						cartItems.get(index).setQuantity(cartItems.get(index).getQuantity() + quantity);
 						newDAO.updateCartItem(cartItems.get(index));
 					} else {
-						cartItems.add(new CartItem(productID, products.getProductName(), products.getPrice(), 1,
+						cartItems.add(new CartItem(productID, products.getProductName(), products.getPrice(), quantity,
 								products.getUrlImage()));
 						newDAO.saveCartItem(orderID, new CartItem(productID, products.getProductName(), products.getPrice(), 1,
 								products.getUrlImage()));

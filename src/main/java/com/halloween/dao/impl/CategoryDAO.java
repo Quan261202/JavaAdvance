@@ -25,4 +25,10 @@ public class CategoryDAO extends AbstractDAO<CategoryModel> implements ICategory
 		String sql = "SELECT categoryID FROM Category";
 		return getListObject(sql, Integer.class);
 	}
+
+    @Override
+    public Boolean delete(Integer categoryID) {
+        String sql = "delete from category where categoryID = ?";
+		return updateOrDelete(sql, categoryID);
+    }
 }

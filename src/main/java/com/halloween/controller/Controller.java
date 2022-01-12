@@ -80,6 +80,7 @@ public class Controller extends HttpServlet {
 			}
 			case "displayCreate": {
 				request.setAttribute("category", categoryModels);
+				request.setAttribute("type", "Add Product");
 				request.getRequestDispatcher("create.jsp").forward(request, response);
 				break;
 			}
@@ -88,6 +89,7 @@ public class Controller extends HttpServlet {
 				Products products = productService.findOne(id);
 				request.setAttribute("category", categoryModels);
 				request.setAttribute("product", products);
+				request.setAttribute("type", "Update Product");
 				request.getRequestDispatcher("create.jsp").forward(request, response);
 				break;
 			}
@@ -162,6 +164,7 @@ public class Controller extends HttpServlet {
 			int quantity = Integer.parseInt(request.getParameter("quantity"));
 			int status = Integer.parseInt(request.getParameter("status"));
 			Part part = request.getPart("image");
+			System.out.println(part);
 			int category = Integer.parseInt(request.getParameter("categoryID"));
 			String realPart = request.getServletContext().getRealPath("/image");
 			String fileName = Path.of(part.getSubmittedFileName()).getFileName().toString();
@@ -169,7 +172,7 @@ public class Controller extends HttpServlet {
 				Files.createDirectory(Path.of(realPart));
 			}
 			part.write(realPart + "/" + fileName);
-			Products products = new Products(0, name, price, "images/" + fileName, status, quantity, category);
+			Products products = new Products(0, name, price, "image/" + fileName, status, quantity, category);
 			Integer productID = productService.save(products);
 			if (productID != null)
 				response.sendRedirect("Controller");

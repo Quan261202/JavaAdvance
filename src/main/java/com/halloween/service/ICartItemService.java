@@ -16,6 +16,6 @@ public interface ICartItemService {
 	public List<CartItem> loadCart(Integer orderID);
 	public Boolean updateCartItem(CartItem cartItem);
 	public Boolean updateCartItem(Integer amount, Integer productID, Integer orderID);
-	public List<CartItem> saveCart(Integer customerID, Integer orderID, Integer productID, List<Products> lists);
+	public List<CartItem> saveCart(Integer customerID, Integer orderID, Integer quantity, Integer productID, List<Products> lists);
 	public Boolean removeCartItem(Integer productID, Integer orderID);
 }

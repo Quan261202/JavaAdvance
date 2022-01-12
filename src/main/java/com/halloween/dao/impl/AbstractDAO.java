@@ -19,8 +19,7 @@ public class AbstractDAO<T> implements GenericDAO<T> {
     public Connection getCon() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/shoping", "root", "");
-            return connection;
+            return DriverManager.getConnection("jdbc:mysql://localhost:3306/shoping", "root", "");
         } catch (Exception e) {
             return null;
         }
@@ -30,8 +29,7 @@ public class AbstractDAO<T> implements GenericDAO<T> {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             String url = "jdbc:sqlserver://localhost:1433; databaseName=SHOPING";
-            Connection con = DriverManager.getConnection(url, "sa", "1");
-            return con;
+            return DriverManager.getConnection(url, "sa", "1");
         } catch (Exception e) {
             return null;
         }
@@ -39,7 +37,7 @@ public class AbstractDAO<T> implements GenericDAO<T> {
 
     @Override
     public List<T> query(String sql, INewMapper<T> mapper, Object... params) {
-        List<T> results = new ArrayList<T>();
+        List<T> results = new ArrayList<>();
         Connection con = null;
         PreparedStatement stm = null;
         ResultSet resultSet = null;
@@ -62,7 +60,7 @@ public class AbstractDAO<T> implements GenericDAO<T> {
 
     @Override
     public <G> List<G> getListObject(String sql, Class<G> gClass, Object... params) {
-        List<G> results = new ArrayList<G>();
+        List<G> results = new ArrayList<>();
         Connection con = null;
         PreparedStatement stm = null;
         ResultSet resultSet = null;
@@ -137,13 +135,13 @@ public class AbstractDAO<T> implements GenericDAO<T> {
         try {
             con = getCon();
             stm = con.prepareStatement(sql);
-            // set parameter
             setParameter(stm, params);
             resultSet = stm.executeQuery();
             if (resultSet.next()) return getParameter(resultSet, columnIndex, gClass);
         } catch (SQLException e) {
             return null;
-        } finally {
+        }
+        finally {
             closeCon(con, stm, resultSet);
         }
         return null;

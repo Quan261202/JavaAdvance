@@ -9,7 +9,7 @@ import com.halloween.service.ICategoryService;
 
 public class CategoryService implements ICategoryService{
 
-	private ICategoryDAO newDAO = new CategoryDAO();
+	private final ICategoryDAO newDAO = new CategoryDAO();
 	
 	@Override
 	public String getCategoryName(Integer categoryID) {
@@ -25,4 +25,9 @@ public class CategoryService implements ICategoryService{
 	public List<Integer> getAllCategoryID() {
 		return newDAO.getAllCategoryID();
 	}
+
+    @Override
+    public Boolean delete(Integer categoryID) {
+        return newDAO.delete(categoryID);
+    }
 }

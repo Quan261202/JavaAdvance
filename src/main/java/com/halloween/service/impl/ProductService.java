@@ -42,7 +42,12 @@ public class ProductService implements IProductService {
 		return newDAO.delete(productID);
 	}
 
-	@Override
+    @Override
+    public boolean deleteByCategoryID(Integer categoryID) {
+        return newDAO.deleteByCategoryID(categoryID);
+    }
+
+    @Override
 	public List<Products> getThreeItem(Integer category, Integer limit, Integer offset) {
 		return newDAO.getThreeItem(category, limit, offset);
 	}
@@ -57,7 +62,12 @@ public class ProductService implements IProductService {
 		return newDAO.findByName(name, categoryID);
 	}
 
-	@Override
+    @Override
+    public Integer getCountProductSold(Integer productID) {
+        return newDAO.getCountProductSold(productID);
+    }
+
+    @Override
 	public List<Products> getAllItems() {
 		return newDAO.getAllItems();
 	}

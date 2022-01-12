@@ -12,6 +12,7 @@ import com.halloween.service.impl.CartItemService;
 import com.halloween.service.impl.CustomerService;
 import com.halloween.service.impl.OrderService;
 import com.halloween.service.impl.ProductService;
+import com.halloween.utils.HttpUtil;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -52,14 +53,17 @@ public class CartAPI extends HttpServlet {
             response.setContentType("text/html");
             request.getRequestDispatcher("Login.jsp").forward(request, response);
         } else {
-            Integer productID = Integer.parseInt(request.getParameter("id"));
+        	String json = HttpUtil.of(request.getReader()).getValue();
+            Integer productID = Integer.parseInt(json.substring(json.indexOf(':') + 1, json.indexOf(',')));
+            Integer quantity = Integer.parseInt(json.substring(json.indexOf(':', json.indexOf(',')) + 2, json.indexOf('}') - 1));
             String username = request.getSession().getAttribute("name").toString();
             Integer customerID = customerService.getCustomerID(username);
             Integer orderID = orderService.getOrderID(customerID);
             List<Products> lists = productService.getAllItems();
-            List<CartItem> cartItems = cartItemService.saveCart(customerID, orderID, productID, lists);
-            String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(cartItems);
-            mapper.writeValue(response.getOutputStream(), json);
+            if(cartItemService.saveCart(customerID, orderID, quantity, productID, lists) != null)
+            {
+            	mapper.writeValue(response.getOutputStream(), "Add cart success");
+            }
         }
     }
 

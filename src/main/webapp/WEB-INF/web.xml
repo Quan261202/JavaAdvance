@@ -19,6 +19,18 @@
 
     <servlet>
         <description></description>
+        <display-name>ProductDetail</display-name>
+        <servlet-name>ProductDetail</servlet-name>
+        <servlet-class>com.halloween.controller.ProductDetail</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ProductDetail</servlet-name>
+        <url-pattern>/ProductDetail</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <description></description>
         <display-name>addCartServlet</display-name>
         <servlet-name>addCartServlet</servlet-name>
         <servlet-class>com.halloween.controller.addCartServlet</servlet-class>

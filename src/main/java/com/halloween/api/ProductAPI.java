@@ -1,7 +1,6 @@
 package com.halloween.api;
 
-import java.io.IOException;
-import java.io.Serial;
+import java.io.*;
 import java.util.HashMap;
 import java.util.List;
 
@@ -33,7 +32,7 @@ public class ProductAPI extends HttpServlet {
         ObjectMapper mapper = new ObjectMapper();
         List<Integer> integers = iCategoryService.getAllCategoryID();
         HashMap<String, List<Products>> data = new HashMap<>();
-        for(Integer categoryID : integers)
+        for (Integer categoryID : integers)
             data.put("category" + categoryID, iProductService.getAllByCategory(categoryID));
         String jsons = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(data);
         mapper.writeValue(response.getOutputStream(), jsons);
@@ -45,6 +44,7 @@ public class ProductAPI extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         ObjectMapper mapper = new ObjectMapper();
         Products product = HttpUtil.of(request.getReader()).toModel(Products.class);
+        product.setUrlImage("image/" + product.getUrlImage());
         if (iProductService.save(product) != null) {
             mapper.writeValue(response.getOutputStream(), "{Add Success}");
         } else {
@@ -56,7 +56,7 @@ public class ProductAPI extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
-        ObjectMapper mapper = new ObjectMapper();
+        ObjectMapper mapper = new ObjectMapper();	
         Products product = HttpUtil.of(request.getReader()).toModel(Products.class);
         if (iProductService.update(product, product.getProductID())) {
             mapper.writeValue(response.getOutputStream(), "{Update Success}");
@@ -69,15 +69,23 @@ public class ProductAPI extends HttpServlet {
         ObjectMapper mapper = new ObjectMapper();
         HttpUtil httpUtil = HttpUtil.of(request.getReader());
         String json = httpUtil.getValue();
-        Boolean isSuccess = false;
-        if (json.indexOf('[') > 0) {
-            String[] integers = json.substring(json.indexOf('[') + 1, json.indexOf(']')).split(",");
-            for (String id : integers) {
-                isSuccess = iProductService.delete(Integer.parseInt(id));
+        boolean isSuccess = false;
+        if(json.contains("categoryID"))
+        {
+            Integer categoryID = Integer.parseInt(json.substring(json.indexOf(':') + 2, json.indexOf('}') - 1));
+            isSuccess = iProductService.deleteByCategoryID(categoryID);
+            iCategoryService.delete(categoryID);
+        }
+        else{
+            if (json.indexOf('[') > 0) {
+                String[] integers = json.substring(json.indexOf('[') + 1, json.indexOf(']')).split(",");
+                for (String id : integers) {
+                    isSuccess = iProductService.delete(Integer.parseInt(id));
+                }
+            } else {
+                Integer id = Integer.parseInt(json.substring(json.indexOf(':') + 1, json.indexOf('}')));
+                isSuccess = iProductService.delete(id);
             }
-        } else {
-            Integer id = Integer.parseInt(json.substring(json.indexOf(':') + 1, json.indexOf('}')));
-            isSuccess = iProductService.delete(id);
         }
         if (isSuccess) mapper.writeValue(response.getOutputStream(), "Delete Success");
         else mapper.writeValue(response.getOutputStream(), "Error");

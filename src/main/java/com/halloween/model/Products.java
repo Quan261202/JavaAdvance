@@ -8,14 +8,7 @@ public class Products {
 	private int status;
 	private int quantity;
 	private int categoryID;
-	
-	public int getCategoryID() {
-		return categoryID;
-	}
-
-	public void setCategoryID(int categoryID) {
-		this.categoryID = categoryID;
-	}
+	private String shortDescription;
 
 	public Products() {
 		
@@ -30,6 +23,18 @@ public class Products {
 		this.status = status;
 		this.quantity = quantity;
 		this.categoryID = categoryID;
+	}
+	
+	public Products(int productID, String productName, double price, String urlImage, int status, int quantity, int categoryID, String shortDescription) {
+		super();
+		this.productID = productID;
+		this.productName = productName;
+		this.price = price;
+		this.urlImage = urlImage;
+		this.status = status;
+		this.quantity = quantity;
+		this.categoryID = categoryID;
+		this.shortDescription = shortDescription;
 	}
 
 	public int getProductID() {
@@ -78,5 +83,21 @@ public class Products {
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
+	}
+	
+	public int getCategoryID() {
+		return categoryID;
+	}
+
+	public void setCategoryID(int categoryID) {
+		this.categoryID = categoryID;
+	}
+
+	public String getShortDescription() {
+		return shortDescription;
+	}
+
+	public void setShortDescription(String shortDescription) {
+		this.shortDescription = shortDescription;
 	}
 }

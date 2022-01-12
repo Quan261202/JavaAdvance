@@ -144,7 +144,7 @@
         		<div class="item">
 						<div class="icons">
 							<a class="fas fa-shopping-cart addCart" data-id="${item.productID}"></a>
-							<a href="" class="fas fa-eye"></a>
+							<a href="ProductDetail?productID=${item.productID}" class="fas fa-eye"></a>
 							<a href="" class="fas fa-share"></a>
 						</div>
 						<div class="image">
@@ -181,7 +181,7 @@
         		<div class="item">
 						<div class="icons">
 							<a class="fas fa-shopping-cart addCart" data-toggle="tooltip" title="Thêm vào giỏ hàng!" data-id="${item.productID}"></a>
-							<a href="" class="fas fa-eye"></a>
+                            <a href="ProductDetail?productID=${item.productID}" class="fas fa-eye"></a>
 							<a href="" class="fas fa-share"></a>
 						</div>
 						<div class="image">
