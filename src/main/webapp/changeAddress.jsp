@@ -44,7 +44,7 @@
         <div class="address">
             <div class="address-name">
                 <h3><c:if test="${not empty CUSTOMER}">
-                    ${CUSTOMER.name}
+                    ${CUSTOMER.firstName}
                 </c:if></h3>
                 <p style="border: none !important;color: black;">Mặc định</p>
             </div>
@@ -63,14 +63,20 @@
     <p class="noname">Bạn muốn giao hàng đến địa chỉ khác? <a href="">Thêm địa chỉ giao hàng mới</a></p>
     <div class="changeAddress">
         <form class="form" id="form" action="">
-            <div class="item two">
-                <label for="">Họ tên</label>
-                <input class="name" name="name" type="text" placeholder="enter your ..."
-                       value="<c:if test="${not empty CUSTOMER}">${CUSTOMER.name}</c:if>">
+            <div class="" id="name">
+                <label class="labels">Name</label>
+                <div>
+                	<input type="text" name = "firstName" class="form-control" placeholder="first name" value="${CUSTOMER.firstName }">
+					<input type="text" name = "lastName" class="form-control" value="${CUSTOMER.lastName }" placeholder="last name">
+				</div>
             </div>
             <div class="item two">
                 <label for="">Điện thoại di động</label>
                 <input class="phone" type="text" name="phone" placeholder="enter your ..." value="<c:if test="${not empty CUSTOMER}">${CUSTOMER.phone}</c:if>">
+            </div>
+            <div class="item two">
+                <label for="">Email</label>
+                <input class="phone" type="text" name="email" placeholder="enter your email" value="<c:if test="${not empty CUSTOMER}">${CUSTOMER.email}</c:if>">
             </div>
             <div class="item two">
                 <label for="">Tỉnh/Thành phố</label>
@@ -100,7 +106,7 @@
             </div>
 
             <div class="item two">
-                <label for="">Địa chỉ</label>
+                <label for="">Địa chỉ cụ thể</label>
                 <textarea class="item-addressDetails" name="address" id="address" cols="30" rows="3"></textarea>
             </div>
             <div class="radio">

@@ -82,7 +82,7 @@ public class OrderDAO extends AbstractDAO<OrderModel> implements IOrderDAO{
     @Override
     public List<RecentOrder> getRecentOrder() {
 		Connection connection = getCon();
-		StringBuilder sql = new StringBuilder("select cdt.cusName, SUM(price) as totalPrice, o.status from orders o inner join customerDetail cdt on o.customerID = cdt.cusID \r\n" + "	inner join orderItem od on od.orderID = o.id where o.status > 0 group by o.customerID, o.id");
+		StringBuilder sql = new StringBuilder("select cdt.cusName, cdt.avatar, SUM(price) as totalPrice, o.status from orders o inner join customerDetail cdt on o.customerID = cdt.cusID \r\n" + "	inner join orderItem od on od.orderID = o.id where o.status > 0 group by o.customerID, o.id");
 		List<RecentOrder> recentOrders = null;
 		try {
 			PreparedStatement stm = connection.prepareStatement(sql.toString());
@@ -92,11 +92,11 @@ public class OrderDAO extends AbstractDAO<OrderModel> implements IOrderDAO{
 			{
 				String colorSta = "";
 				String status = "";
-				if(resultSet.getInt(3) == 1)
+				if(resultSet.getInt(4) == 1)
 				{
 					colorSta = "#FFFC3F";
 					status = RecentOrder.PENDING;
-				}else if(resultSet.getInt(3) == 2)
+				}else if(resultSet.getInt(4) == 2)
 				{
 					colorSta = "#82FA42";
 					status = RecentOrder.DELIVERED;
@@ -105,7 +105,7 @@ public class OrderDAO extends AbstractDAO<OrderModel> implements IOrderDAO{
 					colorSta = "#FA1707";
 					status = RecentOrder.RETURNS;
 				}
-				recentOrders.add(new RecentOrder(resultSet.getString(1), resultSet.getDouble(2), status, colorSta));
+				recentOrders.add(new RecentOrder(resultSet.getString(1), resultSet.getDouble(3), status, colorSta, resultSet.getString(2)));
 			}
 			closeCon(connection, stm, resultSet);
 		} catch (SQLException e) {

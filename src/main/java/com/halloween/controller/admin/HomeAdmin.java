@@ -23,11 +23,13 @@ public class HomeAdmin extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		orderService.updateOrder();
-		Double revenueOfDay = orderService.getRevenueOfDay();
-		if(revenueOfDay != null) request.setAttribute("orderOfDay", revenueOfDay);
+		Integer orderOfDay = orderService.getOrderOfDay();
+		if(orderOfDay != null) request.setAttribute("orderOfDay", orderOfDay);
 		request.setAttribute("recentOrders", orderService.getRecentOrder());
 		request.setAttribute("revenueOfDay", orderService.getRevenueOfDay());
 		request.getRequestDispatcher("homeAdmin.jsp").forward(request, response);
+		// recent customer
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

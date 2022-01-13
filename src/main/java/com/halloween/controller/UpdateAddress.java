@@ -12,10 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.halloween.model.CustomerDetail;
 import com.halloween.service.ICustomerDetailService;
-import com.halloween.service.ICustomerService;
 import com.halloween.service.impl.CustomerDetailService;
-import com.halloween.service.impl.CustomerService;
-import com.halloween.utils.SessionUtil;
+import com.halloween.utils.HttpUtil;
 
 
 @WebServlet("/UpdateAddress")
@@ -24,7 +22,6 @@ public class UpdateAddress extends HttpServlet {
 	@Serial
 	private static final long serialVersionUID = 1L;
 	
-	private static final ICustomerService customerService = new CustomerService();
 	private static final ICustomerDetailService customerDetailService = new CustomerDetailService();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -37,21 +34,15 @@ public class UpdateAddress extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json");
 		ObjectMapper mapper = new ObjectMapper();
-		String name = request.getParameter("name");
-		String phone = request.getParameter("phone");
-		String address = request.getParameter("address");
-		int cusID = customerService.getCustomerID(request.getSession().getAttribute("name").toString());
-		CustomerDetail customerDetail = customerDetailService.fyByCusID(cusID);
-		if (customerDetail != null) {
-			customerDetail.setAddress(address);
-			customerDetail.setName(name);
-			customerDetail.setPhone(phone);
-			SessionUtil.checkSessionUtil().putValue(request.getSession(), "CUSTOMER", customerDetail);
-			customerDetailService.updateAddress(customerDetail);
-		} else {
-			customerDetail = new CustomerDetail(cusID, name, phone, address);
-			customerDetailService.insertCustomerDetail(customerDetail);
+		CustomerDetail customerDetail = HttpUtil.of(request.getReader()).toModel(CustomerDetail.class);
+		if(customerDetail != null)
+		{
+			if(customerDetailService.updateAddress(customerDetail))
+			{
+				mapper.writeValue(response.getOutputStream(), "Update success");
+			}else {
+				mapper.writeValue(response.getOutputStream(), "Error");
+			}
 		}
-		mapper.writeValue(response.getOutputStream(), mapper.writeValueAsString(customerDetail));
 	}
 }

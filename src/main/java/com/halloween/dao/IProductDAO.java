@@ -5,6 +5,7 @@ import java.util.List;
 import com.halloween.model.Products;
 
 public interface IProductDAO extends GenericDAO<Products> {
+	
     List<Products> getAllByCategory(Integer categoryID);
 
     List<Products> getAllItems();

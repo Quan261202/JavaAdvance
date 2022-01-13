@@ -86,7 +86,7 @@
 						</c:if>
 					</div>
 					<p>
-						${customer.name} | <span>${customer.phone}</span>
+						${customer.firstName} ${customer.lastName } | <span>${customer.phone}</span>
 					</p>
 					<p class="address-detail">
 						<c:if test="${customer.address == null}">

@@ -92,9 +92,17 @@ public class loadProducts extends HttpServlet {
 		response.setContentType("text/html");
 		if(request.getSession().getAttribute("name") != null)
 		{
-			int orderID = orderService.getOrderID(customerService.getCustomerID(request.getSession().getAttribute("name").toString()));
-			int count = cartItemService.getCountCartItemCurrentOfCustomer(orderID);
-			response.getWriter().println(count);
+			String name = request.getSession().getAttribute("name").toString();
+			Integer customerID = customerService.getCustomerID(name);
+			if(customerID != null)
+			{
+				Integer orderID = orderService.getOrderID(customerID);
+				if(orderID != null)
+				{
+					int count = cartItemService.getCountCartItemCurrentOfCustomer(orderID);
+					response.getWriter().println(count);
+				}
+			}
 		}
 	}
 }

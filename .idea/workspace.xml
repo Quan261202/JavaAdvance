@@ -10,35 +10,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cbe4f3c7-81d6-475f-8e17-a1293551cdf1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/halloween/controller/ProductDetail.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/halloween/controller/UploadFile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/ProductDetail.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/productDetail.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/productDetail.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/api/CartAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/api/CartAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/api/ProductAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/api/ProductAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/api/ProductResources.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/controller/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/controller/LogOut.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/controller/LogOut.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/controller/addCartServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/controller/addCartServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/dao/ICategoryDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/dao/ICategoryDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/controller/admin/HomeAdmin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/controller/admin/HomeAdmin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/controller/loadProducts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/controller/loadProducts.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/dao/IProductDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/dao/IProductDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/dao/impl/AbstractDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/dao/impl/AbstractDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/dao/impl/CategoryDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/dao/impl/CategoryDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/dao/impl/ProductDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/dao/impl/ProductDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/dao/impl/OrderDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/dao/impl/OrderDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/model/CustomerDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/model/CustomerDetail.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/model/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/model/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/model/Products.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/model/Products.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/service/ICartItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/service/ICartItemService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/service/ICategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/service/ICategoryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/service/ICustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/service/ICustomerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/service/IProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/service/IProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/service/impl/CartItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/service/impl/CartItemService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/service/impl/CategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/service/impl/CategoryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/service/impl/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/service/impl/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/model/RecentOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/model/RecentOrder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/create.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/create.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/homeAdmin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/homeAdmin.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -112,8 +93,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Tomcat 9.0.54" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.54" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
-      <option name="UPDATING_POLICY" value="restart-server" />
+    <configuration name="Tomcat 9.0.54" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.54" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="16" nameIsGenerated="true">
       <deployment>
         <artifact name="ShoppingHalloween:war exploded">
           <settings>
@@ -122,7 +102,7 @@
         </artifact>
       </deployment>
       <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="1c51f4c4-38f6-41b0-a7c5-6b248b9e1974" />
+        <option name="BASE_DIRECTORY_NAME" value="a99b27fa-e2e5-473f-9221-74964dee9966" />
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
@@ -130,7 +110,7 @@
       <predefined_log_file id="Tomcat Host Manager" />
       <predefined_log_file id="Tomcat Localhost Access" />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="59127" />
+        <option name="DEBUG_PORT" value="52689" />
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -193,6 +173,7 @@
         </SHUTDOWN>
       </ConfigurationWrapper>
       <method v="2">
+        <option name="Make" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
           <artifact name="ShoppingHalloween:war exploded" />
         </option>
@@ -239,6 +220,8 @@
       <workItem from="1641906133613" duration="176000" />
       <workItem from="1641968677078" duration="4000" />
       <workItem from="1641988396542" duration="57000" />
+      <workItem from="1642057745796" duration="359000" />
+      <workItem from="1642075561368" duration="376000" />
     </task>
     <servers />
   </component>

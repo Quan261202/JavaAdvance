@@ -113,7 +113,7 @@
                     <h3>${orderOfDay}</h3>
                     <a href=""><em class="fas fa-shopping-cart"></em></a>
                 </div>
-                <p>Sales</p>
+                <p>Orders</p>
             </div>
             <div class="home-item-statistical">
                 <div class="statistical-number">
@@ -160,30 +160,14 @@
             </div>
             <div class="home-item-recent-customer">
                 <p>Recent Customers</p>
-                <div class="recent-customer-content">
-                    <div class="image">
-                        <img src="image/anh-gai-cute.jpg" alt="">
-                    </div>
-                    <p>Recent Customer</p>
-                </div>
-                <div class="recent-customer-content">
-                    <div class="image">
-                        <img src="image/anh-gai-cute.jpg" alt="">
-                    </div>
-                    <p>Recent Customer</p>
-                </div>
-                <div class="recent-customer-content">
-                    <div class="image">
-                        <img src="image/anh-gai-cute.jpg" alt="">
-                    </div>
-                    <p>Recent Customer</p>
-                </div>
-                <div class="recent-customer-content">
-                    <div class="image">
-                        <img src="image/anh-gai-cute.jpg" alt="">
-                    </div>
-                    <p>Recent Customer</p>
-                </div>
+                <c:forEach items="${recentOrders}" var="item">
+                        <div class="recent-customer-content">
+                    		<div class="image">
+                        		<img src="${item.avatar }" alt="">
+                    		</div>
+                    		<p>${item.name }</p>
+                		</div>
+                </c:forEach>
             </div>
         </div>
     </div>
