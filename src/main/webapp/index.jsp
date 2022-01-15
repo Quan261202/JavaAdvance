@@ -79,8 +79,8 @@
 						<c:set var="check" value="true"></c:set>
 					</c:when>
 					<c:when test="${name != null}">
-<%--						<span style="font-size: 1.5rem;" class="username">${name}</span>--%>
-                        <img style="width: 40px;height: 40px;border-radius: 50%;transform: translateY(10%)" alt="" src="image/avatar-mac-dinh-1.png">
+                        <img style="width: 40px;height: 40px;border-radius: 50%;transform: translateY(10%)" alt="" 
+                        src="<c:if test="${not empty CUSTOMER }">${CUSTOMER.avatar}</c:if>">
 						<c:set var="check" value="true"></c:set>
 					</c:when>
 				</c:choose>

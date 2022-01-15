@@ -44,7 +44,7 @@
         <div class="address">
             <div class="address-name">
                 <h3><c:if test="${not empty CUSTOMER}">
-                    ${CUSTOMER.firstName}
+                    ${CUSTOMER.getFullName()}
                 </c:if></h3>
                 <p style="border: none !important;color: black;">Mặc định</p>
             </div>
@@ -66,6 +66,7 @@
             <div class="" id="name">
                 <label class="labels">Name</label>
                 <div>
+                	<input type="hidden" name = "customerID" value="${CUSTOMER.customerID}">
                 	<input type="text" name = "firstName" class="form-control" placeholder="first name" value="${CUSTOMER.firstName }">
 					<input type="text" name = "lastName" class="form-control" value="${CUSTOMER.lastName }" placeholder="last name">
 				</div>

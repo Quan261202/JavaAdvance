@@ -1,27 +1,22 @@
 package com.halloween.model;
 
 public class CustomerDetail {
-	private int cusID;
+	private Integer customerID;
 	private String firstName;
 	private String lastName;
 	private String email;
 	private String address;
 	private String phone;
 	private String avatar;
-
-	public CustomerDetail(int cusID, String firstName, String lastName, String phone, String address) {
+	
+	public CustomerDetail() {
 		super();
-		this.cusID = cusID;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.address = address;
-		this.phone = phone;
 	}
 
-	public CustomerDetail(int cusID, String firstName, String lastName, String phone, String address, String avatar,
+	public CustomerDetail(int customerID, String firstName, String lastName, String phone, String address, String avatar,
 			String email) {
 		super();
-		this.cusID = cusID;
+		this.customerID = customerID;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.address = address;
@@ -30,12 +25,12 @@ public class CustomerDetail {
 		this.email = email;
 	}
 
-	public int getCusID() {
-		return cusID;
+	public Integer getCustomerID() {
+		return customerID;
 	}
 
-	public void setCusID(int cusID) {
-		this.cusID = cusID;
+	public void setCustomerID(Integer customerID) {
+		this.customerID = customerID;
 	}
 
 	public String getFirstName() {
@@ -52,6 +47,14 @@ public class CustomerDetail {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getAddress() {
@@ -77,12 +80,8 @@ public class CustomerDetail {
 	public void setAvatar(String avatar) {
 		this.avatar = avatar;
 	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
+	
+	public String getFullName() {
+		return this.firstName + " " + this.lastName;
 	}
 }

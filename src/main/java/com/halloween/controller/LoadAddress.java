@@ -39,29 +39,5 @@ public class LoadAddress extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html");
-		String type = request.getParameter("a").toString();
-		List<String> list = null;
-		switch (type) {
-		case "district": {
-			String province = request.getParameter("province");
-			list = customerService.getListDistrict(province);
-			break;
-		}
-		case "ward": {
-			String district = request.getParameter("district");
-			list = customerService.getListWard(district);
-			break;
-		}
-		default:
-			break;
-		}
-		StringBuilder html = new StringBuilder();
-		for (String province : list) {
-			html.append("<option value='").append(province).append("'>").append(province).append("</option>");
-		}
-		response.getWriter().println(html);
 	}
 }

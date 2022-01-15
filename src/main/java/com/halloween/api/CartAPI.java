@@ -73,7 +73,7 @@ public class CartAPI extends HttpServlet {
         Integer productID = Integer.parseInt(request.getParameter("id"));
         Integer amount = Integer.parseInt(request.getParameter("amount"));
         CustomerDetail customerDetail = (CustomerDetail)request.getSession().getAttribute("CUSTOMER");
-        Integer orderID = orderService.getOrderID(customerDetail.getCusID());
+        Integer orderID = orderService.getOrderID(customerDetail.getCustomerID());
         if(cartItemService.updateCartItem(amount, productID, orderID))
             mapper.writeValue(response.getOutputStream(), "Update Success");
     }
@@ -85,7 +85,7 @@ public class CartAPI extends HttpServlet {
         ObjectMapper mapper = new ObjectMapper();
         String json = request.getParameter("data");
         CustomerDetail customerDetail = (CustomerDetail)request.getSession().getAttribute("CUSTOMER");
-        Integer orderID = orderService.getOrderID(customerDetail.getCusID());
+        Integer orderID = orderService.getOrderID(customerDetail.getCustomerID());
         Boolean isSuccess = false;
         if(json.indexOf(',') >= 0)
         {

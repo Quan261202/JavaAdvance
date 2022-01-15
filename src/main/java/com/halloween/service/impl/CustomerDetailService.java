@@ -20,12 +20,17 @@ public class CustomerDetailService implements ICustomerDetailService{
 	}
 
 	@Override
-	public Boolean updateAddress(CustomerDetail customer) {
-		return newDAO.updateAddress(customer);
+	public Boolean updateProfile(CustomerDetail customer) {
+		return newDAO.updateProfile(customer);
 	}
 
 	@Override
 	public CustomerDetail getInfoCustomer(Integer customerID) {
 		return newDAO.getInfoCustomer(customerID);
+	}
+
+	@Override
+	public Boolean updateAddress(CustomerDetail customer) {
+		return newDAO.updateAddress(customer);
 	}
 }

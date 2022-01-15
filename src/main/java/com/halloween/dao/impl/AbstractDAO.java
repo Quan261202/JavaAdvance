@@ -121,6 +121,7 @@ public class AbstractDAO<T> implements GenericDAO<T> {
             setParameter(stm, params);
             return stm.executeUpdate() > 0;
         } catch (SQLException e) {
+        	e.printStackTrace();
             return false;
         } finally {
             closeCon(con, stm, null);

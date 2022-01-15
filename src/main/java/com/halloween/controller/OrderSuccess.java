@@ -38,7 +38,7 @@ public class OrderSuccess extends HttpServlet {
 		Integer orderID = orderService.getOrderID(cusID);
 		Customer customer = customerService.getCustomer(cusID);
 		List<CartItem> cartItems = cartItemService.getCartItemNotIn(request, id, orderID);
-		// update lại số lượng sản phẩm trong kho khi khách mua hàng
+		// update láº¡i sá»‘ lÆ°á»£ng sáº£n pháº©m trong kho khi khĂ¡ch mua hĂ ng
 		if(cartItems != null)
 		{
 			for (String amount : id) {
@@ -47,12 +47,12 @@ public class OrderSuccess extends HttpServlet {
 			}
 			if(orderService.updateOrder(orderID, orderService.addDays(new Date(), 2)))
 				CartItem.date = orderService.addDays(new Date(), 2).toString();
-			// remove cartItem không đc chon trong cart đc order
+			// remove cartItem khĂ´ng Ä‘c chon trong cart Ä‘c order
 			if (cartItems != null && cartItems.size() > 0) {
 				for (CartItem cartItem : cartItems)
 					cartItemService.removeCartItem(cartItem.getProductID(), orderID);
-				// update ngày ship hàng
-				// tạo một cart mới cho khách hàng nếu những đơn hàng chưa đc chọn
+				// update ngĂ y ship hĂ ng
+				// táº¡o má»™t cart má»›i cho khĂ¡ch hĂ ng náº¿u nhá»¯ng Ä‘Æ¡n hĂ ng chÆ°a Ä‘c chá»�n
 				int newOrderID = CartItemService.newDAO.saveCart(cusID);
 				for (CartItem cartItem : cartItems)
 					CartItemService.newDAO.saveCartItem(newOrderID, cartItem);
@@ -63,7 +63,7 @@ public class OrderSuccess extends HttpServlet {
 			request.getRequestDispatcher("orderSuccess.jsp").forward(request, response);
 		}
 		else{
-			response.sendRedirect("/home");
+			response.sendRedirect("loadProducts");
 		}
 	}
 
