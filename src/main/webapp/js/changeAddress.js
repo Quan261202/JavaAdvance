@@ -8,7 +8,7 @@ $(document).ready(function() {
 	});
 
 	function callAPI(tile, value, type) {
-		fetch('http://localhost:8080/ShopingHalloween/api/address', {
+		fetch('http://localhost:6789/ShoppingHalloween_war_exploded/api/address', {
 			method: "POST",
 			body: JSON.stringify(value)
 		}).then(res => {
@@ -73,7 +73,7 @@ $(document).ready(function() {
 			data: json,
 			success: (data) => {
 				alert(data)
-				window.location.href = 'http://localhost:8080/ShopingHalloween/CartDetails'
+				window.location.href = 'http://localhost:6789/ShoppingHalloween_war_exploded/CartDetails'
 			}
 		});
 	})

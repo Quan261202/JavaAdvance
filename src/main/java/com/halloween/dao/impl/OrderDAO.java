@@ -1,5 +1,9 @@
 package com.halloween.dao.impl;
 
+import com.halloween.dao.IOrderDAO;
+import com.halloween.model.OrderModel;
+import com.halloween.model.RecentOrder;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,10 +11,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import com.halloween.dao.IOrderDAO;
-import com.halloween.model.OrderModel;
-import com.halloween.model.RecentOrder;
 
 public class OrderDAO extends AbstractDAO<OrderModel> implements IOrderDAO{
 	@Override
@@ -75,14 +75,14 @@ public class OrderDAO extends AbstractDAO<OrderModel> implements IOrderDAO{
 	
 	@Override
 	public Double getRevenueOfDay() {
-		String sql = "SELECT SUM(OI.amount * OI.price) AS Total FROM Orders O INNER JOIN Orderitem OI ON O.id = OI.orderID WHERE O.status = 1 AND date_format(O.OrderDate, \"%M %d %Y\") = date_format(current_timestamp(), \"%M %d %Y\")";
+		String sql = "SELECT SUM(OI.amount * OI.price) AS Total FROM Orders O INNER JOIN orderItem OI ON O.id = OI.orderID WHERE O.status = 1 AND date_format(O.OrderDate, \"%M %d %Y\") = date_format(current_timestamp(), \"%M %d %Y\")";
 		return getSingleObject(sql, 1, Double.class);
 	}
 
     @Override
     public List<RecentOrder> getRecentOrder() {
 		Connection connection = getCon();
-		StringBuilder sql = new StringBuilder("select cdt.firstName, cdt.lastName, cdt.avatar, SUM(price) as totalPrice, o.status from orders o inner join customerDetail cdt on o.customerID = cdt.cusID \r\n" + "	inner join orderItem od on od.orderID = o.id where o.status > 0 group by o.customerID, o.id");
+		StringBuilder sql = new StringBuilder("select cdt.firstName, cdt.lastName, cdt.avatar, SUM(price) as totalPrice, o.status from orders o inner join customerDetail cdt on o.customerID = cdt.customerID \r\n" + "	inner join orderItem od on od.orderID = o.id where o.status > 0 group by o.customerID, o.id");
 		List<RecentOrder> recentOrders = null;
 		try {
 			PreparedStatement stm = connection.prepareStatement(sql.toString());
