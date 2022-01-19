@@ -12,8 +12,10 @@ public class Reviews implements Serializable {
 	private String urlImage;
 	private Date reviewsDate;
 	private String content;
-	private int vote; 
-	
+	private int vote;
+	private String avatar;
+	private String customerName;
+
 	public Reviews() {
 	}
 
@@ -73,6 +75,22 @@ public class Reviews implements Serializable {
 
 	public void setVote(int vote) {
 		this.vote = vote;
+	}
+
+	public String getCustomerName() {
+		return customerName;
+	}
+
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
+
+	public String getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
 	}
 
 }

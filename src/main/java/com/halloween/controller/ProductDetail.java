@@ -1,17 +1,16 @@
 package com.halloween.controller;
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.halloween.model.Products;
 import com.halloween.service.IProductService;
 import com.halloween.service.IReviewsService;
 import com.halloween.service.impl.ProductService;
 import com.halloween.service.impl.ReviewsService;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 
 public class ProductDetail extends HttpServlet {
@@ -35,11 +34,13 @@ public class ProductDetail extends HttpServlet {
             Double percentage = getCountStar(totalVote, voteFiveStar);
             request.setAttribute("product", product);
             request.setAttribute("countStar", percentage);
+            request.setAttribute("percentage", (voteFiveStar / totalVote) * 5);
             request.setAttribute("total", totalVote.intValue());
             if(((voteFiveStar / totalVote) % 0.2 != 0) && voteFiveStar.doubleValue() != totalVote.doubleValue())
             {
                 request.setAttribute("isOdd", 1);
             }
+            request.setAttribute("reviews", reviewsService.getReviewsOfProduct(productID));
             request.getRequestDispatcher("ProductDetail.jsp").forward(request, response);
         }
     }

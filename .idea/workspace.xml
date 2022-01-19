@@ -10,13 +10,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b4cdba81-3ee8-4c05-aac9-9294ada32a53" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/halloween/ws/ProductResource.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/controller/admin/HomeAdmin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/controller/admin/HomeAdmin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/dao/impl/OrderDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/dao/impl/OrderDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/service/ICartItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/service/ICartItemService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/controller/ProductDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/controller/ProductDetail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/dao/GenericDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/dao/GenericDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/dao/IReviewsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/dao/IReviewsDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/dao/impl/AbstractDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/dao/impl/AbstractDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/dao/impl/ReviewsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/dao/impl/ReviewsDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/mapper/ReviewsMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/mapper/ReviewsMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/model/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/model/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/model/Reviews.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/model/Reviews.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/service/IReviewsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/service/IReviewsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/service/impl/ReviewsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/service/impl/ReviewsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/utils/HttpUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/utils/HttpUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/ProductDetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/ProductDetail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/changeAddress.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/changeAddress.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/editProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/editProfile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/productDetail.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/productDetail.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/productDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/productDetail.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +36,13 @@
   </component>
   <component name="CodeInsightWorkspaceSettings">
     <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -46,6 +64,9 @@
       </MavenGeneralSettings>
     </option>
   </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
   <component name="ProjectId" id="23itgst4MeiCsqTnfJxrasDGQUk" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -57,9 +78,21 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.54">
+    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.halloween.model.Main" />
+      <module name="ShoppingHalloween" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.halloween.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Tomcat 9.0.54" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.54" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
-      <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="ShoppingHalloween:war exploded">
           <settings>
@@ -145,6 +178,10 @@
         </option>
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Tomcat Server.Tomcat 9.0.54" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -157,10 +194,26 @@
       <workItem from="1642228854588" duration="323000" />
       <workItem from="1642341612522" duration="791000" />
       <workItem from="1642496504151" duration="1338000" />
+      <workItem from="1642504867258" duration="42000" />
+      <workItem from="1642515517058" duration="723000" />
+      <workItem from="1642562721745" duration="622000" />
+      <workItem from="1642576702912" duration="16097000" />
+      <workItem from="1642598070505" duration="6518000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

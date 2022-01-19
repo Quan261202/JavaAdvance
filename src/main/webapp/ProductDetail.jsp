@@ -5,83 +5,138 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Detail</title>
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="css/productDetail.css">
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
-<body>
 
+<body>
+<div class="header"></div>
 <div class="container">
-    <div class="card">
-        <div id="shopping">
-            <i class="fas fa-cart-plus"><sup id="items-added"></sup></i>
-        </div>
-        <div class="images">
-            <h2>${product.productName}</h2>
-            <div class="slider">
-                <img id="big-image" src="${product.urlImage}" alt="">
+    <div class="container-product">
+        <div class="image">
+            <div class="main-img">
+                <img src="${product.urlImage}" alt="">
+            </div>
+            <div class="image-item">
+                <img src="image/lenovo_20sm0015us_tb_15_iil_i7_1065g7_1558131.jpg" alt="">
+                <img src="image/lenovo_20sm0015us_tb_15_iil_i7_1065g7_1558131.jpg" alt="">
+                <img src="image/lenovo_20sm0015us_tb_15_iil_i7_1065g7_1558131.jpg" alt="">
+                <img src="image/lenovo_20sm0015us_tb_15_iil_i7_1065g7_1558131.jpg" alt="">
             </div>
         </div>
-        <div class="infos">
-            <h1>${product.productName}</h1>
-            <div class="reviews">
-                <c:if test="${countStar > 0}">
-                    <c:forEach begin="1" end="${countStar}" step="1">
-                        <i class="fas fa-star"></i>
-                    </c:forEach>
-                </c:if>
-                <c:if test="${isOdd > 0}">
-                    <i class="fas fa-star-half-alt"></i>
-                </c:if>
-                | ${total}<c:if test="${total >= 1000 }">k</c:if><span style="color: #808080; font-size: 16px"> Lượt đánh
-						giá</span> | ${sold}
-                <c:if test="${sold >= 1000 }">k</c:if>
-                <span style="color: #808080; font-size: 16px">Đã bán</span>
+        <div class="product-detail">
+            <h3><span>Yêu thích</span> Mực Rim Me 220g Đệ Nhất Khô Chua Ngọt Ít Cay, đồ ăn vặt vừa ngon vừa rẻ, Đặc
+                Sản Phan Thiết</h3>
+            <div class="vote">
+                <a href="">
+                    <span>${percentage}</span>
+                    <c:if test="${countStar > 0}">
+                        <c:forEach begin="1" end="${countStar}" step="1">
+                            <i class="fas fa-star"></i>
+                        </c:forEach>
+                    </c:if>
+                    <c:if test="${isOdd > 0}">
+                        <i class="fas fa-star-half-alt"></i>
+                    </c:if>
+                </a>
+                <a href=""><span>${total}<c:if test="${total >= 1000 }">k</c:if></span> Đánh giá</a>
+                <a href=""><span>${sold}<c:if test="${sold >= 1000 }">k</c:if></span> Đã bán</a>
             </div>
             <div class="price">
-                <h3>${product.price}$</h3>
-                <h3>${product.price + 2}$</h3>
+                <p><span class="last-price">$${product.price + 2}</span> <span> ${product.price}$</span><span class="free">46% GIẢM</span></p>
             </div>
-            <div id="more-infos">
-                <h5 class="choose">Description</h5>
-                <h5 class="choose">Basic Info</h5>
-                <h5 class="choose">Caliber</h5>
-            </div>
-            <div id="info-content">
-                <p class="paragraph" style="display: block;">${product.shortDescription}</p>
-                <p class="paragraph" style="display: none;">
-                    CALIBER DUW 2002 manual <br> MOVEMENT HEIGHT 3.6 mm <br>
-                    DIAMETER 32.6 by 22.6 mm <br> POWER RESERVE up to 84 hours <br>
-                    JEWELS 23
-                </p>
-                <p class="paragraph" style="display: none;">Lorem Repellendus
-                    ullam odit placeat, non rem eaque. ipsum dolor sit amet
-                    consectetur adipisicing elit. Repellendus Repellendus ullam odit
-                    placeat, non rem eaque.ullam odit placeat, non rem eaque.</p>
+            <div class="ship">
+                <span style="margin-right: 10px;">Vận chuyển</span>
+                <div class="ship-detail">
+                    <div class="content">
+                        <img src="image/1cdd37339544d858f4d0ade5723cd477.png" alt="">
+                    </div>
+                    <div class="ship-address">
+                        <div class="ship-address-detail">
+                            <span style="opacity: .6;">Vận chuyển tới</span>
+                            <span class="address">${CUSTOMER.address}</span>
+                            <span id="icon" class="icon"></span>
+                            <div class="chose-address">
+                                <div class="search">
+                                    <input placeholder="Tìm" type="text" name="" id="">
+                                </div>
+                                <div id="address" class="drop-address"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="quantity">
-                <h3>QUANTITY</h3>
-                <input type="number" name="items" id="counter" min="1" value="1">
+                <span class="quantity-title">Số lượng</span>
+                <div class="update">
+                    <span id="sub" style="cursor: pointer">-</span>
+                    <span id="amount">1</span>
+                    <span id="add" style="cursor: pointer">+</span>
+                </div>
+                <span style="opacity: .7;">${product.quantity} sản phẩm có sẵn</span>
             </div>
-            <div class="buttons">
-                <a id="add-to-cart" class="addCart" data-toggle="tooltip"
-                   title="Thêm vào giỏ hàng!" data-id="${product.productID}"><i
-                        class="fas fa-shopping-cart"></i>Add To Cart</a>
-                <button>BUY NOW</button>
+            <div class="function">
+                <a href="" class="add-to-cart" id="add-to-cart" data-toggle="tooltip"
+                   title="Thêm vào giỏ hàng!" data-id="${product.productID}"><em class="fas fa-cart-plus"></em>Thêm vào giỏ hàng</a>
+                <a href="" class="buy-now">Mua ngay</a>
             </div>
         </div>
     </div>
+    <div class="reviews">
+        <h1>Đánh giá sản phẩm</h1>
+        <div class="vote">
+            <div class="vote-left">
+                <p><span>5</span> trên 5</p>
+                <a href="">
+                    <em class="fas fa-star"></em>
+                    <em class="fas fa-star"></em>
+                    <em class="fas fa-star"></em>
+                    <em class="fas fa-star"></em>
+                    <em class="fas fa-star"></em>
+                </a>
+            </div>
+            <div class="vote-right">
+                <a href="">Tất cả (<span>12</span>)</a>
+                <a href="">5 sao (<span>12</span>)</a>
+                <a href="">5 sao (<span>12</span>)</a>
+                <a href="">5 sao (<span>12</span>)</a>
+                <a href="">5 sao (<span>12</span>)</a>
+                <a href="">5 sao (<span>12</span>)</a>
+            </div>
+        </div>
+        <c:forEach items="${reviews}" var="item">
+            <div class="reviews-detail">
+                <div class="reviews-detail-avatar">
+                    <img src="${item.avatar}" alt="">
+                </div>
+                <div>
+                    <p class="name">${item.customerName}</p>
+                    <span class="star">
+                        <c:forEach begin="1" end="${item.vote}" step="1">
+                            <em class="fas fa-star"></em>
+                        </c:forEach>
+                    </span>
+                    <p class="content">${item.content}</p>
+                    <div class="images">
+                        <img src="image/35f97f320ff5915e430fc1bd24dd0937.jpeg" alt="">
+                        <img src="image/35f97f320ff5915e430fc1bd24dd0937.jpeg" alt="">
+                        <img src="image/35f97f320ff5915e430fc1bd24dd0937.jpeg" alt="">
+                    </div>
+                </div>
+            </div>
+        </c:forEach>
+    </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="js/productDetail.js"></script>
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
     $(document).ready(() => {
         $('#add-to-cart').on('click', (e) => {
-            e.preventDefault();
-            const quantity = $('#counter').val()
+            e.preventDefault()
+            const quantity = $('#amount').text()
             const id = $('#add-to-cart').data('id')
             const json = {
                 'productID': id,

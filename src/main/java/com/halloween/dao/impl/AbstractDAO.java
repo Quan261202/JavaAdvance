@@ -1,17 +1,11 @@
 package com.halloween.dao.impl;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 import com.halloween.dao.GenericDAO;
 import com.halloween.mapper.INewMapper;
+
+import java.sql.*;
+import java.sql.Date;
+import java.util.*;
 
 public class AbstractDAO<T> implements GenericDAO<T> {
     protected static Boolean check = false;
@@ -57,6 +51,7 @@ public class AbstractDAO<T> implements GenericDAO<T> {
             closeCon(con, stm, resultSet);
         }
     }
+
 
     @Override
     public <G> List<G> getListObject(String sql, Class<G> gClass, Object... params) {

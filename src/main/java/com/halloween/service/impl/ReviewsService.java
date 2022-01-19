@@ -2,7 +2,10 @@ package com.halloween.service.impl;
 
 import com.halloween.dao.IReviewsDAO;
 import com.halloween.dao.impl.ReviewsDAO;
+import com.halloween.model.Reviews;
 import com.halloween.service.IReviewsService;
+
+import java.util.List;
 
 public class ReviewsService implements IReviewsService {
 	
@@ -17,4 +20,14 @@ public class ReviewsService implements IReviewsService {
 	public Double getVoteFiveStart(Integer productID) {
 		return newDAO.getVoteFiveStart(productID);
 	}
+
+    @Override
+    public List<Reviews> getReviewsOfProduct(Integer productID, Integer vote) {
+        return newDAO.getReviewsOfProduct(productID , vote);
+    }
+
+    @Override
+    public List<Reviews> getReviewsOfProduct(Integer productID) {
+		return newDAO.getReviewsOfProduct(productID);
+    }
 }

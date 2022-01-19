@@ -1,8 +1,8 @@
 package com.halloween.dao;
 
-import java.util.List;
-
 import com.halloween.mapper.INewMapper;
+
+import java.util.List;
 
 public interface GenericDAO <T> {
 	List<T> query(String sql, INewMapper<T> mapper, Object... params);

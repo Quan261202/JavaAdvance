@@ -1,45 +1,86 @@
-const BigImage = document.getElementById('big-image');
-const imgSlider = document.getElementById('img-slider');
+$(document).ready(()=>{
 
+    let address
+    setInterval(()=>{
+        address = $('#address span')
+    }, 50)
 
-// Navigate information
+    let addressDetail = ''
+    $('#icon').on('click', async ()=>{
+        const res = await fetch('http://localhost:6789/ShoppingHalloween_war_exploded/api/address')
+        const data = await res.json()
+        const arrays = JSON.parse(data)
+        let html = ``
+        for (let i = 0; i < arrays.length; ++i) {
+            html += `<span>${arrays[i]}</span>`
+        }
+        $('#address').html(html)
 
-const chooseInfo = document.getElementById('more-infos');
-const choose = document.getElementsByClassName('choose');
-const paragraph = document.getElementsByClassName('paragraph');
+        $('.ship-address-detail').toggleClass('active')
+        const values = $('#address span')
+        for(let i = 0; i < values.length; ++i)
+        {
+            $(values[i]).on('click', ()=>{
+                const data = $(values[i]).text()
+                addressDetail += data + ', '
+                const value = {'province': data}
+                callAPI(value)
+                setTimeout(()=>{
+                    for(let i = 0; i < address.length; ++i)
+                    {
+                        $(address[i]).on('click', ()=>{
+                            const data = $(address[i]).text()
+                            addressDetail += data + ', '
+                            callAPI({'district': data})
+                            setTimeout(()=>{
+                                for(let i = 0; i < address.length; ++i)
+                                {
+                                    $(address[i]).on('click', ()=>{
+                                        addressDetail += data
+                                        const add = addressDetail.split(', ').reverse().join(', ')
+                                        $('.address').text(add)
+                                        $('.ship-address-detail').toggleClass('active')
+                                    })
+                                }
+                            }, 200)
+                        })
+                    }
+                }, 200)
+            })
+        }
+    })
 
-
-function styleItem (a,b,c) {
-    a.style.cssText = 'color:black ; border-bottom: 2px solid black ; padding-bottom: 6px';
-    b.style.cssText = 'color:gray ; border-bottom: none';
-    c.style.cssText = 'color:gray ; border-bottom: none';
-}
-
-function displayPrph (e,f,g) {
-    e.style.display = 'block';
-    f.style.display = 'none';
-    g.style.display = 'none';
-}
-
-chooseInfo.addEventListener('click', event => {
-
-    if (event.target === choose[0]) {
-
-        styleItem (choose[0],choose[1],choose[2])
-        displayPrph (paragraph[0],paragraph[2],paragraph[1])
+    // chose province or district
+    function callAPI(value) {
+        fetch('http://localhost:6789/ShoppingHalloween_war_exploded/api/address', {
+            method: "POST",
+            body: JSON.stringify(value)
+        }).then(res => {
+            return res.json()
+        }).then(data => {
+            const arrays = JSON.parse(data)
+            let  html = ``
+            for (let i = 0; i < arrays.length; ++i) {
+                html += `<span>${arrays[i]}</span>`
+            }
+            $('#address').html(html)
+        })
     }
 
-    else if (event.target === choose[1]) {
+    // add quantity
+    $('#add').on('click', (e)=>{
+        e.preventDefault()
+        const amount = parseInt($('#amount').text())
+        $('#amount').text(amount + 1)
+    })
 
-        styleItem (choose[1],choose[0],choose[2])
-        displayPrph (paragraph[1],paragraph[0],paragraph[2])
-    }
-
-    else   {
-        styleItem (choose[2],choose[0],choose[1])
-        displayPrph (paragraph[2],paragraph[0],paragraph[1])
-    }
-});
-
-
-
+    // sub quantity
+    $('#sub').on('click', (e)=>{
+        e.preventDefault()
+        const amount = parseInt($('#amount').text())
+        if(amount > 1)
+        {
+            $('#amount').text(amount - 1)
+        }
+    })
+})
