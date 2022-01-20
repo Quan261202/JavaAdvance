@@ -1,10 +1,10 @@
 package com.halloween.dao.impl;
 
-import java.util.List;
-
 import com.halloween.dao.ICustomerDAO;
 import com.halloween.mapper.CustomerMapper;
 import com.halloween.model.Customer;
+
+import java.util.List;
 
 public class CustomerDAO extends AbstractDAO<Customer> implements ICustomerDAO{
 
@@ -39,25 +39,40 @@ public class CustomerDAO extends AbstractDAO<Customer> implements ICustomerDAO{
 	}
 
 	@Override
-	public List<String> getListProvince() {
+	public List<String> getListProvince(String key) {
 		check = true;
-		String sql = "SELECT proName FROM Province";
+		String str = "";
+		if(key != null)
+		{
+			str = " where proName like '%" + key + "%'";
+		}
+		String sql = "SELECT proName FROM Province" + str;
 		return getListObject(sql, String.class);
 	}
 
 	@Override
-	public List<String> getListDistrict(String province) {
+	public List<String> getListDistrict(String province, String key) {
 		check = true;
-		String sql = "SELECT d.disName FROM Province p INNER JOIN District d ON p.ID = d.proID WHERE p.proName = ?";
+		String str = "";
+		if(key != null)
+		{
+			str = " and disName like '%" + key + "%'";
+		}
+		String sql = "SELECT d.disName FROM Province p INNER JOIN District d ON p.ID = d.proID WHERE p.proName = ?" + str;
 		return getListObject(sql, String.class, province);
 	}
 
 	@Override
-	public List<String> getListWard(String district) {
+	public List<String> getListWard(String district, String key) {
 		check = true;
+		String str = "";
+		if(key != null)
+		{
+			str = " and wardName like '%" + key + "%'";
+		}
 		String sql = "SELECT w.wardName  FROM Province P inner join District D on P.ID = D.proID\r\n"
 				+ "					INNER JOIN Ward w ON d.ID = w.disID\r\n"
-				+ "					WHERE  d.disName = N'" + district + "'";
+				+ "					WHERE  d.disName = N'" + district + "'" + str;
 		return getListObject(sql, String.class);
 	}
 }

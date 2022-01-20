@@ -43,6 +43,7 @@ public class UpdateAddress extends HttpServlet {
 				{
 					mapper.writeValue(response.getOutputStream(), "Update success");
 					customerDetail = (CustomerDetail) SessionUtil.checkSessionUtil().getValue(request.getSession(), "CUSTOMER");
+					customerDetail.setAddress(address);
 					SessionUtil.checkSessionUtil().putValue(request.getSession(), "CUSTOMER", customerDetail);
 				}
 			}else{

@@ -15,9 +15,9 @@ public interface ICustomerDAO extends GenericDAO<Customer> {
 
     Integer insertCustomer(Customer customer);
 
-    List<String> getListProvince();
+    List<String> getListProvince(String type);
 
-    List<String> getListDistrict(String province);
+    List<String> getListDistrict(String province, String type);
 
-    List<String> getListWard(String district);
+    List<String> getListWard(String district, String type);
 }

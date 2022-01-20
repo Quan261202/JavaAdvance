@@ -1,8 +1,8 @@
 package com.halloween.service;
 
-import java.util.List;
-
 import com.halloween.model.Customer;
+
+import java.util.List;
 
 public interface ICustomerService {
     Integer getCustomerID(String username);
@@ -15,9 +15,10 @@ public interface ICustomerService {
 
     Boolean isAdmin(Integer customerID);
 
-    List<String> getListProvince();
+    List<String> getListProvince(String key);
 
-    List<String> getListDistrict(String province);
+    List<String> getListDistrict(String province, String key);
 
-    List<String> getListWard(String district);
+    List<String> getListWard(String district,String key);
+
 }

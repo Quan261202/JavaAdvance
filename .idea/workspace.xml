@@ -10,24 +10,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b4cdba81-3ee8-4c05-aac9-9294ada32a53" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/loadAddress.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/halloween/model/Address.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/controller/EditProfile.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/controller/LoadAddress.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/api/AddressAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/api/AddressAPI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/controller/UpdateAddress.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/controller/UpdateAddress.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/controller/UploadFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/controller/UploadFile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/dao/ICustomerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/dao/ICustomerDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/dao/ICustomerDetailDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/dao/ICustomerDetailDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/dao/impl/CustomerDetailDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/dao/impl/CustomerDetailDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/service/ICustomerDetailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/service/ICustomerDetailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/service/impl/CustomerDetailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/service/impl/CustomerDetailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/utils/SessionUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/utils/SessionUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/dao/impl/CustomerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/dao/impl/CustomerDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/model/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/model/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/service/ICustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/service/ICustomerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/service/impl/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/service/impl/CustomerService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/ProductDetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/ProductDetail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/cartDetal.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/cartDetal.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/changeAddress.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/changeAddress.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/editProfile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/editProfile.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/changeAddress.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/changeAddress.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/editProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/editProfile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/productDetail.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/productDetail.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/js/productDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/productDetail.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -202,6 +196,9 @@
       <workItem from="1642576702912" duration="16097000" />
       <workItem from="1642598070505" duration="6518000" />
       <workItem from="1642640068870" duration="8712000" />
+      <workItem from="1642663316901" duration="3966000" />
+      <workItem from="1642670364861" duration="3168000" />
+      <workItem from="1642683355567" duration="8092000" />
     </task>
     <servers />
   </component>

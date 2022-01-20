@@ -1,15 +1,15 @@
 package com.halloween.service.impl;
 
-import java.util.List;
-
 import com.halloween.dao.ICustomerDAO;
 import com.halloween.dao.impl.CustomerDAO;
 import com.halloween.model.Customer;
 import com.halloween.service.ICustomerService;
 
+import java.util.List;
+
 public class CustomerService implements ICustomerService{
 
-	private static ICustomerDAO newDAO = new CustomerDAO();
+	private static final ICustomerDAO newDAO = new CustomerDAO();
 	
 	@Override
 	public Integer getCustomerID(String username) {
@@ -27,21 +27,21 @@ public class CustomerService implements ICustomerService{
 	}
 
 	@Override
-	public List<String> getListProvince() {
-		return newDAO.getListProvince();
+	public List<String> getListProvince(String key) {
+		return newDAO.getListProvince(key);
 	}
 
 	@Override
-	public List<String> getListDistrict(String province) {
-		return newDAO.getListDistrict(province);
+	public List<String> getListDistrict(String province, String key) {
+		return newDAO.getListDistrict(province, key);
 	}
 
 	@Override
-	public List<String> getListWard(String district) {
-		return newDAO.getListWard(district);
+	public List<String> getListWard(String district, String key) {
+		return newDAO.getListWard(district, key);
 	}
 
-	@Override
+    @Override
 	public Integer checkLogin(String userName, String password) {
 		return newDAO.checkLogin(userName, password);
 	}
