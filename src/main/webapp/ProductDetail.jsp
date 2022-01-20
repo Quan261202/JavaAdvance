@@ -61,6 +61,7 @@
                             <span id="icon" class="icon"></span>
                             <div class="chose-address">
                                 <div class="search">
+                                    <input type="hidden" id="customerID" name="" value="${CUSOMTER.customerID}">
                                     <input placeholder="Tìm" type="text" name="" id="">
                                 </div>
                                 <div id="address" class="drop-address"></div>

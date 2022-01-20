@@ -29,7 +29,12 @@ public class CustomerDetailService implements ICustomerDetailService{
 		return newDAO.getInfoCustomer(customerID);
 	}
 
-	@Override
+    @Override
+    public Boolean updateAddress(Integer customerID, String address) {
+        return newDAO.updateAddress(customerID, address);
+    }
+
+    @Override
 	public Boolean updateAddress(CustomerDetail customer) {
 		return newDAO.updateAddress(customer);
 	}

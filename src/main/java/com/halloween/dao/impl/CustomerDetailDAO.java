@@ -30,7 +30,7 @@ public class CustomerDetailDAO extends AbstractDAO<CustomerDetail> implements IC
 	}
 
 	@Override
-		public Boolean updateProfile(CustomerDetail customer) {
+	public Boolean updateProfile(CustomerDetail customer) {
 			String sql = "UPDATE CustomerDetail SET firstName = ?, lastName = ? , phone = ? , address = ?, avatar = ?, email = ? "
 					+ "WHERE customerID = ? ";
 			return updateOrDelete(sql, customer.getFirstName()
@@ -52,4 +52,10 @@ public class CustomerDetailDAO extends AbstractDAO<CustomerDetail> implements IC
 				                      				, customer.getAddress()
 				                      				, customer.getCustomerID());
 	}
+
+    @Override
+    public Boolean updateAddress(Integer customerID, String address) {
+        String sql = "update customerDetail set address = ? where customerID = ?";
+		return updateOrDelete(sql, address, customerID);
+    }
 }

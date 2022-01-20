@@ -1,29 +1,4 @@
-$(document).ready(() => {
-    function callAPI(tile, value, type) {
-        fetch('http://localhost:6789/ShoppingHalloween_war_exploded/api/address', {
-            method: "POST",
-            body: JSON.stringify(value)
-        }).then(res => {
-            return res.json()
-        }).then(data => {
-            let html = `<option value="Chọn ${type}">Chọn ${type}</option>`
-            const arrays = JSON.parse(data)
-            for (let i = 0; i < arrays.length; ++i) {
-                html += `<option value="${arrays[i]}">${arrays[i]}</option>`
-            }
-            $('#' + tile).html(html)
-        })
-    }
-
-    $('#province').on('change', () => {
-        let province = $('#province').val().toString();
-        callAPI('district', {'province': province}, 'Quận Huyện')
-    })
-
-    $('#district').on('change', () => {
-        let district = $('#district').val().toString();
-        callAPI('ward', {'district': district}, 'Phường Xã')
-    })
+$(document).ready(async () => {
 
     $('#saveProfile').on('click', (e) => {
         e.preventDefault();
@@ -46,7 +21,7 @@ $(document).ready(() => {
                     $.ajax({
                         type: 'POST',
                         contentType: 'application/json',
-                        url: 'profile',
+                        url: 'UpdateAddress',
                         data: JSON.stringify(object),
                         success: (data) => {
                             alert(data);

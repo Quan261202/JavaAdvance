@@ -16,8 +16,8 @@ public class SessionUtil {
 		session.setAttribute(key, value);
 	}
 	
-	public void getValue(HttpSession session, String key) {
-		session.getAttribute(key);
+	public Object getValue(HttpSession session, String key) {
+		return session.getAttribute(key);
 	}
 	
 	public void removeValue(HttpSession session, String key) {

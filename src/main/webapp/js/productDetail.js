@@ -36,10 +36,26 @@ $(document).ready(()=>{
                                 for(let i = 0; i < address.length; ++i)
                                 {
                                     $(address[i]).on('click', ()=>{
+                                        const data = $(address[i]).text()
                                         addressDetail += data
                                         const add = addressDetail.split(', ').reverse().join(', ')
                                         $('.address').text(add)
                                         $('.ship-address-detail').toggleClass('active')
+                                        const object = {
+                                            'customerID': $('#customerID').val(),
+                                            'address': add
+                                        }
+                                        $.ajax({
+                                            method: 'POST',
+                                            url: 'UpdateAddress',
+                                            data: JSON.stringify(object),
+                                            success: (data)=>{
+                                                alert(data)
+                                            },
+                                            error: err=>{
+                                                alert(err)
+                                            }
+                                        })
                                     })
                                 }
                             }, 200)

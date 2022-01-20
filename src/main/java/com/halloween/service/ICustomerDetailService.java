@@ -8,4 +8,5 @@ public interface ICustomerDetailService {
 	Boolean updateProfile(CustomerDetail customer);
 	Boolean updateAddress(CustomerDetail customer);
 	CustomerDetail getInfoCustomer(Integer customerID);
+	Boolean updateAddress(Integer customerID, String address);
 }

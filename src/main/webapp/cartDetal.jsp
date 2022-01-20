@@ -78,12 +78,7 @@
 				<div class="address">
 					<div class="address-one">
 						<p style="width: 150px !important;">Giao tới</p>
-						<c:if test="${customer.address != null}">
-							<a href="LoadAddress?address=${customer.address}">Thay đổi</a>
-						</c:if>
-						<c:if test="${customer.address == null}">
-							<a href="LoadAddress">Thay đổi</a>
-						</c:if>
+						<a href="changeAddress.jsp" id="update-address">Thay đổi</a>
 					</div>
 					<p>
 						${customer.firstName} ${customer.lastName } | <span>${customer.phone}</span>
@@ -135,6 +130,7 @@
 	<script type="text/javascript" src="js/choseCart.js"></script>
 	<script>
 		$(document).ready(()=>{
+
 			const checkAllCarts = $('.container-item-two .check input');
 			$('.removeAll').on('click', (e)=>{
 				e.preventDefault();

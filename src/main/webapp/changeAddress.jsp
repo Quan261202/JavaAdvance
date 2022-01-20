@@ -48,10 +48,9 @@
                 </c:if></h3>
                 <p style="border: none !important;color: black;">Mặc định</p>
             </div>
-            <p class="content-add">
-                <c:if test="${not empty CUSTOMER}">
-                    ${CUSTOMER.address}
-                </c:if>
+            <p class="content-add" id="address-detail">
+                <c:if test="${not empty CUSTOMER}">${CUSTOMER.address}</c:if>
+                <c:if test="${not empty CUSTOMER and not empty CUSOMTER.address}">Vui lòng cập nhập địa chỉ giao hàng</c:if>
             </p>
             <p>Điện thoại: <c:if test="${not empty CUSTOMER}">
                 ${CUSTOMER.phone}
@@ -128,6 +127,7 @@
         </form>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="js/loadAddress.js"></script>
     <script src="js/changeAddress.js"></script>
 </body>
 </html>
