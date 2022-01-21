@@ -74,19 +74,20 @@ $(document).ready(()=>{
     }
 
     // add quantity
+    const quantity = $('#amount')
     $('#add').on('click', (e)=>{
         e.preventDefault()
-        const amount = parseInt($('#amount').text())
-        $('#amount').text(amount + 1)
+        const amount = parseInt(quantity.text())
+        quantity.text(amount + 1)
     })
 
     // sub quantity
     $('#sub').on('click', (e)=>{
         e.preventDefault()
-        const amount = parseInt($('#amount').text())
+        const amount = parseInt(quantity.text())
         if(amount > 1)
         {
-            $('#amount').text(amount - 1)
+            quantity.text(amount - 1)
         }
     })
 
@@ -117,7 +118,7 @@ $(document).ready(()=>{
     $('#search').on('keyup', ()=>{
         console.log(count)
         const data = $('#search').val()
-        const type = count == 1 ? 'province': count == 2 ? 'district' : 'ward'
+        const type = count === 1 ? 'province': count === 2 ? 'district' : 'ward'
         const object = {
             'type': type,
             'key': data,
@@ -140,7 +141,7 @@ $(document).ready(()=>{
                         $(address[i]).on('click', ()=>{
                             const data = $(address[i]).text()
                             name = data
-                            if(count == 1)
+                            if(count === 1)
                             {
                                 addressDetail += data + ', '
                                 callAPI({'province' : data})
@@ -165,7 +166,7 @@ $(document).ready(()=>{
                                         })
                                     }
                                 }, 100)
-                            }else if(count == 2)
+                            }else if(count === 2)
                             {
                                 addressDetail += data + ', '
                                 callAPI({'district' : data})
@@ -180,7 +181,7 @@ $(document).ready(()=>{
                                     }
                                 }, 100)
                             }
-                            else if(count == 3)
+                            else if(count === 3)
                             {
                                 addressDetail += data
                                 updateAddress(addressDetail)

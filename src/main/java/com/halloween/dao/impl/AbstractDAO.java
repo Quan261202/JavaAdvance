@@ -4,8 +4,8 @@ import com.halloween.dao.GenericDAO;
 import com.halloween.mapper.INewMapper;
 
 import java.sql.*;
-import java.sql.Date;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AbstractDAO<T> implements GenericDAO<T> {
     protected static Boolean check = false;
@@ -62,14 +62,18 @@ public class AbstractDAO<T> implements GenericDAO<T> {
         try {
             if (!check) con = getCon();
             else con = getConSQL();
-            stm = con.prepareStatement(sql);
-            // set parameter
-            setParameter(stm, params);
-            resultSet = stm.executeQuery();
-            while (resultSet.next())
-                results.add(getParameter(resultSet, 1, gClass));
-            check = false;
-            return results;
+            if(con != null)
+            {
+                stm = con.prepareStatement(sql);
+                // set parameter
+                setParameter(stm, params);
+                resultSet = stm.executeQuery();
+                while (resultSet.next())
+                    results.add(getParameter(resultSet, 1, gClass));
+                check = false;
+                return results;
+            }
+            return null;
         } catch (SQLException e) {
             return null;
         } finally {
@@ -87,19 +91,18 @@ public class AbstractDAO<T> implements GenericDAO<T> {
             con.setAutoCommit(false);
             stm = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             setParameter(stm, params);
-            Integer id = 0;
+            int id = 0;
             stm.executeUpdate();
             resultSet = stm.getGeneratedKeys();
             if (resultSet.next()) id = resultSet.getInt(1);
             con.commit();
             return id;
         } catch (SQLException e) {
-            if (con != null)
-                try {
-                    con.rollback();
-                } catch (SQLException e1) {
-                    return null;
-                }
+            try {
+                con.rollback();
+            } catch (SQLException e1) {
+                return null;
+            }
             return null;
         } finally {
             closeCon(con, stm, resultSet);
@@ -161,7 +164,7 @@ public class AbstractDAO<T> implements GenericDAO<T> {
             else if (param instanceof Float) stm.setFloat(i + 1, (Float) param);
             else if (param instanceof String) stm.setString(i + 1, (String) param);
             else if (param instanceof Double) stm.setDouble(i + 1, (Double) param);
-            else if (param instanceof Date) stm.setDate(i + 1, new java.sql.Date(((Date) param).getTime()));
+            else if (param instanceof java.util.Date) stm.setDate(i + 1, new java.sql.Date(((java.util.Date) param).getTime()));
             else if (param == null) stm.setNull(i + 1, java.sql.Types.NULL);
         }
     }

@@ -120,7 +120,7 @@
 					<p class="tax">Đã bao gồm VAT nếu có</p>
 				</div>
 				<div class="btn">
-					<a class="btn-pay" href="PayMent?id=">Mua hàng(<span class="count"></span>)</a>
+					<a class="btn-pay" href="Payment?id=">Mua hàng(<span class="count"></span>)</a>
 				</div>
 			</div>
 		</div>

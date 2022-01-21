@@ -1,14 +1,5 @@
 package com.halloween.controller;
 
-import java.io.IOException;
-import java.util.List;
-
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.halloween.model.CartItem;
 import com.halloween.model.CustomerDetail;
 import com.halloween.service.ICartItemService;
@@ -20,14 +11,25 @@ import com.halloween.service.impl.CustomerDetailService;
 import com.halloween.service.impl.CustomerService;
 import com.halloween.service.impl.OrderService;
 
-@WebServlet("/PayMent")
-public class PayMent extends HttpServlet {
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.Serial;
+import java.util.List;
+
+@WebServlet("/Payment")
+public class Payment extends HttpServlet {
+
+	@Serial
 	private static final long serialVersionUID = 1L;
 	
-	private static IOrderService orderService = new OrderService();
-	private static ICustomerService customerService = new CustomerService();
-	private static ICartItemService cartItemService = new CartItemService();
-	private static ICustomerDetailService customerDetailService = new CustomerDetailService();
+	private static final IOrderService orderService = new OrderService();
+	private static final ICustomerService customerService = new CustomerService();
+	private static final ICartItemService cartItemService = new CartItemService();
+	private static final ICustomerDetailService customerDetailService = new CustomerDetailService();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -39,7 +41,7 @@ public class PayMent extends HttpServlet {
 		if(request.getParameter("free") != null) {
 			free = Integer.parseInt(request.getParameter("free"));
 		}
-		String[] intergers = listID.split(",");
+		String[] integers = listID.split(",");
 		Integer customerID = customerService.getCustomerID(request.getSession().getAttribute("name").toString());
 		Integer orderID = orderService.getOrderID(customerID);
 		CustomerDetail customerDetail = customerDetailService.getInfoCustomer(customerID);
@@ -48,7 +50,7 @@ public class PayMent extends HttpServlet {
 		{
 			request.setAttribute("customerInfo", customerDetail);
 		}
-		List<CartItem> cartItems = cartItemService.getAllOrderItemByID(intergers, orderID);
+		List<CartItem> cartItems = cartItemService.getAllOrderItemByID(integers, orderID);
 		request.setAttribute("cartItems", cartItems);
 		request.setAttribute("free", free);
 		request.setAttribute("date", CartItem.date);

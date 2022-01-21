@@ -44,7 +44,7 @@
 				<em class="fas fa-search"></em> <input type="text" name="search"
 					placeholder="tìm kiếm theo tên shop ID hoặc tên sản phẩm...">
 			</div>
-			<div class="product">
+			<div class="product" id="product">
 				<div class="store">
 					<span><em class="fas fa-store"></em>doanducminh79</span> <a href=""><em
 						class="fas fa-comment-alt"></em>chat</a> <a href=""><em

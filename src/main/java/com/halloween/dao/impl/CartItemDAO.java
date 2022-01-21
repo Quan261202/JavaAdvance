@@ -1,27 +1,28 @@
 package com.halloween.dao.impl;
 
+import com.halloween.dao.ICartItemDAO;
+import com.halloween.mapper.CartItemMapper;
+import com.halloween.model.CartItem;
+
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.halloween.dao.ICartItemDAO;
-import com.halloween.mapper.CartItemMapper;
-import com.halloween.model.CartItem;
-
 public class CartItemDAO extends AbstractDAO<CartItem> implements ICartItemDAO{
 
 	@Override
 	public List<CartItem> getAllCartItemOfOrder(Integer orderID, Integer customerID, Integer status) {
-		String sql = "SELECT products.productID, products.productName, orderitem.price, orderitem.amount, products.urlImage FROM OrderItem INNER JOIN orders ON orderitem.orderID = orders.id INNER JOIN products ON products.productID = orderitem.productID where customerID = ? AND orders.status = ? AND orders.id = ?";
+		String sql = "SELECT products.productID, products.productName, orderItem.price, orderItem.amount, products.urlImage FROM OrderItem INNER JOIN orders ON orderItem.orderID = orders.id INNER JOIN products ON products.productID = orderItem.productID where customerID = ? AND orders.status = ? AND orders.id = ?";
 		return query(sql, new CartItemMapper(), customerID, status, orderID);
 	}
 
 	@Override
 	public List<CartItem> loadCart(Integer orderID) {
 		String sql = "select p.productID, p.productName, p.price, oi.amount, p.urlImage from orders o inner join customer c on o.customerID = c.customerID\r\n"
-				+ "	inner join orderitem oi on o.id = oi.orderID inner join products p on oi.productID = p.productID where o.id = ? AND o.shippedDate IS NULL";
+				+ "	inner join orderItem oi on o.id = oi.orderID inner join products p on oi.productID = p.productID where o.id = ? AND o.shippedDate IS NULL";
 		return query(sql, new CartItemMapper(), orderID);
 	}
 
@@ -51,8 +52,8 @@ public class CartItemDAO extends AbstractDAO<CartItem> implements ICartItemDAO{
 
 	@Override
 	public Integer getCountCartItemCurrentOfCustomer(Integer orderID) {
-		String sql = "SELECT COUNT(*) AS Total FROM Orders O INNER JOIN Orderitem OI ON O.id = OI.orderID WHERE O.id = ? AND O.status = 0 group by O.id";
-		return (Integer) getSingleObject(sql, 1, Integer.class, orderID);
+		String sql = "SELECT COUNT(*) AS Total FROM Orders O INNER JOIN orderItem OI ON O.id = OI.orderID WHERE O.id = ? AND O.status = 0 group by O.id";
+		return getSingleObject(sql, 1, Integer.class, orderID);
 	}
 
 	@Override
@@ -69,9 +70,9 @@ public class CartItemDAO extends AbstractDAO<CartItem> implements ICartItemDAO{
 
 	@Override
 	public List<CartItem> getCartItemNotIn(Integer orderID, String param, List<String> integers) {
-		List<CartItem> cartItems = new ArrayList<CartItem>();
-		java.sql.Connection con = getCon();
-		String sql = "select p.productID, p.productName, p.price, oi.amount, p.urlImage from orders o inner join customer c on o.customerID = c.customerID inner join orderitem oi on o.id = oi.orderID inner join products p on oi.productID = p.productID where o.id = ? and  p.productID NOT IN " + param;
+		List<CartItem> cartItems = new ArrayList<>();
+		Connection con = getCon();
+		String sql = "select p.productID, p.productName, p.price, oi.amount, p.urlImage from orders o inner join customer c on o.customerID = c.customerID inner join orderitem oi on o.id = oi.orderID inner join products p on oi.productID = p.productID where o.id = ? and  p.productID NOT IN" + param;
 		PreparedStatement stm;
 		try {
 			stm = con.prepareStatement(sql);

@@ -79,7 +79,7 @@
 				<h1 style="margin-top: 5px">2.Chọn hình thức thanh toán</h1>
 				<div class="container">
 					<div class="container-item">
-						<label><input type="radio" name="pay" id=""><span></span></label>
+						<label><input type="radio" name="pay" id="pay"><span></span></label>
 						<a href=""> <img src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/checkout/icon-payment-method-cod.svg" alt="">
 						</a>
 						<p>Thanh toán khi nhận hàng</p>
@@ -102,7 +102,7 @@
 					<div>
 						<span>Địa chỉ giao hàng</span> <a>Sửa</a>
 					</div>
-					<h3>${customerInfo.name}</h3>
+					<h3>${customerInfo.getFullName()}</h3>
 					<p style="margin-bottom: 8px;">${customerInfo.address}</p>
 					<p>Điện thoại: ${customerInfo.phone}</p>
 				</div>

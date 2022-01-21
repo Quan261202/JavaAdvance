@@ -122,9 +122,9 @@
                     </span>
                     <p class="content">${item.content}</p>
                     <div class="images">
-                        <img src="image/35f97f320ff5915e430fc1bd24dd0937.jpeg" alt="">
-                        <img src="image/35f97f320ff5915e430fc1bd24dd0937.jpeg" alt="">
-                        <img src="image/35f97f320ff5915e430fc1bd24dd0937.jpeg" alt="">
+                        <img src="${item.urlImage}" alt="">
+                        <img src="${item.urlImage}" alt="">
+                        <img src="${item.urlImage}" alt="">
                     </div>
                 </div>
             </div>

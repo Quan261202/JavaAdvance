@@ -13,12 +13,12 @@ $(document).ready(function() {
 			let province
 			let district
 			let ward
-			if(arrays.length == 3)
+			if(arrays.length === 3)
 			{
 				province = arrays[2].trim()
 				district = arrays[1].trim()
 				ward = arrays[0].trim()
-			}else if(arrays.length == 4)
+			}else if(arrays.length === 4)
 			{
 				province = arrays[3].trim()
 				district = arrays[2].trim()

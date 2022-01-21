@@ -1,29 +1,25 @@
 package com.halloween.service.impl;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
 import com.halloween.dao.ICartItemDAO;
 import com.halloween.dao.impl.CartItemDAO;
 import com.halloween.model.CartItem;
 import com.halloween.model.Products;
 import com.halloween.service.ICartItemService;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.*;
+
 public class CartItemService implements ICartItemService{
 	
 	public static ICartItemDAO newDAO = new CartItemDAO();
 	
 	@Override
-	public HashMap<Integer, List<CartItem>> getAllCartItemOfOrder(List<Integer> integers, Integer customerID, Integer status) {
-		HashMap<Integer, List<CartItem>> hashMap = new HashMap<Integer, List<CartItem>>();
-		Integer index = 0;
-		for (int i = 0; i < integers.size(); ++i) {
-			List<CartItem> cartItems = newDAO.getAllCartItemOfOrder(integers.get(i), customerID, status);
+	public Map<String, Object> getAllOrdersOfCustomer(List<Integer> integers, Integer customerID, Integer status) {
+		Map<String, Object> hashMap = new HashMap<>();
+		for (Integer integer : integers) {
+			List<CartItem> cartItems = newDAO.getAllCartItemOfOrder(integer, customerID, status);
 			if (cartItems.size() > 0) {
-				hashMap.put(index++, cartItems);
+				hashMap.put(integer.toString(), cartItems);
 			}
 		}
 		return hashMap;
@@ -36,7 +32,7 @@ public class CartItemService implements ICartItemService{
 
 	@Override
 	public List<CartItem> getAllOrderItemByID(String[] productID, Integer orderID) {
-		List<CartItem> cartItems = new ArrayList<CartItem>();
+		List<CartItem> cartItems = new ArrayList<>();
 		for (String item : productID)
 			cartItems.add(newDAO.getOrderItemByID(Integer.parseInt(item), orderID));
 		return cartItems;
@@ -54,9 +50,9 @@ public class CartItemService implements ICartItemService{
 
 	@Override
 	public List<CartItem> saveCart(Integer customerID, Integer orderID, Integer quantity, Integer productID, List<Products> lists) {
-		List<CartItem> cartItems = new ArrayList<CartItem>();
+		List<CartItem> cartItems;
 		if (orderID == null) {
-			cartItems = new ArrayList<CartItem>();
+			cartItems = new ArrayList<>();
 			orderID = newDAO.saveCart(customerID);
 		} else {
 			cartItems = newDAO.loadCart(orderID);
@@ -105,17 +101,16 @@ public class CartItemService implements ICartItemService{
 			if(request.getParameter("id").indexOf(',') > 0)
 			{
 				String[] temp = request.getParameter("id").split(",");
-				for(String x : temp)
-					integers.add(x);
+				integers.addAll(Arrays.asList(temp));
 			}
 			else integers.add(request.getParameter("id"));
-			String pram = "(";
+			StringBuilder pram = new StringBuilder("(");
 			for(int i = 0; i < integers.size(); ++i)
 			{
-				if(i == integers.size() - 1) pram += "?)";
-				else pram += "?,";
+				if(i == integers.size() - 1) pram.append("?)");
+				else pram.append("?,");
 			}
-			return newDAO.getCartItemNotIn(orderID, pram, integers);
+			return newDAO.getCartItemNotIn(orderID, pram.toString(), integers);
 		}
 		return null;
 	}

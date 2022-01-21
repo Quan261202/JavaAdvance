@@ -4,11 +4,11 @@ import com.halloween.model.CartItem;
 import com.halloween.model.Products;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public interface ICartItemService {
-    HashMap<Integer, List<CartItem>> getAllCartItemOfOrder(List<Integer> integers, Integer customerID, Integer status);
+    Map<String, Object> getAllOrdersOfCustomer(List<Integer> integers, Integer customerID, Integer status);
 
     List<CartItem> getCartItemNotIn(HttpServletRequest request, List<String> integers, Integer orderID);
 

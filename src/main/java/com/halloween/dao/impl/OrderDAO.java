@@ -90,8 +90,8 @@ public class OrderDAO extends AbstractDAO<OrderModel> implements IOrderDAO{
 			recentOrders = new ArrayList<>();
 			while (resultSet.next())
 			{
-				String colorSta = "";
-				String status = "";
+				String colorSta;
+				String status;
 				if(resultSet.getInt(5) == 1)
 				{
 					colorSta = "#FFFC3F";
