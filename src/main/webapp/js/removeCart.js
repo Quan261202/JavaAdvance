@@ -5,7 +5,7 @@ $(document).ready(function() {
 		for (let i = 0; i < listCart.length; ++i) {
 			$(listCart[i]).on('click', (e) => {
 				e.preventDefault();
-				id = $(listCart[i]).data('id');
+				const id = $(listCart[i]).data('id');
 				$.ajax({
 					method: "POST",
 					url: 'removeCart?id=' + id,
@@ -42,13 +42,12 @@ $(document).ready(function() {
 	for (let i = 0; i < listCarts.length; ++i) {
 		$(listCarts[i]).on('click', (e) => {
 			e.preventDefault();
-			id = $(listCarts[i]).data('id');
+			const id = $(listCarts[i]).data('id');
 			$.ajax({
 				method: "POST",
 				url: 'addCartServlet?id=' + id,
 				success: (data) => {
 					const arraysObject = $.parseJSON(data);
-					console.log(typeof arraysObject);
 					let html = '';
 					let total = 0;
 					for(let j = 0; j < arraysObject.length; ++j)

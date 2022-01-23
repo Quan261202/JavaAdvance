@@ -94,7 +94,7 @@
             <label for="search" class="fas fa-search"></label>
         </div>
         <div class="dropdown">
-        	<a href="MyOrder"><em class="fas fa-scroll"></em>Đơn hàng của tôi</a>
+        	<a href="myOrder.jsp"><em class="fas fa-scroll"></em>Đơn hàng của tôi</a>
         	<a href=""><em class="fas fa-envelope"></em>Thông báo của tôi</a>
         	<a href="editProfile.jsp"><em class="fas fa-user"></em>Tài khoản của tôi</a>
         	<a href="LogOut"><em class="fas fa-sign-out-alt"></em>Đăng xuất</a>

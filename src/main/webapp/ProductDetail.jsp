@@ -28,8 +28,7 @@
             </div>
         </div>
         <div class="product-detail">
-            <h3><span>Yêu thích</span> Mực Rim Me 220g Đệ Nhất Khô Chua Ngọt Ít Cay, đồ ăn vặt vừa ngon vừa rẻ, Đặc
-                Sản Phan Thiết</h3>
+            <h3><span>Yêu thích</span> ${product.productName}</h3>
             <div class="vote">
                 <a href="">
                     <span>${percentage}</span>
@@ -113,7 +112,7 @@
                 <div class="reviews-detail-avatar">
                     <img src="${item.avatar}" alt="">
                 </div>
-                <div>
+                <div class="reviews-detail-content">
                     <p class="name">${item.customerName}</p>
                     <span class="star">
                         <c:forEach begin="1" end="${item.vote}" step="1">
@@ -125,6 +124,15 @@
                         <img src="${item.urlImage}" alt="">
                         <img src="${item.urlImage}" alt="">
                         <img src="${item.urlImage}" alt="">
+                    </div>
+                    <p class="date" style="padding: 10px 0px;font-weight: 550">${item.getReviewsDate()}</p>
+                    <div class="like-item">
+                        <span class="like" style="color: #ccc;cursor: pointer"><i id="like" class="fas fa-thumbs-up"></i></span>
+                        <span style="color: #ccc" class="total-like">
+                            <c:if test="${item.totalLike > 0}">${item.totalLike}</c:if>
+                            <c:if test="${item.totalLike < 1}"> ? Hữu ích</c:if>
+                        </span>
+                        <input type="hidden" id="ID" name="" value="${item.id}">
                     </div>
                 </div>
             </div>

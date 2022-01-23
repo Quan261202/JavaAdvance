@@ -1,13 +1,13 @@
 package com.halloween.service.impl;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-
 import com.halloween.dao.IOrderDAO;
 import com.halloween.dao.impl.OrderDAO;
 import com.halloween.model.RecentOrder;
 import com.halloween.service.IOrderService;
+
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 public class OrderService implements IOrderService{
 
@@ -29,11 +29,6 @@ public class OrderService implements IOrderService{
 	}
 
 	@Override
-	public Boolean updateOrder() {
-		return newDAO.updateOrder();
-	}
-
-	@Override
 	public Boolean updateOrderSuccess() {
 		return newDAO.updateOrderSuccess();
 	}
@@ -41,6 +36,11 @@ public class OrderService implements IOrderService{
 	@Override
 	public Integer getAmountOrderDelivered(Integer customerID) {
 		return newDAO.getAmountOrderDelivered(customerID);
+	}
+
+	@Override
+	public Integer getAmountOrdersByStatus(Integer customerID, Integer status) {
+		return newDAO.getAmountOrdersByStatus(customerID, status);
 	}
 
 	@Override

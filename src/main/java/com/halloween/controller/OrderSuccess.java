@@ -1,5 +1,7 @@
 package com.halloween.controller;
 
+import com.halloween.constant.OrderMessage;
+import com.halloween.mail.SendMail;
 import com.halloween.model.CartItem;
 import com.halloween.model.Customer;
 import com.halloween.service.ICartItemService;
@@ -58,6 +60,7 @@ public class OrderSuccess extends HttpServlet {
 			request.setAttribute("shippedDate", CartItem.date);
 			request.setAttribute("orderID", orderID);
 			request.setAttribute("customer", customer);
+			SendMail.senMail(customer.getEmail(), "ShoppingHalloween", OrderMessage.SUCCESS);
 			request.getRequestDispatcher("orderSuccess.jsp").forward(request, response);
 		}
 		else{

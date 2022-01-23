@@ -30,4 +30,14 @@ public class ReviewsService implements IReviewsService {
     public List<Reviews> getReviewsOfProduct(Integer productID) {
 		return newDAO.getReviewsOfProduct(productID);
     }
+
+    @Override
+    public Integer insert(Reviews reviews) {
+        return newDAO.insert(reviews);
+    }
+
+    @Override
+    public Boolean updateTotalLike(Integer id, char operator) {
+        return newDAO.updateTotalLike(id, operator);
+    }
 }

@@ -1,4 +1,43 @@
 $(document).ready(() => {
+
+    fetch('http://localhost:6789/ShoppingHalloween_war_exploded/MyOrder')
+        .then(res => {
+            return res.json()
+        }).then(data => {
+        const object = JSON.parse(data)
+        let html = ``
+        // $('#count').text(object['count'])
+        for (const key in object) {
+            if (object[key] instanceof Array) {
+                let sum = 0
+                for (let i = 0; i < object[key].length; ++i) {
+                    html += `
+                                <div class="product-item">
+                                    <img src="${object[key][i].urlImage}" alt="">
+                                    <div class="product-detail">
+                                        <p>${object[key][i].productName}</p>
+                                        <span>x${object[key][i].quantity}</span>
+                                    </div>
+                                    <p class="price">${object[key][i].quantity * object[key][i].price}.0</p>                   
+                                </div>
+                            `
+                    sum += object[key][i].quantity * object[key][i].price
+                }
+                html += `
+                            <div class="pay">
+                                <span><img src="icons/gross.png" alt=""><a href=""></a>Tổng số tiền: <span>$ </span><span>${sum}</span></span>
+                                <div class="pay-function">
+                                    <a href="">${statusMess['one']}</a>
+                                    <a href="">${statusMess['two']}</a>
+                                    <a href="">${statusMess['three']}</a>
+                                </div>
+                            </div>
+                        `
+            }
+        }
+        $('#product').html(html)
+    })
+
     const statusMess = {
         'one': 'Chờ',
         'two': 'Liên hệ người bán',
@@ -17,11 +56,9 @@ $(document).ready(() => {
                 'border-bottom': '2px solid red',
             })
             const status = i < 4 ? 1 : i !== 4 ? 3 : 2;
-            if(status === 2)
-            {
+            if (status === 2) {
 
-            }else if(status === 3)
-            {
+            } else if (status === 3) {
                 statusMess['one'] = 'Mua lại'
                 statusMess['three'] = 'Chi tiết đơn hủy'
             }
@@ -33,9 +70,8 @@ $(document).ready(() => {
             const value = await res.json()
             const object = JSON.parse(value)
             let html = ``
-            for (const key in object)
-            {
-                let  total = 0
+            for (const key in object) {
+                let total = 0
                 for (let i = 0; i < object[key].length; ++i) {
                     html += `
                                 <div class="product-item">
@@ -44,7 +80,8 @@ $(document).ready(() => {
                                         <p>${object[key][i].productName}</p>
                                         <span>x${object[key][i].quantity}</span>
                                     </div>
-                                    <p class="price">${object[key][i].quantity * object[key][i].price}.0</p>                   
+                                    <p class="price">${object[key][i].quantity * object[key][i].price}.0</p>
+                                    <c:if test = "${status == 2}"><a href="reviews.jsp?productID=${object[key][i].productID}" id="reviews">Đánh giá</a></c:if>                   
                                 </div>
                             `
                     total += object[key][i].quantity * object[key][i].price

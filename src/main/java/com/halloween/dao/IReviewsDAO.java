@@ -12,4 +12,8 @@ public interface IReviewsDAO extends GenericDAO<Reviews>{
     List<Reviews> getReviewsOfProduct(Integer productID, Integer vote);
 
     List<Reviews> getReviewsOfProduct(Integer productID);
+
+    Integer insert(Reviews reviews);
+
+    Boolean updateTotalLike(Integer id, char operator);
 }

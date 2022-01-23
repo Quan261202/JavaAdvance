@@ -72,10 +72,10 @@ public class CartItemDAO extends AbstractDAO<CartItem> implements ICartItemDAO{
 	public List<CartItem> getCartItemNotIn(Integer orderID, String param, List<String> integers) {
 		List<CartItem> cartItems = new ArrayList<>();
 		Connection con = getCon();
-		String sql = "select p.productID, p.productName, p.price, oi.amount, p.urlImage from orders o inner join customer c on o.customerID = c.customerID inner join orderitem oi on o.id = oi.orderID inner join products p on oi.productID = p.productID where o.id = ? and  p.productID NOT IN" + param;
+		StringBuilder sql = new StringBuilder().append("select p.productID, p.productName, p.price, oi.amount, p.urlImage from orders o inner join customer c on o.customerID = c.customerID inner join orderItem oi on o.id = oi.orderID inner join products p on oi.productID = p.productID where o.id = ? and  p.productID NOT IN").append(param);
 		PreparedStatement stm;
 		try {
-			stm = con.prepareStatement(sql);
+			stm = con.prepareStatement(sql.toString());
 			stm.setInt(1, orderID);
 			int index = 2;
 			for(String id : integers)

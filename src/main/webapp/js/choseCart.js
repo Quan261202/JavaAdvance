@@ -209,7 +209,6 @@ $(document).ready(() => {
 				href += $('.pay-item .frees span').text().substring(1);
 			}
 			$('div.btn a.btn-pay').attr('href', href);
-			console.log(href);
 		}
 	});
 

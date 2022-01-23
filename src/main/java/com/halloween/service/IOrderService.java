@@ -9,9 +9,9 @@ public interface IOrderService {
 	Boolean deleteOrders(Integer orderID);
 	Boolean updateOrderDate(Integer orderID);
 	Boolean updateOrder(Integer orderID, Date shipDate);
-	Boolean updateOrder();
 	Boolean updateOrderSuccess();
 	Integer getAmountOrderDelivered(Integer customerID);
+	Integer getAmountOrdersByStatus(Integer customerID, Integer status);
 	Integer getOrderID(Integer customerID);
 	Integer getCountOrderItem(Integer orderID);
 	List<Integer> getAllOrderIDOfCustomer(Integer customerID);

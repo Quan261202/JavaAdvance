@@ -1,12 +1,16 @@
 package com.halloween.model;
 
+import java.io.Serial;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Reviews implements Serializable {
-	
+
+	@Serial
 	private static final long serialVersionUID = 1L;
-	
+
+	private int id;
 	private int customerID;
 	private int productID;
 	private String urlImage;
@@ -15,6 +19,8 @@ public class Reviews implements Serializable {
 	private int vote;
 	private String avatar;
 	private String customerName;
+	private int totalLike;
+	private char operator;
 
 	public Reviews() {
 	}
@@ -27,6 +33,34 @@ public class Reviews implements Serializable {
 		this.reviewsDate = reviewsDate;
 		this.content = content;
 		this.vote = vote;
+	}
+
+	public Reviews(int id, int customerID, int productID, String urlImage, Date reviewsDate, String content, int vote, char operator) {
+		super();
+		this.id = id;
+		this.customerID = customerID;
+		this.productID = productID;
+		this.urlImage = urlImage;
+		this.reviewsDate = reviewsDate;
+		this.content = content;
+		this.vote = vote;
+		this.operator = operator;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getTotalLike() {
+		return totalLike;
+	}
+
+	public void setTotalLike(int totalLike) {
+		this.totalLike = totalLike;
 	}
 
 	public int getCustomerID() {
@@ -53,8 +87,9 @@ public class Reviews implements Serializable {
 		this.urlImage = urlImage;
 	}
 
-	public Date getReviewsDate() {
-		return reviewsDate;
+	public String getReviewsDate() {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		return format.format(reviewsDate);
 	}
 
 	public void setReviewsDate(Date reviewsDate) {
@@ -93,4 +128,11 @@ public class Reviews implements Serializable {
 		this.avatar = avatar;
 	}
 
+	public char getOperator() {
+		return operator;
+	}
+
+	public void setOperator(char operator) {
+		this.operator = operator;
+	}
 }

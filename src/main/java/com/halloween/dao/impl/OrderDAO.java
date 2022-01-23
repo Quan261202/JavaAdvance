@@ -24,19 +24,19 @@ public class OrderDAO extends AbstractDAO<OrderModel> implements IOrderDAO{
 		String sql = "UPDATE Orders SET shippedDate = ?, status = 1 WHERE id = ?";
 		return updateOrDelete(sql, shipDate, orderID);
 	}
-	
-	@Override
-	public Boolean updateOrder() {
-		String sql = "UPDATE Orders SET status = 2 WHERE day(ShippedDate) <= day(current_timestamp()) AND status NOT IN(2, 3)";
-		return updateOrDelete(sql);
-	}
 
 	@Override
 	public Integer getAmountOrderDelivered(Integer customerID) {
 		String sql = "SELECT COUNT(*) FROM Orders WHERE  day(current_timestamp()) - day(Orders.orderDate) >= 1 and day(current_timestamp()) < day(orders.ShippedDate) AND status = 1 AND customerID = ?";
 		return getSingleObject(sql, 1, Integer.class, customerID);
 	}
-	
+
+	@Override
+	public Integer getAmountOrdersByStatus(Integer customerID, Integer status) {
+		String sql = "SELECT COUNT(*) FROM Orders WHERE status = ? AND customerID = ?";
+		return getSingleObject(sql, 1, Integer.class, status, customerID);
+	}
+
 	@Override
 	public List<Integer> getAllOrderIDOfCustomer(Integer customerID) {
 		String sql = "SELECT id FROM Orders WHERE customerID = ? AND status > 0";
@@ -51,7 +51,7 @@ public class OrderDAO extends AbstractDAO<OrderModel> implements IOrderDAO{
 
     @Override
 	public Boolean updateOrderSuccess() {
-		String sql = "Update Orders SET status = 2 WHERE ShippedDate < OrderDate";
+		String sql = "UPDATE Orders SET status = 2 WHERE day(ShippedDate) <= day(current_timestamp()) AND status NOT IN(2, 3)";
 		return updateOrDelete(sql);
 	}
 	

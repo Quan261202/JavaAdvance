@@ -10,7 +10,7 @@
 <title>My Order</title>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-<link rel="stylesheet" href="css/myorder.css">
+<link rel="stylesheet" href="css/myOrder.css">
 </head>
 <body>
 	<div class="header"></div>
@@ -32,11 +32,7 @@
 				<li><a href="">Tất cả</a></li>
 				<li><a href="">Chờ xác nhận</a></li>
 				<li><a href="">Chờ lấy hàng</a></li>
-				<li><a href="">Đang giao
-					<c:if test="${count > 0}">
-						<span style="color: #ee4d2d">(${count})</span>
-					</c:if>
-				</a></li>
+				<li><a href="">Đang giao<span id="count" style="color: #ee4d2d">(${count})</span></a></li>
 				<li><a href="">Đã giao</a></li>
 				<li><a href="">Đã huỷ</a></li>
 			</ul>

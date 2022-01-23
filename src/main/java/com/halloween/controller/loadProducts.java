@@ -1,26 +1,17 @@
 package com.halloween.controller;
 
-import java.io.IOException;
-import java.io.Serial;
-import java.util.List;
+import com.halloween.model.Products;
+import com.halloween.pagination.Pagination;
+import com.halloween.service.*;
+import com.halloween.service.impl.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.halloween.model.Products;
-import com.halloween.pagination.Pagination;
-import com.halloween.service.ICartItemService;
-import com.halloween.service.ICategoryService;
-import com.halloween.service.ICustomerService;
-import com.halloween.service.IOrderService;
-import com.halloween.service.IProductService;
-import com.halloween.service.impl.CartItemService;
-import com.halloween.service.impl.CategoryService;
-import com.halloween.service.impl.CustomerService;
-import com.halloween.service.impl.OrderService;
-import com.halloween.service.impl.ProductService;
+import java.io.IOException;
+import java.io.Serial;
+import java.util.List;
 
 
 public class loadProducts extends HttpServlet {
@@ -74,7 +65,7 @@ public class loadProducts extends HttpServlet {
 				request.setAttribute("cartItems", cartItemService.loadCart(orderID));
 				request.setAttribute("count", count);
 			}
-			orderService.updateOrder();
+			orderService.updateOrderSuccess();
 		}
 		request.setAttribute("listTwo" , listTwo);
 		request.setAttribute("listFour" , listFour);

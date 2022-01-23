@@ -1,36 +1,36 @@
 package com.halloween.mail;
 
-import javax.mail.Authenticator;
-import javax.mail.Message;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
+import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
 public class SendMail {
-    private static final String name = "vuquan261202@gmail.com";
+    private static final String name = "quan2020606122@gmail.com";
     private static final String pass = "quan261202";
     public static void senMail(String mailTo, String subject, String content){
-        Properties properties = new Properties();
-        properties.put("mail.smtp.host", "smtp.gmail.com");
-        properties.put("mail.smtp.port", "587");
-        properties.put("mail.smtp.auth", "true");
-        properties.put("mail.smtp.starttls.enable", "true");
-        Session session = Session.getInstance(properties, new Authenticator() {
+        Properties props = new Properties();
+        props.setProperty("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.starttls.enable", "true");
+
+        Session session = Session.getInstance(props, new Authenticator(){
             @Override
-            protected PasswordAuthentication getPasswordAuthentication() {
+            protected PasswordAuthentication getPasswordAuthentication(){
                 return new PasswordAuthentication(name, pass);
             }
         });
+
         try {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(name));
-            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mailTo));
             message.setSubject(subject);
-            message.setText(content);
-            System.out.println("send success");
+            message.setContent(content, "text/plain");
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(mailTo));
+            Transport.send(message);
         }catch(Exception ex){
+            System.out.println("error");
             ex.printStackTrace();
         }
     }

@@ -21,7 +21,7 @@ public class HomeAdmin extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		orderService.updateOrder();
+		orderService.updateOrderSuccess();
 		Integer orderOfDay = orderService.getOrderOfDay();
 		if(orderOfDay != null) request.setAttribute("orderOfDay", orderOfDay);
 		request.setAttribute("recentOrders", orderService.getRecentOrder());

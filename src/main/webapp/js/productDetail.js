@@ -91,6 +91,55 @@ $(document).ready(()=>{
         }
     })
 
+    // like
+    const like = $('.reviews-detail-content div #like')
+    for (let i = 0; i < like.length; ++i)
+    {
+        let isLike = false
+        $(like[i]).on('click', (e)=>{
+            e.preventDefault()
+            isLike = !isLike
+            const totalLike = $(`.reviews .reviews-detail:nth-child(${i + 3}) .total-like`)
+            const operator = isLike ? '+' : '-'
+            const id = $(`.reviews .reviews-detail:nth-child(${i + 3}) #ID`).val()
+            const object = {
+                'id': id,
+                'operator': operator
+            }
+            $.ajax({
+                method: 'PUT',
+                url: 'api/reviews',
+                data: JSON.stringify(object),
+                success: ()=>{
+                    if(isLike)
+                    {
+                        $(`.reviews .reviews-detail:nth-child(${i + 3}) .like`).css({
+                            'color': '#ee4d2d'
+                        })
+                        if(totalLike.text().indexOf('H') >= 0)
+                        {
+                            totalLike.text('1')
+                        }
+                        else{
+                            totalLike.text(parseInt(totalLike.text()) + 1)
+                        }
+                    }
+                    else{
+                        $(`.reviews .reviews-detail:nth-child(${i + 3}) .like`).css({
+                            'color': '#ccc'
+                        })
+                        if(parseInt(totalLike.text()) < 2)
+                        {
+                            totalLike.text('? Hữu ích')
+                        }else{
+                            totalLike.text(parseInt(totalLike) - 1)
+                        }
+                    }
+                }
+            })
+        })
+    }
+
     function updateAddress(addressDetail)
     {
         const add = addressDetail.split(', ').reverse().join(', ')

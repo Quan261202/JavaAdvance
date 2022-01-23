@@ -32,7 +32,8 @@ public class MyOrder extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html");
+		response.setContentType("application/json");
+		ObjectMapper mapper = new ObjectMapper();
 		String name = request.getSession().getAttribute("name").toString();
 		Integer customerID = customerService.getCustomerID(name);
 		List<Integer> integers = orderService.getAllOrderIDOfCustomer(customerID);
@@ -40,15 +41,13 @@ public class MyOrder extends HttpServlet {
 		if (request.getAttribute("status") != null) {
 			status = Integer.parseInt(request.getAttribute("status").toString());
 		}
-		Integer orderID = orderService.getOrderID(customerID);
-		if(orderID != null)
+		if(customerID != null)
 		{
-			Integer count = orderService.getAmountOrderDelivered(orderID);
+			Integer count = orderService.getAmountOrdersByStatus(customerID, status);
 			Map<String, Object> hashMap = cartItemService.getAllOrdersOfCustomer(integers, customerID, status);
-			request.setAttribute("map", hashMap);
-			request.setAttribute("status", status);
-			request.setAttribute("count", count);
-			request.getRequestDispatcher("myOrder.jsp").forward(request, response);
+			hashMap.put("status", status);
+			hashMap.put("count", count);
+			mapper.writeValue(response.getOutputStream(), mapper.writerWithDefaultPrettyPrinter().writeValueAsString(hashMap));
 		}
 	}
 

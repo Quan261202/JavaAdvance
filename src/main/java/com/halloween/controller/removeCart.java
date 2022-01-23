@@ -1,13 +1,5 @@
 package com.halloween.controller;
 
-import java.io.IOException;
-import java.util.List;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.halloween.model.CartItem;
 import com.halloween.service.ICartItemService;
@@ -17,12 +9,22 @@ import com.halloween.service.impl.CartItemService;
 import com.halloween.service.impl.CustomerService;
 import com.halloween.service.impl.OrderService;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.Serial;
+import java.util.List;
+
 public class removeCart extends HttpServlet {
+
+	@Serial
 	private static final long serialVersionUID = 1L;
 
-	private static IOrderService orderService = new OrderService();
-	private static ICustomerService customerService = new CustomerService();
-	private static ICartItemService cartItemService = new CartItemService();
+	private static final IOrderService orderService = new OrderService();
+	private static final ICustomerService customerService = new CustomerService();
+	private static final ICartItemService cartItemService = new CartItemService();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

@@ -10,24 +10,44 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b4cdba81-3ee8-4c05-aac9-9294ada32a53" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/halloween/api/ReviewsAPI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/halloween/constant/OrderMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/reviews.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/reviews.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/reviews.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/controller/MyOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/controller/MyOrder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/controller/OrderSuccess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/controller/OrderSuccess.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/controller/PayMent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/controller/Payment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/dao/impl/AbstractDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/dao/impl/AbstractDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/controller/UpdateCart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/controller/UpdateCart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/controller/admin/HomeAdmin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/controller/admin/HomeAdmin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/controller/loadProducts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/controller/loadProducts.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/controller/removeCart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/controller/removeCart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/dao/IOrderDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/dao/IOrderDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/dao/IReviewsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/dao/IReviewsDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/dao/impl/CartItemDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/dao/impl/CartItemDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/dao/impl/OrderDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/dao/impl/OrderDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/dao/impl/ReviewsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/dao/impl/ReviewsDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/mail/SendMail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/mail/SendMail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/mapper/ReviewsMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/mapper/ReviewsMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/model/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/model/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/service/ICartItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/service/ICartItemService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/service/impl/CartItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/service/impl/CartItemService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/model/Reviews.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/model/Reviews.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/service/IOrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/service/IOrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/service/IReviewsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/service/IReviewsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/service/impl/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/service/impl/OrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/service/impl/ReviewsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/service/impl/ReviewsService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/ProductDetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/ProductDetail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/cartDetal.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/cartDetal.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/changeAddress.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/changeAddress.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/create.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/create.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/myorder.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/myOrder.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/admin.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/choseCart.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/choseCart.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/js/myOrder.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/myOrder.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/js/productDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/productDetail.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/removeCart.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/removeCart.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/myOrder.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/myOrder.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/payment.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/payment.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +60,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="CSS File" />
+        <option value="Kotlin Class" />
         <option value="Class" />
       </list>
     </option>
@@ -78,6 +100,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js.last.introduce.type" value="CONST" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.54">
     <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
@@ -207,6 +230,11 @@
       <workItem from="1642749571469" duration="6092000" />
       <workItem from="1642767085433" duration="3333000" />
       <workItem from="1642770548889" duration="8227000" />
+      <workItem from="1642818198753" duration="3164000" />
+      <workItem from="1642837782141" duration="7256000" />
+      <workItem from="1642856479473" duration="4229000" />
+      <workItem from="1642939812178" duration="1987000" />
+      <workItem from="1642943144464" duration="8728000" />
     </task>
     <servers />
   </component>
@@ -223,5 +251,15 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="javax.net.ssl.SSLHandshakeException" package="javax.net.ssl" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

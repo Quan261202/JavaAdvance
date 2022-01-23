@@ -160,8 +160,6 @@
                         method = "POST"
                     }
                 }
-                console.log(JSON.stringify(object))
-                console.log(method)
                 $.ajax({
                     type: method + '',
                     contentType: 'application/json',
@@ -172,7 +170,7 @@
                         window.location.href = '${urlHome}';
                     },
                     error: (error) => {
-                        console.log(error)
+                        alert(error)
                     }
                 })
             })
