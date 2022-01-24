@@ -11,9 +11,15 @@ public interface IReviewsService {
 
     List<Reviews> getReviewsOfProduct(Integer productID, Integer vote);
 
-    List<Reviews> getReviewsOfProduct(Integer productID);
+    List<Reviews> getReviewsOfProduct(Integer productID, Integer customerID, Object... param);
 
     Integer insert(Reviews reviews);
 
-    Boolean updateTotalLike(Integer id, char operator);
+    Integer insertLike(Integer customerID, Integer reviewsID);
+
+    Boolean removeLike(Integer customerID, Integer reviewsID);
+
+    Integer getTotalLikeOfReviews(Integer reviewsID);
+
+    Boolean findOne(Integer customerID, Integer reviewsID);
 }

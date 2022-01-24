@@ -17,10 +17,12 @@ public class Reviews implements Serializable {
 	private Date reviewsDate;
 	private String content;
 	private int vote;
+
+	// variable incurred
 	private String avatar;
 	private String customerName;
 	private int totalLike;
-	private char operator;
+	private boolean isLike;
 
 	public Reviews() {
 	}
@@ -35,7 +37,7 @@ public class Reviews implements Serializable {
 		this.vote = vote;
 	}
 
-	public Reviews(int id, int customerID, int productID, String urlImage, Date reviewsDate, String content, int vote, char operator) {
+	public Reviews(int id, int customerID, int productID, String urlImage, Date reviewsDate, String content, int vote) {
 		super();
 		this.id = id;
 		this.customerID = customerID;
@@ -44,15 +46,6 @@ public class Reviews implements Serializable {
 		this.reviewsDate = reviewsDate;
 		this.content = content;
 		this.vote = vote;
-		this.operator = operator;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public int getTotalLike() {
@@ -61,6 +54,14 @@ public class Reviews implements Serializable {
 
 	public void setTotalLike(int totalLike) {
 		this.totalLike = totalLike;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public int getCustomerID() {
@@ -128,11 +129,11 @@ public class Reviews implements Serializable {
 		this.avatar = avatar;
 	}
 
-	public char getOperator() {
-		return operator;
+	public boolean isLike() {
+		return isLike;
 	}
 
-	public void setOperator(char operator) {
-		this.operator = operator;
+	public void setLike(boolean like) {
+		isLike = like;
 	}
 }

@@ -1,14 +1,14 @@
-$(document).ready(()=>{
+$(document).ready(() => {
 
     let count = 1
     let name
     let addressDetail = ''
     let address
-    setInterval(()=>{
+    setInterval(() => {
         address = $('#address span')
     }, 20)
 
-    $('#icon').on('click', async ()=>{
+    $('#icon').on('click', async () => {
         const res = await fetch('http://localhost:6789/ShoppingHalloween_war_exploded/api/address')
         const data = await res.json()
         const arrays = JSON.parse(data)
@@ -20,28 +20,25 @@ $(document).ready(()=>{
 
         $('.ship-address-detail').toggleClass('active')
         const values = $('#address span')
-        for(let i = 0; i < values.length; ++i)
-        {
-            $(values[i]).on('click', ()=>{
+        for (let i = 0; i < values.length; ++i) {
+            $(values[i]).on('click', () => {
                 const data = $(values[i]).text()
                 name = data
                 addressDetail += data + ', '
                 const value = {'province': data}
                 callAPI(value)
                 count = 2
-                setTimeout(()=>{
-                    for(let i = 0; i < address.length; ++i)
-                    {
-                        $(address[i]).on('click', ()=>{
+                setTimeout(() => {
+                    for (let i = 0; i < address.length; ++i) {
+                        $(address[i]).on('click', () => {
                             const data = $(address[i]).text()
                             name = data
                             addressDetail += data + ', '
                             callAPI({'district': data})
                             count = 3
-                            setTimeout(()=>{
-                                for(let i = 0; i < address.length; ++i)
-                                {
-                                    $(address[i]).on('click', ()=>{
+                            setTimeout(() => {
+                                for (let i = 0; i < address.length; ++i) {
+                                    $(address[i]).on('click', () => {
                                         const data = $(address[i]).text()
                                         addressDetail += data
                                         updateAddress(addressDetail)
@@ -65,7 +62,7 @@ $(document).ready(()=>{
             return res.json()
         }).then(data => {
             const arrays = JSON.parse(data)
-            let  html = ``
+            let html = ``
             for (let i = 0; i < arrays.length; ++i) {
                 html += `<span>${arrays[i]}</span>`
             }
@@ -75,73 +72,61 @@ $(document).ready(()=>{
 
     // add quantity
     const quantity = $('#amount')
-    $('#add').on('click', (e)=>{
+    $('#add').on('click', (e) => {
         e.preventDefault()
         const amount = parseInt(quantity.text())
         quantity.text(amount + 1)
     })
 
     // sub quantity
-    $('#sub').on('click', (e)=>{
+    $('#sub').on('click', (e) => {
         e.preventDefault()
         const amount = parseInt(quantity.text())
-        if(amount > 1)
-        {
+        if (amount > 1) {
             quantity.text(amount - 1)
         }
     })
 
     // like
     const like = $('.reviews-detail-content div #like')
-    for (let i = 0; i < like.length; ++i)
-    {
-        let isLike = false
-        $(like[i]).on('click', (e)=>{
+    for (let i = 0; i < like.length; ++i) {
+        $(like[i]).on('click', (e) => {
             e.preventDefault()
-            isLike = !isLike
+            let isLike = 'rgb(204, 204, 204)' === $(`.reviews .reviews-detail:nth-child(${i + 3}) .like`).css('color') ? true : false
             const totalLike = $(`.reviews .reviews-detail:nth-child(${i + 3}) .total-like`)
-            const operator = isLike ? '+' : '-'
             const id = $(`.reviews .reviews-detail:nth-child(${i + 3}) #ID`).val()
+            const customerID = $('#customerID').val()
             const object = {
                 'id': id,
-                'operator': operator
+                'customerID': customerID
             }
             $.ajax({
                 method: 'PUT',
                 url: 'api/reviews',
                 data: JSON.stringify(object),
-                success: ()=>{
+                success: (data) => {
                     if(isLike)
                     {
                         $(`.reviews .reviews-detail:nth-child(${i + 3}) .like`).css({
                             'color': '#ee4d2d'
                         })
-                        if(totalLike.text().indexOf('H') >= 0)
-                        {
-                            totalLike.text('1')
-                        }
-                        else{
-                            totalLike.text(parseInt(totalLike.text()) + 1)
-                        }
-                    }
-                    else{
+                    }else{
                         $(`.reviews .reviews-detail:nth-child(${i + 3}) .like`).css({
                             'color': '#ccc'
                         })
-                        if(parseInt(totalLike.text()) < 2)
-                        {
-                            totalLike.text('? Hữu ích')
-                        }else{
-                            totalLike.text(parseInt(totalLike) - 1)
-                        }
+                    }
+                    if(parseInt((data)) < 1)
+                    {
+                        totalLike.text('? Hữu ích')
+                    }else{
+                        totalLike.text(data)
                     }
                 }
             })
         })
     }
 
-    function updateAddress(addressDetail)
-    {
+    function updateAddress(addressDetail) {
         const add = addressDetail.split(', ').reverse().join(', ')
         $('.address').text(add)
         $('.ship-address-detail').toggleClass('active')
@@ -153,21 +138,21 @@ $(document).ready(()=>{
             method: 'POST',
             url: 'UpdateAddress',
             data: JSON.stringify(customer),
-            success: (data)=>{
+            success: (data) => {
                 alert(data)
                 addressDetail = ''
             },
-            error: err=>{
+            error: err => {
                 alert(err)
             }
         })
     }
 
     // find address
-    $('#search').on('keyup', ()=>{
+    $('#search').on('keyup', () => {
         console.log(count)
         const data = $('#search').val()
-        const type = count === 1 ? 'province': count === 2 ? 'district' : 'ward'
+        const type = count === 1 ? 'province' : count === 2 ? 'district' : 'ward'
         const object = {
             'type': type,
             'key': data,
@@ -177,35 +162,31 @@ $(document).ready(()=>{
             method: 'POST',
             url: 'api/address',
             data: JSON.stringify(object),
-            success: data=>{
+            success: data => {
                 const arrays = JSON.parse(data)
-                let  html = ``
+                let html = ``
                 for (let i = 0; i < arrays.length; ++i) {
                     html += `<span>${arrays[i]}</span>`
                 }
                 $('#address').html(html)
-                setTimeout(()=>{
-                    for(let i = 0; i < address.length; ++i)
-                    {
-                        $(address[i]).on('click', ()=>{
+                setTimeout(() => {
+                    for (let i = 0; i < address.length; ++i) {
+                        $(address[i]).on('click', () => {
                             const data = $(address[i]).text()
                             name = data
-                            if(count === 1)
-                            {
+                            if (count === 1) {
                                 addressDetail += data + ', '
-                                callAPI({'province' : data})
-                                setTimeout(()=>{
-                                    for(let i = 0; i < address.length; ++i)
-                                    {
-                                        $(address[i]).on('click', ()=>{
+                                callAPI({'province': data})
+                                setTimeout(() => {
+                                    for (let i = 0; i < address.length; ++i) {
+                                        $(address[i]).on('click', () => {
                                             const data = $(address[i]).text()
                                             addressDetail += data + ', '
                                             name = data
                                             callAPI({'district': data})
-                                            setTimeout(()=>{
-                                                for(let i = 0; i < address.length; ++i)
-                                                {
-                                                    $(address[i]).on('click', ()=>{
+                                            setTimeout(() => {
+                                                for (let i = 0; i < address.length; ++i) {
+                                                    $(address[i]).on('click', () => {
                                                         const data = $(address[i]).text()
                                                         addressDetail += data
                                                         updateAddress(addressDetail)
@@ -215,29 +196,25 @@ $(document).ready(()=>{
                                         })
                                     }
                                 }, 100)
-                            }else if(count === 2)
-                            {
+                            } else if (count === 2) {
                                 addressDetail += data + ', '
-                                callAPI({'district' : data})
-                                setTimeout(()=>{
-                                    for(let i = 0; i < address.length; ++i)
-                                    {
-                                        $(address[i]).on('click', ()=>{
+                                callAPI({'district': data})
+                                setTimeout(() => {
+                                    for (let i = 0; i < address.length; ++i) {
+                                        $(address[i]).on('click', () => {
                                             const value = $(address[i]).text()
                                             addressDetail += value
                                             updateAddress(addressDetail)
                                         })
                                     }
                                 }, 100)
-                            }
-                            else if(count === 3)
-                            {
+                            } else if (count === 3) {
                                 addressDetail += data
                                 updateAddress(addressDetail)
                             }
                             $('#search').val('')
                             count++
-                            if(count > 3) count = 1
+                            if (count > 3) count = 1
                         })
                     }
                 }, 100)

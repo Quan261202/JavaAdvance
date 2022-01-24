@@ -16,7 +16,7 @@ import java.io.IOException;
 @WebServlet(urlPatterns = {"/api/reviews"})
 public class ReviewsAPI extends HttpServlet {
 
-    private static  final IReviewsService reviewsService = new ReviewsService();
+    private static final IReviewsService reviewsService = new ReviewsService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -49,8 +49,18 @@ public class ReviewsAPI extends HttpServlet {
         if(util != null)
         {
             Reviews reviews = util.toModel(Reviews.class);
-            if(reviewsService.updateTotalLike(reviews.getId(), reviews.getOperator()))
-                mapper.writeValue(response.getOutputStream(), "Success");
+            if(reviewsService.findOne(reviews.getCustomerID(), reviews.getId()))
+            {
+                if(reviewsService.removeLike(reviews.getCustomerID(), reviews.getId())){
+                    mapper.writeValue(response.getOutputStream(), reviewsService.getTotalLikeOfReviews(reviews.getId()));
+                }
+            }
+            else{
+                if(reviewsService.insertLike(reviews.getCustomerID(), reviews.getId()) != null)
+                {
+                    mapper.writeValue(response.getOutputStream(), reviewsService.getTotalLikeOfReviews(reviews.getId()));
+                }
+            }
         }
     }
 }

@@ -8,7 +8,7 @@ import com.halloween.service.IReviewsService;
 import java.util.List;
 
 public class ReviewsService implements IReviewsService {
-	
+
 	private static final IReviewsDAO newDAO = new ReviewsDAO();
 	
 	@Override
@@ -27,8 +27,13 @@ public class ReviewsService implements IReviewsService {
     }
 
     @Override
-    public List<Reviews> getReviewsOfProduct(Integer productID) {
-		return newDAO.getReviewsOfProduct(productID);
+    public List<Reviews> getReviewsOfProduct(Integer productID, Integer customerID, Object... param) {
+        List<Reviews> list = newDAO.getReviewsOfProduct(productID);
+        for(Reviews reviews : list) {
+            reviews.setTotalLike(newDAO.getTotalLikeOfReviews(reviews.getId()));
+            reviews.setLike(newDAO.findOne(customerID, reviews.getId()));
+        }
+        return list;
     }
 
     @Override
@@ -37,7 +42,22 @@ public class ReviewsService implements IReviewsService {
     }
 
     @Override
-    public Boolean updateTotalLike(Integer id, char operator) {
-        return newDAO.updateTotalLike(id, operator);
+    public Integer insertLike(Integer customerID, Integer reviewsID) {
+        return newDAO.insertLike(customerID, reviewsID);
+    }
+
+    @Override
+    public Boolean removeLike(Integer customerID, Integer reviewsID) {
+        return newDAO.removeLike(customerID, reviewsID);
+    }
+
+    @Override
+    public Integer getTotalLikeOfReviews(Integer reviewsID) {
+        return newDAO.getTotalLikeOfReviews(reviewsID);
+    }
+
+    @Override
+    public Boolean findOne(Integer customerID, Integer reviewsID) {
+        return newDAO.findOne(customerID, reviewsID);
     }
 }

@@ -101,10 +101,10 @@
             <div class="vote-right">
                 <a href="">Tất cả (<span>12</span>)</a>
                 <a href="">5 sao (<span>12</span>)</a>
-                <a href="">5 sao (<span>12</span>)</a>
-                <a href="">5 sao (<span>12</span>)</a>
-                <a href="">5 sao (<span>12</span>)</a>
-                <a href="">5 sao (<span>12</span>)</a>
+                <a href="">4 sao (<span>12</span>)</a>
+                <a href="">3 sao (<span>12</span>)</a>
+                <a href="">2 sao (<span>12</span>)</a>
+                <a href="">1 sao (<span>12</span>)</a>
             </div>
         </div>
         <c:forEach items="${reviews}" var="item">
@@ -127,7 +127,7 @@
                     </div>
                     <p class="date" style="padding: 10px 0px;font-weight: 550">${item.getReviewsDate()}</p>
                     <div class="like-item">
-                        <span class="like" style="color: #ccc;cursor: pointer"><i id="like" class="fas fa-thumbs-up"></i></span>
+                        <span class="like" <c:if test="${item.isLike() == true}">style="color: #ee4d2d;cursor: pointer"</c:if> <c:if test="${item.isLike() == false}">style="color: #ccc;cursor: pointer"</c:if>><i id="like" class="fas fa-thumbs-up"></i></span>
                         <span style="color: #ccc" class="total-like">
                             <c:if test="${item.totalLike > 0}">${item.totalLike}</c:if>
                             <c:if test="${item.totalLike < 1}"> ? Hữu ích</c:if>

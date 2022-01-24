@@ -28,7 +28,7 @@ public class ReviewsDAO extends AbstractDAO<Reviews> implements IReviewsDAO{
 
 	@Override
 	public List<Reviews> getReviewsOfProduct(Integer productID) {
-		String sql = "select urlImage, reviewDate, content, vote, concat(firstname, ' ', lastName), avatar, totalLike, id from reviews inner join customerDetail on reviews.customerID = customerDetail.customerID where productID = ?";
+		String sql = "select urlImage, reviewDate, content, vote, concat(firstname, ' ', lastName), avatar, id from reviews inner join customerDetail on reviews.customerID = customerDetail.customerID where productID = ?";
 		return query(sql, new ReviewsMapper(), productID);
 	}
 
@@ -38,9 +38,28 @@ public class ReviewsDAO extends AbstractDAO<Reviews> implements IReviewsDAO{
 		return insert(sql, reviews.getCustomerID(), reviews.getProductID(), reviews.getUrlImage(), reviews.getContent(), reviews.getVote());
     }
 
+	@Override
+	public Integer insertLike(Integer customerID, Integer reviewsID) {
+		String sql = "insert into reviewsLike(customerID, reviewsID) values(?, ?)";
+		return insert(sql, customerID, reviewsID);
+	}
+
+	@Override
+	public Boolean removeLike(Integer customerID, Integer reviewsID) {
+		String sql = "delete from reviewsLike where customerID = ? and reviewsID = ?";
+		return updateOrDelete(sql, customerID, reviewsID);
+	}
+
+	@Override
+	public Integer getTotalLikeOfReviews(Integer reviewsID) {
+		String sql = "select count(*) from reviewsLike where reviewsID = ?";
+		return getSingleObject(sql, 1, Integer.class, reviewsID);
+	}
+
     @Override
-    public Boolean updateTotalLike(Integer id, char operator) {
-		String sql = "update reviews set totalLike = totalLike " + operator + " 1 where id = ?";
-		return updateOrDelete(sql, id);
+    public Boolean findOne(Integer customerID, Integer reviewsID) {
+		String sql = "select reviewsID from reviewsLike where customerID = ? and reviewsID = ?";
+		return getSingleObject(sql, 1, Integer.class, customerID, reviewsID) != null;
     }
+
 }
