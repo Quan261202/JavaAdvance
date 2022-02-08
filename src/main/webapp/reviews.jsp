@@ -74,7 +74,7 @@
                             Chose an image
                         </button>
                         <div class="image-upload-wrap">
-                            <input class="file-upload-input" id="file" type='file' onchange="readURL(this);" accept="image/*"/>
+                            <input class="file-upload-input" id="file" type='file' onchange="readURL(this);" accept="image/*" multiple/>
                             <div class="drag-text">
                                 <i class="fa fa-download" aria-hidden="true"></i>
                                 <h3>Drag and drop a file or select add Image</h3>

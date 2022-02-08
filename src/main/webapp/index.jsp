@@ -196,7 +196,7 @@
 					</div>
         	</c:forEach>
         </div>
-        <div class="pagination">${pagination1}</div>
+        <div id="pagination" class="pagination"></div>
     </section>
     <section class="contact" id="contact">
         <h1>
@@ -316,6 +316,7 @@
     </section>
     <script src="./JQUERY/jquery-3.6.0.min.js"></script>
     <script src="js/script.js"></script>
+    <script src="js/pagination.js"></script>
     <script type="text/javascript" src="js/removeCart.js"></script>
     <script type="text/javascript" src="js/loadMore.js"></script>
 </body>

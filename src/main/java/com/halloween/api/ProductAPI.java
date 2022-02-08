@@ -1,15 +1,5 @@
 package com.halloween.api;
 
-import java.io.*;
-import java.util.HashMap;
-import java.util.List;
-
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.halloween.model.Products;
 import com.halloween.service.ICategoryService;
@@ -17,6 +7,16 @@ import com.halloween.service.IProductService;
 import com.halloween.service.impl.CategoryService;
 import com.halloween.service.impl.ProductService;
 import com.halloween.utils.HttpUtil;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.Serial;
+import java.util.HashMap;
+import java.util.List;
 
 @WebServlet("/api/product")
 public class ProductAPI extends HttpServlet {
@@ -31,7 +31,7 @@ public class ProductAPI extends HttpServlet {
         response.setContentType("application/json");
         ObjectMapper mapper = new ObjectMapper();
         List<Integer> integers = iCategoryService.getAllCategoryID();
-        HashMap<String, List<Products>> data = new HashMap<>();
+        HashMap<String, Object> data = new HashMap<>();
         for (Integer categoryID : integers)
             data.put("category" + categoryID, iProductService.getAllByCategory(categoryID));
         String jsons = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(data);

@@ -65,6 +65,6 @@ public class ProductDetail extends HttpServlet {
         else if(percentage >= 6) return 3;
         else if(percentage >= 4) return 2;
         else if(percentage >= 2) return 1;
-        else return 0;
+        return 0;
     }
 }

@@ -10,17 +10,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b4cdba81-3ee8-4c05-aac9-9294ada32a53" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/halloween/controller/Home.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/image/noOrder.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/api/ReviewsAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/api/ReviewsAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/api/ProductAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/api/ProductAPI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/controller/ProductDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/controller/ProductDetail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/dao/IReviewsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/dao/IReviewsDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/dao/impl/ReviewsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/dao/impl/ReviewsDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/mapper/ReviewsMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/mapper/ReviewsMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/model/Reviews.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/model/Reviews.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/service/IReviewsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/service/IReviewsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/service/impl/ReviewsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/service/impl/ReviewsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/ProductDetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/ProductDetail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/productDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/productDetail.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/mail/SendMail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/mail/SendMail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/pagination/Pagination.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/pagination/Pagination.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/halloween/ws/ProductResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/halloween/ws/ProductResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/myOrder.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/myOrder.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/profile.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/editProfile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/editProfile.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/image/avata.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/image/background.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/image/bg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/image/hqdefault.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/myOrder.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/myOrder.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/pagination.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/pagination.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/removeCart.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/removeCart.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/myOrder.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/myOrder.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/reviews.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/reviews.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,8 +83,13 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js.last.introduce.type" value="CONST" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/image" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\JAVAWEB\ShoppingHalloWeen\src\main\webapp\image" />
+    </key>
   </component>
   <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.54">
     <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
@@ -211,6 +227,11 @@
       <workItem from="1642985731057" duration="3668000" />
       <workItem from="1643011428431" duration="4186000" />
       <workItem from="1643027351263" duration="2567000" />
+      <workItem from="1643289181468" duration="5345000" />
+      <workItem from="1643638865999" duration="32000" />
+      <workItem from="1643798612469" duration="10440000" />
+      <workItem from="1643863799984" duration="5348000" />
+      <workItem from="1644329269042" duration="11000" />
     </task>
     <servers />
   </component>

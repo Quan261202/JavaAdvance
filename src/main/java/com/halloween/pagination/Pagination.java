@@ -59,20 +59,20 @@ public class Pagination {
     }
 
     public String showPagination() {
-        String pagination = "";
+        StringBuilder pagination = new StringBuilder();
         if(this.totalPage > 1)
         {
             String prev = "<a class=''>&laquo;</a>";
             if(this.currentPage > 1) {
                 prev = "<a href='loadProducts?page=" + (this.currentPage - 1) + "&category=" + this.category + "' class=''>&laquo;</a>";
             }
-            pagination += prev;
+            pagination.append(prev);
             String next = "<a class=''>&raquo;</a>";
             if(this.currentPage < this.totalPage) {
                 next = "<a href='loadProducts?page=" + (this.currentPage + 1) + "&category=" + this.category + "' class=''>&raquo;</a>";
             }
-            int startPage = 0;
-            double endPage = 0;
+            int startPage;
+            double endPage;
             if(this.rangePage < this.totalPage)
             {
                 startPage = this.currentPage - (this.rangePage - 1)/2;
@@ -97,10 +97,10 @@ public class Pagination {
                 {
                     classList += " active";
                 }
-                pagination += "<a href='loadProducts?page=" + i + "&category=" + this.category + "' class='" + classList + "'>" + i + "</a>";
+                pagination.append("<a href='loadProducts?page=").append(i).append("&category=").append(this.category).append("' class='").append(classList).append("'>").append(i).append("</a>");
             }
-            pagination += next;
+            pagination.append(next);
         }
-        return pagination;
+        return pagination.toString();
     }
 }

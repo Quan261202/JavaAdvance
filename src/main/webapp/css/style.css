@@ -14,7 +14,6 @@
     text-decoration: none;
     text-transform: capitalize;
     transition: all .2s linear;
-    transition: width none;
 }
 
 html{
@@ -595,7 +594,7 @@ body{
 
 .about{
     padding: 1.76rem 1.76rem;
-    background: url('image/about-bt.jpg');
+    /*background: url('image/about-bt.jpg');*/
     background-position: center;
     background-size: cover !important;
     position: relative;
@@ -765,7 +764,7 @@ form > *.active{
     border-top: 1px solid #3d3c3e;
     padding-top: 2rem;
     display: flex;
-    align-items: centers;
+    align-items: center;
     justify-content: space-between;
 }
 

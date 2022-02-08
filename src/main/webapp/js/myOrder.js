@@ -4,13 +4,25 @@ $(document).ready(() => {
         .then(res => {
             return res.json()
         }).then(data => {
-        const object = JSON.parse(data)
+            const object = JSON.parse(data)
+            $('#product').html(loadData(object))
+        })
+
+    const statusMess = {
+        'one': 'Chờ',
+        'two': 'Liên hệ người bán',
+        'three': 'Hủy đơn hàng'
+    }
+
+    function loadData(object)
+    {
         let html = ``
-        // $('#count').text(object['count'])
+        let check = true
         for (const key in object) {
             if (object[key] instanceof Array) {
                 let sum = 0
                 for (let i = 0; i < object[key].length; ++i) {
+                    check = false
                     html += `
                                 <div class="product-item">
                                     <img src="${object[key][i].urlImage}" alt="">
@@ -35,13 +47,15 @@ $(document).ready(() => {
                         `
             }
         }
-        $('#product').html(html)
-    })
-
-    const statusMess = {
-        'one': 'Chờ',
-        'two': 'Liên hệ người bán',
-        'three': 'Hủy đơn hàng'
+        if(check)
+        {
+            html += `
+                       <div style="height: 435px;display: flex;align-items: center;justify-content: center">
+                           <img style="width: 100px;height: 100px;background-position: center;background-size: cover" src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/assets/5fafbb923393b712b96488590b8f781f.png" alt="">
+                       </div>
+                   `;
+        }
+        return html
     }
     const li = $('.main-right ul li');
     for (let i = 0; i < li.length; ++i) {
@@ -69,35 +83,7 @@ $(document).ready(() => {
             })
             const value = await res.json()
             const object = JSON.parse(value)
-            let html = ``
-            for (const key in object) {
-                let total = 0
-                for (let i = 0; i < object[key].length; ++i) {
-                    html += `
-                                <div class="product-item">
-                                    <img src="${object[key][i].urlImage}" alt="">
-                                    <div class="product-detail">
-                                        <p>${object[key][i].productName}</p>
-                                        <span>x${object[key][i].quantity}</span>
-                                    </div>
-                                    <p class="price">${object[key][i].quantity * object[key][i].price}.0</p>
-                                    <c:if test = "${status == 2}"><a href="reviews.jsp?productID=${object[key][i].productID}" id="reviews">Đánh giá</a></c:if>                   
-                                </div>
-                            `
-                    total += object[key][i].quantity * object[key][i].price
-                }
-                html += `
-                            <div class="pay">
-                                <span><img src="icons/gross.png" alt=""><a href=""></a>Tổng số tiền: <span>$ </span><span>${total}</span></span>
-                                <div class="pay-function">
-                                    <a href="">${statusMess['one']}</a>
-                                    <a href="">${statusMess['two']}</a>
-                                    <a href="">${statusMess['three']}</a>
-                                </div>
-                            </div>
-                        `
-            }
-            $('#product').html(html)
+            $('#product').html(loadData(object))
         })
     }
 })

@@ -30,7 +30,6 @@ public class SendMail {
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(mailTo));
             Transport.send(message);
         }catch(Exception ex){
-            System.out.println("error");
             ex.printStackTrace();
         }
     }

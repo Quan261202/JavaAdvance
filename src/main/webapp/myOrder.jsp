@@ -17,9 +17,9 @@
 	<div class="main">
 		<div class="main-left">
 			<ul>
-				<li><img src="icons/resume.png" alt=""><a href="">Tài
+				<li><img src="icons/resume.png" alt=""><a href="editProfile.jsp">Tài
 						khoản của tôi</a></li>
-				<li><img src="icons/package.png" alt=""><a href="">Đơn
+				<li><img src="icons/package.png" alt=""><a style="color: #ee4d2d;" href="">Đơn
 						mua</a></li>
 				<li><img src="icons/bell.png" alt=""><a href="">Thông
 						báo</a></li>
@@ -41,11 +41,11 @@
 					placeholder="tìm kiếm theo tên shop ID hoặc tên sản phẩm...">
 			</div>
 			<div class="product" id="product">
-				<div class="store">
-					<span><em class="fas fa-store"></em>doanducminh79</span> <a href=""><em
-						class="fas fa-comment-alt"></em>chat</a> <a href=""><em
-						class="fas fa-store"></em>Xem shop</a>
-				</div>
+<%--				<div class="store">--%>
+<%--					<span><em class="fas fa-store"></em>doanducminh79</span> <a href=""><em--%>
+<%--						class="fas fa-comment-alt"></em>chat</a> <a href=""><em--%>
+<%--						class="fas fa-store"></em>Xem shop</a>--%>
+<%--				</div>--%>
 				<c:forEach items="${map}" var="item">
 					<c:set var="total" value="0"></c:set>
 					<c:forEach items="${item.value}" var="cart">

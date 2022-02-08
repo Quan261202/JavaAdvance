@@ -2,7 +2,9 @@ package com.halloween.ws;
 
 
 import com.halloween.model.Products;
+import com.halloween.service.ICategoryService;
 import com.halloween.service.IProductService;
+import com.halloween.service.impl.CategoryService;
 import com.halloween.service.impl.ProductService;
 
 import javax.ws.rs.*;
@@ -12,12 +14,15 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Path("/products")
 public class ProductResource {
 
     private static final IProductService dao = new ProductService();
+    private static final ICategoryService categoryDao = new CategoryService();
 
     @Context
     private UriInfo uriInfo;
@@ -33,6 +38,23 @@ public class ProductResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Products getByID(@PathParam("productID") Integer productID) {
         return dao.findOne(productID);
+    }
+
+    @GET
+    @Path("category/{categoryID}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Map<String, Object> getByCategory(@PathParam("categoryID") Integer categoryID) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("name", categoryDao.getCategoryName(categoryID));
+        map.put("products", dao.getAllByCategory(categoryID));
+        return map;
+    }
+
+    @GET
+    @Path("category/{categoryID}/{offset}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Products> getThreeItemByCategory(@PathParam("categoryID") Integer categoryID, @PathParam("offset") Integer offset) {
+        return dao.getThreeItem(categoryID, 3, offset);
     }
 
     @POST
