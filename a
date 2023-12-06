@@ -1,0 +1,30 @@
+-- Create database
+drop database java_advance;
+create database java_advance;
+use java_advance;
+
+-- Create table category:
+create table Category
+(
+    categoryID int(11) not null auto_increment,
+    categoryName varchar(30) not null,
+    descriptions varchar(300),
+    primary key(categoryID)
+);
+
+-- Create table products:
+create table Products
+(
+    productID int(11) not null auto_increment,
+    productName varchar(20),
+    price decimal(8,2),
+    urlImage varchar(100),
+    status int(11),
+    quantity int(11),
+    category int(11),
+    shortDescription varchar(100),
+    primary key(productID),
+    foreign key(category) references Category(categoryID)
+);
+
+INSERT INTO Category VALUES (1, 'Keo', 'Keo')
