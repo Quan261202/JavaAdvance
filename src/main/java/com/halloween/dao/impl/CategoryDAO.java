@@ -1,10 +1,10 @@
 package com.halloween.dao.impl;
 
-import java.util.List;
-
 import com.halloween.dao.ICategoryDAO;
 import com.halloween.mapper.CategoryMapper;
 import com.halloween.model.CategoryModel;
+
+import java.util.List;
 
 public class CategoryDAO extends AbstractDAO<CategoryModel> implements ICategoryDAO{
 
@@ -28,7 +28,7 @@ public class CategoryDAO extends AbstractDAO<CategoryModel> implements ICategory
 
     @Override
     public Boolean delete(Integer categoryID) {
-        String sql = "delete from category where categoryID = ?";
+        String sql = "delete from Category where categoryID = ?";
 		return updateOrDelete(sql, categoryID);
     }
 }

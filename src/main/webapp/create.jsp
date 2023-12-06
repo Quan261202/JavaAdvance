@@ -114,7 +114,6 @@
             // xử lý upload image
             $('#uploadImage').on('click', ()=>{
                 const file = $('#fileInput')[0].files[0]
-                console.log(file)
                 if(file)
                 {
                     let formData = new FormData()
@@ -166,11 +165,11 @@
                     url: '${urlAPI}',
                     data: JSON.stringify(object),
                     success: (data) => {
-                        alert(data);
+                        alert('Them thanh cong')
                         window.location.href = '${urlHome}';
                     },
                     error: (error) => {
-                        alert(error)
+                        console.log(error)
                     }
                 })
             })

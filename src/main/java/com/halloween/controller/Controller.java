@@ -45,7 +45,7 @@ public class Controller extends HttpServlet {
 			count = productService.countProductByCategory(categoryID);
 			totalPage = Math.ceil(count / 3.0);
 			List<Products> list;
-			list = productService.getThreeItem(categoryID, limit, offset);
+			list = productService.getAllByCategory(categoryID);
 			request.setAttribute("product", list);
 			request.setAttribute("map", categoryModels);
 			request.setAttribute("categoryProduct", categoryID);
@@ -76,6 +76,10 @@ public class Controller extends HttpServlet {
 					request.setAttribute("category", categoryModels);
 					request.setAttribute("type", "Add Product");
 					request.getRequestDispatcher("create.jsp").forward(request, response);
+				}
+				case "DisplayCreateCategory" -> {
+					request.setAttribute("type", "Add Category");
+					request.getRequestDispatcher("CreateCategory.jsp").forward(request, response);
 				}
 				case "displayUpdate" -> {
 					int id = Integer.parseInt(request.getParameter("productID"));
@@ -118,7 +122,7 @@ public class Controller extends HttpServlet {
 					request.getRequestDispatcher("admin.jsp").forward(request, response);
 				}
 				case "previous" -> {
-					if (page > 0) {
+					if (page > 0 && offset >= 3) {
 						page--;
 						offset -= 3;
 					} else if (page == 0) {

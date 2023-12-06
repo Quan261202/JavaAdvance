@@ -82,7 +82,7 @@ public class OrderDAO extends AbstractDAO<OrderModel> implements IOrderDAO{
     @Override
     public List<RecentOrder> getRecentOrder() {
 		Connection connection = getCon();
-		StringBuilder sql = new StringBuilder("select cdt.firstName, cdt.lastName, cdt.avatar, SUM(price) as totalPrice, o.status from orders o inner join customerDetail cdt on o.customerID = cdt.customerID \r\n" + "	inner join orderItem od on od.orderID = o.id where o.status > 0 group by o.customerID, o.id");
+		StringBuilder sql = new StringBuilder("select cdt.firstName, cdt.lastName, cdt.avatar, SUM(price) as totalPrice, o.status from Orders o inner join CustomerDetail cdt on o.customerID = cdt.customerID \r\n" + "	inner join orderItem od on od.orderID = o.id where o.status > 0 group by o.customerID, o.id");
 		List<RecentOrder> recentOrders = null;
 		try {
 			PreparedStatement stm = connection.prepareStatement(sql.toString());

@@ -1,15 +1,14 @@
 package com.halloween.export;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class ExportExcel {
 
@@ -38,13 +37,12 @@ public class ExportExcel {
             File file = new File("D://listOrder.xlsx");
             outputStream = new FileOutputStream(file);
             xssfWorkbook.write(outputStream);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
         finally {
             try {
+                assert outputStream != null;
                 outputStream.close();
             } catch (IOException e) {
                 e.printStackTrace();

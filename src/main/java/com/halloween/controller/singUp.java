@@ -1,17 +1,16 @@
 package com.halloween.controller;
 
-import java.io.IOException;
-import java.io.Serial;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.halloween.model.Customer;
+import com.halloween.service.impl.CustomerService;
+import com.halloween.utils.HttpUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.halloween.model.Customer;
-import com.halloween.service.impl.CustomerService;
-import com.halloween.utils.HttpUtil;
+import java.io.IOException;
+import java.io.Serial;
 
 public class singUp extends HttpServlet {
 
@@ -34,5 +33,6 @@ public class singUp extends HttpServlet {
 			Integer integer = new CustomerService().insertCustomer(customer);
 			if(integer != null) mapper.writeValue(response.getOutputStream(), "Sign Up Success");
 		}
+
 	}
 }

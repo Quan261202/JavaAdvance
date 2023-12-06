@@ -13,7 +13,7 @@ public class AbstractDAO<T> implements GenericDAO<T> {
     public Connection getCon() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            return DriverManager.getConnection("jdbc:mysql://localhost:3306/shoping", "root", "");
+            return DriverManager.getConnection("jdbc:mysql://localhost:3306/java_advance", "root", "123456");
         } catch (Exception e) {
             return null;
         }
@@ -98,6 +98,7 @@ public class AbstractDAO<T> implements GenericDAO<T> {
             con.commit();
             return id;
         } catch (SQLException e) {
+            e.printStackTrace();
             try {
                 con.rollback();
             } catch (SQLException e1) {

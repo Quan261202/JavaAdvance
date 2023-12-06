@@ -102,9 +102,9 @@
 							</table>
 						</div>
 						<!-- table container -->
-						<button class="btn btn-primary btn-block text-uppercase mb-3">
+						<a href="Controller?a=DisplayCreateCategory" class="btn btn-primary btn-block text-uppercase mb-3">
 							Add new category
-						</button>
+						</a>
 					</div>
 				</div>
 			</div>
@@ -143,7 +143,6 @@
 				{
 					$(deleteProduct[i]).on('click', (e)=>{
 						e.preventDefault()
-						console.log("ok")
 						const id = $(deleteProduct[i]).data('id');
 						const object = {"id": id}
 						$.ajax({

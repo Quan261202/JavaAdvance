@@ -19,18 +19,19 @@ public class AuthenticationFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         request.setCharacterEncoding("UTF-8");
-        if(request.getRequestURI().contains("/HomeAdmin"))
-        {
-            if(request.getSession().getAttribute("CUSTOMER") == null)
-            {
-                chain.doFilter(request, response);
-            }
-            else {
-                response.sendRedirect("Login.jsp");
-            }
-        }
-        else{
-            chain.doFilter(request, response);
-        }
+//        if(request.getRequestURI().contains("/HomeAdmin"))
+//        {
+//            if(request.getSession().getAttribute("CUSTOMER") == null)
+//            {
+//                chain.doFilter(request, response);
+//            }
+//            else {
+//                response.sendRedirect("Login.jsp");
+//            }
+//        }
+//        else{
+//            chain.doFilter(request, response);
+//        }
+        chain.doFilter(request, response);
     }
 }

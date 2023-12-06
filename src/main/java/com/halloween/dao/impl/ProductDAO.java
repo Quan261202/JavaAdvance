@@ -1,9 +1,10 @@
 package com.halloween.dao.impl;
-import java.util.List;
 
 import com.halloween.dao.IProductDAO;
 import com.halloween.mapper.ProductMapper;
 import com.halloween.model.Products;
+
+import java.util.List;
 
 public class ProductDAO  extends AbstractDAO<Products> implements IProductDAO{
 
@@ -16,7 +17,8 @@ public class ProductDAO  extends AbstractDAO<Products> implements IProductDAO{
 	@Override
 	public Integer countProductByCategory(Integer categoryID) {
 		String sql = "SELECT COUNT(*) FROM Products where category = ?";
-		return getSingleObject(sql, 1, Integer.class, categoryID);
+		Integer count = getSingleObject(sql, 1, Integer.class, categoryID);
+		return count == null ? 0 : count;
 	}
 
 	@Override
@@ -40,7 +42,7 @@ public class ProductDAO  extends AbstractDAO<Products> implements IProductDAO{
 
 	@Override
 	public boolean update(Products products, Integer productID) {
-		String sql = "UPDATE products SET productName = ?, price = ?, status = ?, quantity = ?, category = ?, shortDescription = ? WHERE productID = ?";
+		String sql = "UPDATE Products SET productName = ?, price = ?, status = ?, quantity = ?, category = ?, shortDescription = ? WHERE productID = ?";
 		return updateOrDelete(sql, products.getProductName()
 						  							 , products.getPrice()
 						  							 , products.getStatus()
@@ -58,7 +60,7 @@ public class ProductDAO  extends AbstractDAO<Products> implements IProductDAO{
 
     @Override
     public boolean deleteByCategoryID(Integer categoryID) {
-        String sql = "delete from products where category = ?";
+        String sql = "delete from Products where category = ?";
 		return updateOrDelete(sql, categoryID);
     }
 
@@ -70,7 +72,7 @@ public class ProductDAO  extends AbstractDAO<Products> implements IProductDAO{
 	
 	@Override
 	public Boolean updateAmountProduct(Integer productID, Integer quantity) {
-		String sql = "UPDATE products SET quantity = quantity - ? where products.productID = ?";
+		String sql = "UPDATE Products SET quantity = quantity - ? where products.productID = ?";
 		return updateOrDelete(sql, quantity, productID);
 	}
 	
