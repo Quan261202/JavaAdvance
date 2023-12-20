@@ -26,10 +26,7 @@ public class Controller extends HttpServlet {
 	
 	private static final IProductService productService = new ProductService();
 	private static final ICategoryService categoryService = new CategoryService();
-	
-	public static int page = 0;
-	public static int offset = 0;
-	public static int limit = 3;
+	private static final int ITEM_PER_PAGE = 5;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -37,15 +34,28 @@ public class Controller extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		String a = request.getParameter("a");
-		int categoryID = 1;
-		int count;
-		double totalPage;
 		List<CategoryModel> categoryModels = categoryService.getAllCategoryProduct();
+		int categoryID = categoryModels.get(0).getCategoryID();
+		String query = request.getParameter("query");
+		if (request.getParameter("id") != null) categoryID = Integer.parseInt(request.getParameter("id"));
+		int count = productService.countProductByCategory(query, categoryID);
+		int page = 0;
+		int totalPage  = (int) Math.ceil(count / (ITEM_PER_PAGE * 1.0));
+
+		if(request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+
+			if(page == 0) {
+				page = totalPage;
+			}
+
+			if(page >= totalPage) {
+				page = 0;
+			}
+		}
+
 		if (request.getParameter("a") == null) {
-			count = productService.countProductByCategory(categoryID);
-			totalPage = Math.ceil(count / 3.0);
-			List<Products> list;
-			list = productService.getAllByCategory(categoryID);
+			List<Products> list = productService.getThreeItem(query, categoryID, ITEM_PER_PAGE, page * ITEM_PER_PAGE);
 			request.setAttribute("product", list);
 			request.setAttribute("map", categoryModels);
 			request.setAttribute("categoryProduct", categoryID);
@@ -53,24 +63,15 @@ public class Controller extends HttpServlet {
 			request.setAttribute("totalPage", totalPage);
 			request.getRequestDispatcher("admin.jsp").forward(request, response);
 		} else {
-			if (request.getParameter("id") != null) categoryID = Integer.parseInt(request.getParameter("id"));
-			count = productService.countProductByCategory(categoryID);
-			totalPage = Math.ceil(count / 3.0);
 			switch (a) {
 				case "Category" -> {
-					if (request.getParameter("id") != null) {
-						if (count < limit) limit = count;
-						List<Products> list = productService.getThreeItem(categoryID, limit, offset);
-						request.setAttribute("product", list);
-						page = 0;
-						offset = 0;
-						limit = 3;
-						request.setAttribute("categoryProduct", categoryID);
-						request.setAttribute("page", page);
-						request.setAttribute("totalPage", totalPage);
-						request.setAttribute("map", categoryModels);
-						request.getRequestDispatcher("admin.jsp").forward(request, response);
-					}
+					List<Products> list = productService.getThreeItem(query, categoryID, ITEM_PER_PAGE, page * ITEM_PER_PAGE);
+					request.setAttribute("product", list);
+					request.setAttribute("categoryProduct", categoryID);
+					request.setAttribute("page", page);
+					request.setAttribute("totalPage", totalPage);
+					request.setAttribute("map", categoryModels);
+					request.getRequestDispatcher("admin.jsp").forward(request, response);
 				}
 				case "displayCreate" -> {
 					request.setAttribute("category", categoryModels);
@@ -106,44 +107,9 @@ public class Controller extends HttpServlet {
 					if (productService.delete(productID))
 						response.setStatus(200);
 				}
-				case "next" -> {
-					offset += 3;
-					if (offset >= count) offset = 0;
-					List<Products> list = productService.getThreeItem(categoryID, limit, offset);
-					page++;
-					if (page == totalPage) {
-						page = 0;
-					}
-					request.setAttribute("product", list);
-					request.setAttribute("categoryProduct", categoryID);
-					request.setAttribute("page", page);
-					request.setAttribute("totalPage", totalPage);
-					request.setAttribute("map", categoryModels);
-					request.getRequestDispatcher("admin.jsp").forward(request, response);
-				}
-				case "previous" -> {
-					if (page > 0 && offset >= 3) {
-						page--;
-						offset -= 3;
-					} else if (page == 0) {
-						page = (int) totalPage - 1;
-						offset = page * 3;
-					}
-					List<Products> list = productService.getThreeItem(categoryID, limit, offset);
-					request.setAttribute("product", list);
-					request.setAttribute("categoryProduct", categoryID);
-					request.setAttribute("page", page);
-					request.setAttribute("map", categoryModels);
-					request.setAttribute("totalPage", totalPage);
-					request.getRequestDispatcher("admin.jsp").forward(request, response);
-				}
 				default -> {
 				}
 			}
 		}
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
 	}
 }

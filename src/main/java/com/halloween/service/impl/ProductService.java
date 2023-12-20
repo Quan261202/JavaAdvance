@@ -1,12 +1,11 @@
 package com.halloween.service.impl;
 
-import java.util.List;
-
-
 import com.halloween.dao.IProductDAO;
 import com.halloween.dao.impl.ProductDAO;
 import com.halloween.model.Products;
 import com.halloween.service.IProductService;
+
+import java.util.List;
 
 public class ProductService implements IProductService {
 
@@ -19,7 +18,7 @@ public class ProductService implements IProductService {
 	
 	@Override
 	public Integer countProductByCategory(Integer categoryID) {
-		return newDAO.countProductByCategory(categoryID);
+		return newDAO.countProductByCategory("", categoryID);
 	}
 
 	@Override
@@ -48,8 +47,18 @@ public class ProductService implements IProductService {
     }
 
     @Override
+	public List<Products> getThreeItem(String query, Integer category, Integer limit, Integer offset) {
+		return newDAO.getThreeItem(query, category, limit, offset);
+	}
+
+	@Override
 	public List<Products> getThreeItem(Integer category, Integer limit, Integer offset) {
-		return newDAO.getThreeItem(category, limit, offset);
+		return newDAO.getThreeItem("", category, limit, offset);
+	}
+
+	@Override
+	public Integer countProductByCategory(String query, Integer categoryID) {
+		return newDAO.countProductByCategory(query, categoryID);
 	}
 
 	@Override

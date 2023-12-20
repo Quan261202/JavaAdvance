@@ -4,19 +4,8 @@
          id="WebApp_ID" version="4.0">
     <display-name>Bán Hàng</display-name>
     <welcome-file-list>
-        <welcome-file>home.jsp</welcome-file>
+        <welcome-file>admin.jsp</welcome-file>
     </welcome-file-list>
-    <servlet>
-        <description></description>
-        <display-name>Login</display-name>
-        <servlet-name>Login</servlet-name>
-        <servlet-class>com.halloween.controller.Login</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Login</servlet-name>
-        <url-pattern>/Login</url-pattern>
-    </servlet-mapping>
-
 
     <servlet>
         <servlet-name>Jersey REST Service</servlet-name>
@@ -33,40 +22,6 @@
         <url-pattern>/ws/*</url-pattern>
     </servlet-mapping>
 
-    <servlet>
-        <description></description>
-        <display-name>ProductDetail</display-name>
-        <servlet-name>ProductDetail</servlet-name>
-        <servlet-class>com.halloween.controller.ProductDetail</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>ProductDetail</servlet-name>
-        <url-pattern>/ProductDetail</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <description></description>
-        <display-name>addCartServlet</display-name>
-        <servlet-name>addCartServlet</servlet-name>
-        <servlet-class>com.halloween.controller.addCartServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>addCartServlet</servlet-name>
-        <url-pattern>/addCartServlet</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <description></description>
-        <display-name>loadProducts</display-name>
-        <servlet-name>loadProducts</servlet-name>
-        <servlet-class>com.halloween.controller.loadProducts</servlet-class>
-    </servlet>
-
-
-    <servlet-mapping>
-        <servlet-name>loadProducts</servlet-name>
-        <url-pattern>/loadProducts</url-pattern>
-    </servlet-mapping>
     <filter>
         <filter-name>SimpleCORSFilter</filter-name>
         <filter-class>com.halloween.filter.SimpleCORSFilter</filter-class>
@@ -75,34 +30,4 @@
         <filter-name>SimpleCORSFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-    <servlet>
-        <description></description>
-        <display-name>singUp</display-name>
-        <servlet-name>singUp</servlet-name>
-        <servlet-class>com.halloween.controller.singUp</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>singUp</servlet-name>
-        <url-pattern>/singUp</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <description></description>
-        <display-name>removeCart</display-name>
-        <servlet-name>removeCart</servlet-name>
-        <servlet-class>com.halloween.controller.removeCart</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>removeCart</servlet-name>
-        <url-pattern>/removeCart</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <description></description>
-        <display-name>LogOut</display-name>
-        <servlet-name>LogOut</servlet-name>
-        <servlet-class>com.halloween.controller.LogOut</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>LogOut</servlet-name>
-        <url-pattern>/LogOut</url-pattern>
-    </servlet-mapping>
 </web-app>

@@ -73,8 +73,13 @@
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
                         <div class="tm-product-img-dummy mx-auto">
-                            <em class="fas fa-images tm-upload-icon"
-                                onclick="document.getElementById('fileInput').click();"></em>
+                            <c:if test="${empty product}">
+                                <em class="fas fa-images tm-upload-icon"
+                                    onclick="document.getElementById('fileInput').click();"></em>
+                            </c:if>
+                            <c:if test="${not empty product}">
+                                <img style="width: 100%;height: auto" src="${product.urlImage}">
+                            </c:if>
                         </div>
                         <div class="custom-file mt-3 mb-3">
                             <input id="fileInput" type="file" style="display:none;"/>
@@ -132,7 +137,7 @@
                         progressStatus.text( Math.floor(percentageComplete) + `% uploaded`)
                     })
                     request.addEventListener("load", ()=>{
-                        if(request.status == 200)
+                        if(request.status === 200)
                         {
                             isUploaded = true
                         }

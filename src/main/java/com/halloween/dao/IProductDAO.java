@@ -1,8 +1,8 @@
 package com.halloween.dao;
 
-import java.util.List;
-
 import com.halloween.model.Products;
+
+import java.util.List;
 
 public interface IProductDAO extends GenericDAO<Products> {
 	
@@ -10,9 +10,9 @@ public interface IProductDAO extends GenericDAO<Products> {
 
     List<Products> getAllItems();
 
-    List<Products> getThreeItem(Integer category, Integer limit, Integer offset);
+    List<Products> getThreeItem(String query, Integer category, Integer limit, Integer offset);
 
-    Integer countProductByCategory(Integer categoryID);
+    Integer countProductByCategory(String query, Integer categoryID);
 
     Integer save(Products products);
 

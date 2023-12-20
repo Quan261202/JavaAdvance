@@ -14,9 +14,23 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/addProduct.css">
+		<style>
+			.tm-block {
+				padding: 0 !important;
+			}
+
+			body {
+				overflow-x: auto;
+			}
+
+			.container {
+				max-width: 1450px;
+			}
+
+		</style>
 	</head>
 
-	<body id="reportsPage">
+	<body id="">
 		<nav class="navbar navbar-expand-xl">
 			<div class="container h-100">
 				<a class="navbar-brand" href="#">
@@ -28,18 +42,28 @@
 			</div>
 		</nav>
 		<div class="container mt-5">
+			<div class="input-group mb-4">
+				<div class="form-outline" data-mdb-input-init>
+					<input placeholder="search ..." type="search" id="search-value" class="form-control" />
+				</div>
+				<button type="button" id="search" class="btn btn-primary" data-mdb-ripple-init>
+					<i class="fas fa-search"></i>
+				</button>
+			</div>
 			<div class="row tm-content-row">
-				<div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 tm-block-col">
+				<div class="col-sm-12 col-md-12 col-lg-9 col-xl-9 tm-block-col">
 					<div class="tm-bg-primary-dark tm-block tm-block-products">
 						<div class="tm-product-table-container">
 							<table align="center" class="table table-hover tm-table-small tm-product-table">
 								<thead>
 									<tr align="center">
 										<th scope="col">&nbsp;</th>
+										<th scope="col">ID</th>
 										<th scope="col">IMAGE</th>
 										<th scope="col">PRODUCT NAME</th>
 										<th scope="col">PRICE</th>
 										<th scope="col">QUANTITY</th>
+										<th scope="col">CREATED DATE</th>
 										<th colspan="2" scope="col">
 											FUNCTIONS
 											<a href="Controller?a=displayCreate" style="margin-left: 5px" data-toggle="tooltip" title="Add new product!">
@@ -52,10 +76,12 @@
 									<c:forEach items="${product}" var="item">
 										<tr align="center" class="item">
 											<th scope="row"><input type="checkbox"/></th>
+											<th scope="row">${item.productID}</th>
 											<td><img src="${item.urlImage}" width="80px" height="70px" alt=""></td>
 											<td><p>${item.productName}</p></td>
 											<td><p class="price">${item.price}</p></td>
 											<td><p class="quantity">${item.quantity}</p></td>
+											<td><p class="quantity">${item.createdDate}</p></td>
 											<td>
 												<a data-id="${item.productID}" href="#" class="tm-product-delete-link deleteProduct">
 													<i class="far fa-trash-alt tm-product-delete-icon"></i>
@@ -73,16 +99,16 @@
 						</div>
 						<div style="text-align: center" class="paging">
 							<b style="font-size: 24px">${page + 1}/${totalPage}</b>
-							<a style="font-size: 30px;color: #e17009" href="Controller?a=previous&id=${categoryProduct}">
+							<a style="font-size: 30px;color: #e17009" href="Controller?page=${page - 1}&id=${categoryProduct}">
 								<i class="fas fa-caret-square-left"></i>
 							</a>
-							<a style="font-size: 30px;color: #e17009" href="Controller?a=next&id=${categoryProduct}">
+							<a style="font-size: 30px;color: #e17009" href="Controller?page=${page + 1}&id=${categoryProduct}">
 								<i class="fas fa-caret-square-right"></i>
 							</a>
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 tm-block-col">
+				<div class="col-sm-12 col-md-12 col-lg-3 col-xl-3 tm-block-col">
 					<div class="tm-bg-primary-dark tm-block tm-block-product-categories">
 						<h2 class="tm-block-title">Product Categories</h2>
 						<div class="tm-product-table-container">
@@ -90,7 +116,7 @@
 								<tbody>
 									<c:forEach items="${map}" var="item">
 										<tr>
-														<td class="tm-product-name"><a href="Controller?a=Category&id=${item.categoryID}">${item.categoryName}</a></td>
+											<td class="tm-product-name"><a href="Controller?a=Category&id=${item.categoryID}">${item.categoryName}</a></td>
 											<td class="text-center">
 												<a href="#${item.categoryID}" class="tm-product-delete-link deleteCategory" id="deleteCategory">
 													<i class="far fa-trash-alt tm-product-delete-icon"></i>
@@ -115,6 +141,27 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 		<script>
 			$(document).ready(()=>{
+
+				const buildSearchQuery = (query) => {
+					const url = window.location.href
+					let newUrl = url
+					if(url.includes("query")) {
+						newUrl =  url.substring(0, url.indexOf("query"))
+					}
+					if(newUrl.includes("?")) {
+						newUrl += "&query=" + query
+					} else {
+						newUrl += "?query=" + query
+					}
+					return newUrl
+				}
+
+
+				$('#search').on('click', () => {
+					const value = $('#search-value').val()
+					window.location.href =buildSearchQuery(value)
+				})
+
 
 				// delete category
 				const deleteCategory = $('.deleteCategory')

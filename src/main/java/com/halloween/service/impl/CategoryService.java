@@ -1,11 +1,11 @@
 package com.halloween.service.impl;
 
-import java.util.List;
-
 import com.halloween.dao.ICategoryDAO;
 import com.halloween.dao.impl.CategoryDAO;
 import com.halloween.model.CategoryModel;
 import com.halloween.service.ICategoryService;
+
+import java.util.List;
 
 public class CategoryService implements ICategoryService{
 
@@ -30,4 +30,9 @@ public class CategoryService implements ICategoryService{
     public Boolean delete(Integer categoryID) {
         return newDAO.delete(categoryID);
     }
+
+	@Override
+	public boolean insert(CategoryModel categoryModel) {
+		return newDAO.save(categoryModel);
+	}
 }

@@ -31,4 +31,9 @@ public class CategoryDAO extends AbstractDAO<CategoryModel> implements ICategory
         String sql = "delete from Category where categoryID = ?";
 		return updateOrDelete(sql, categoryID);
     }
+
+	@Override
+	public boolean save(CategoryModel categoryModel) {
+		return insert("INSERT INTO Category(name, description) VALUES(?,?)", categoryModel.getCategoryName(), categoryModel.getDescription()) > 0;
+	}
 }

@@ -1,15 +1,19 @@
 package com.halloween.service;
 
-import java.util.List;
-
 import com.halloween.model.Products;
+
+import java.util.List;
 
 public interface IProductService {
     List<Products> getAllItems();
 
     List<Products> getAllByCategory(Integer categoryID);
 
+    List<Products> getThreeItem(String query, Integer category, Integer limit, Integer offset);
+
     List<Products> getThreeItem(Integer category, Integer limit, Integer offset);
+
+    Integer countProductByCategory(String query, Integer categoryID);
 
     Integer countProductByCategory(Integer categoryID);
 

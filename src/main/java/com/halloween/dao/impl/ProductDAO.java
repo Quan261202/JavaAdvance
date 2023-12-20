@@ -4,6 +4,7 @@ import com.halloween.dao.IProductDAO;
 import com.halloween.mapper.ProductMapper;
 import com.halloween.model.Products;
 
+import java.util.Date;
 import java.util.List;
 
 public class ProductDAO  extends AbstractDAO<Products> implements IProductDAO{
@@ -15,19 +16,23 @@ public class ProductDAO  extends AbstractDAO<Products> implements IProductDAO{
 	}
 	
 	@Override
-	public Integer countProductByCategory(Integer categoryID) {
-		String sql = "SELECT COUNT(*) FROM Products where category = ?";
+	public Integer countProductByCategory(String query, Integer categoryID) {
+		if(query == null) {
+			query = "";
+		}
+		String sql = "SELECT COUNT(*) FROM Products where productName LIKE '%" + query + "%' AND category = ?";
 		Integer count = getSingleObject(sql, 1, Integer.class, categoryID);
 		return count == null ? 0 : count;
 	}
 
 	@Override
 	public Integer save(Products products) {
-		String sql = "INSERT INTO Products(productName, price, urlImage, status, quantity, category, shortDescription)"
-				+ " VALUES(?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO Products(productName, price, urlImage, createdDate, status, quantity, category, shortDescription)"
+				+ " VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
 		return insert(sql, products.getProductName()
 									, products.getPrice()
 									, products.getUrlImage()
+									, new Date()
 									, products.getStatus()
 									, products.getQuantity()
 									, products.getCategoryID()
@@ -42,31 +47,35 @@ public class ProductDAO  extends AbstractDAO<Products> implements IProductDAO{
 
 	@Override
 	public boolean update(Products products, Integer productID) {
-		String sql = "UPDATE Products SET productName = ?, price = ?, status = ?, quantity = ?, category = ?, shortDescription = ? WHERE productID = ?";
+		String sql = "UPDATE Products SET productName = ?, price = ?, status = ?, quantity = ?, category = ?, shortDescription = ?, updatedDate = ? WHERE productID = ?";
 		return updateOrDelete(sql, products.getProductName()
 						  							 , products.getPrice()
 						  							 , products.getStatus()
 						  							 , products.getQuantity()
 						  							 , products.getCategoryID()
 						  							 , products.getShortDescription()
+													 , new Date()
 						  							 , productID);
 	}
 
 	@Override
 	public Boolean delete(Integer productID) {
-		String sql = "DELETE FROM Products WHERE productID = ?";
-		return updateOrDelete(sql, productID);
+		String sql = "UPDATE Products SET deletedDate = ?, isDeleted = ? WHERE productID = ?";
+		return updateOrDelete(sql, new Date(), true, productID);
 	}
 
     @Override
     public boolean deleteByCategoryID(Integer categoryID) {
-        String sql = "delete from Products where category = ?";
-		return updateOrDelete(sql, categoryID);
+        String sql = "UPDATE Products SET deletedDate = ?, isDeleted = ? WHERE category = ?";
+		return updateOrDelete(sql, new Date(), true, categoryID);
     }
 
     @Override
-	public List<Products> getThreeItem(Integer category, Integer limit, Integer offset) {
-		String sql = "SELECT * FROM Products WHERE category = ? LIMIT ? OFFSET ?";
+	public List<Products> getThreeItem(String query, Integer category, Integer limit, Integer offset) {
+		if(query == null) {
+			query = "";
+		}
+		String sql = "SELECT * FROM Products WHERE productName like '%" + query +  "%' AND category = ? LIMIT ? OFFSET ?";
 		return query(sql, new ProductMapper(), category, limit, offset);
 	}
 	
@@ -78,7 +87,7 @@ public class ProductDAO  extends AbstractDAO<Products> implements IProductDAO{
 	
 	@Override
 	public List<Products> findByName(String name, Integer categoryID) {
-		String sql = "SELECT * FROM Products WHERE productName  LIKE '%" +name + "%'" + "AND category = ?";
+		String sql = "SELECT * FROM Products WHERE productName LIKE '%" +name + "%'" + "AND category = ?";
 		return query(sql, new ProductMapper(), categoryID);
 	}
 
@@ -94,4 +103,5 @@ public class ProductDAO  extends AbstractDAO<Products> implements IProductDAO{
 		String sql = "SELECT * FROM Products";
 		return query(sql, new ProductMapper());
 	}
+
 }

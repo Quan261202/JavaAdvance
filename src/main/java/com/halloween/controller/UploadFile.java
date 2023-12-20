@@ -28,8 +28,9 @@ public class UploadFile extends HttpServlet {
         Part part = request.getPart("file");
         String realPart = request.getServletContext().getRealPath("/image");
         String fileName = Path.of(part.getSubmittedFileName()).getFileName().toString();
-        if (!Files.exists(Path.of(realPart))) {
-            Files.createDirectory(Path.of(realPart));
+        Path path = Path.of(realPart);
+        if (!Files.exists(path)) {
+            Files.createDirectory(path);
         }
         part.write(realPart + File.separator + fileName);
         response.setStatus(200);
