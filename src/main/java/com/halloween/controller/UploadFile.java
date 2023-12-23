@@ -33,6 +33,7 @@ public class UploadFile extends HttpServlet {
             Files.createDirectory(path);
         }
         part.write(realPart + File.separator + fileName);
+        System.out.println(realPart + File.separator + fileName);
         response.setStatus(200);
     }
 }

@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.io.Serial;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 @WebServlet("/api/product")
 public class ProductAPI extends HttpServlet {
@@ -57,7 +58,8 @@ public class ProductAPI extends HttpServlet {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         ObjectMapper mapper = new ObjectMapper();	
-        Products product = HttpUtil.of(request.getReader()).toModel(Products.class);
+        Products product = Objects.requireNonNull(HttpUtil.of(request.getReader())).toModel(Products.class);
+        product.setUrlImage("image/" + product.getUrlImage());
         if (iProductService.update(product, product.getProductID())) {
             mapper.writeValue(response.getOutputStream(), "{Update Success}");
         }

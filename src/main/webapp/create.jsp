@@ -78,7 +78,7 @@
                                     onclick="document.getElementById('fileInput').click();"></em>
                             </c:if>
                             <c:if test="${not empty product}">
-                                <img style="width: 100%;height: auto" src="${product.urlImage}">
+                                <img onclick="document.getElementById('fileInput').click();" style="width: 100%;height: auto" src="${product.urlImage}">
                             </c:if>
                         </div>
                         <div class="custom-file mt-3 mb-3">
@@ -158,11 +158,11 @@
                     object[value.name] = value.value;
                 })
                 if (type.indexOf('Update', 0) < 0) {
-                    if(file)
-                    {
-                        object["urlImage"] = file.name
-                        method = "POST"
-                    }
+                    method = "POST"
+                }
+                if(file)
+                {
+                    object["urlImage"] = file.name
                 }
                 $.ajax({
                     type: method + '',

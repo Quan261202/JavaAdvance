@@ -49,7 +49,7 @@ public class Controller extends HttpServlet {
 		if(request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 
-			if(page == 0) {
+			if(page <= 0) {
 				page = totalPage;
 			}
 
@@ -99,7 +99,8 @@ public class Controller extends HttpServlet {
 					String name = request.getParameter("name");
 					double price = Double.parseDouble(request.getParameter("price"));
 					int quantity = Integer.parseInt(request.getParameter("quantity"));
-					Products products = new Products(id, name, price, "image", 1, quantity, categoryID);
+					String urlImage = request.getParameter("urlImage");
+					Products products = new Products(id, name, price, urlImage, 1, quantity, categoryID);
 					if (productService.update(products, products.getProductID())) {
 						response.sendRedirect("Controller");
 					} else {
