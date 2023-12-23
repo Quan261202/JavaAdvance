@@ -9,6 +9,9 @@ create table Category
     categoryID int(11) not null auto_increment,
     categoryName varchar(30) not null,
     descriptions varchar(300),
+    createdDate timestamp,
+    deletedDate timestamp,
+    isDeleted tinyint,
     primary key(categoryID)
 );
 
@@ -19,6 +22,10 @@ create table Products
     productName varchar(20),
     price decimal(8,2),
     urlImage varchar(100),
+    createdDate timestamp,
+    updatedDate timestamp,
+    deletedDate timestamp,
+    isDeleted tinyint,
     status int(11),
     quantity int(11),
     category int(11),
@@ -27,4 +34,4 @@ create table Products
     foreign key(category) references Category(categoryID)
 );
 
-INSERT INTO Category VALUES (1, 'Keo', 'Keo')
+select * from Products;

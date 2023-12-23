@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.Serial;
 import java.util.List;
+import java.util.Objects;
 
 @MultipartConfig
 @WebServlet("/Controller")
@@ -35,7 +36,10 @@ public class Controller extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		String a = request.getParameter("a");
 		List<CategoryModel> categoryModels = categoryService.getAllCategoryProduct();
-		int categoryID = categoryModels.get(0).getCategoryID();
+		int categoryID = 0;
+		if(Objects.nonNull(categoryModels) && !categoryModels.isEmpty()) {
+			categoryID = categoryModels.get(0).getCategoryID();
+		}
 		String query = request.getParameter("query");
 		if (request.getParameter("id") != null) categoryID = Integer.parseInt(request.getParameter("id"));
 		int count = productService.countProductByCategory(query, categoryID);

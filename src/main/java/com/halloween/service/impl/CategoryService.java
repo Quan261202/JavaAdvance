@@ -9,7 +9,7 @@ import java.util.List;
 
 public class CategoryService implements ICategoryService{
 
-	private final ICategoryDAO newDAO = new CategoryDAO();
+	private final ICategoryDAO newDAO = new CategoryDAO();    
 	
 	@Override
 	public String getCategoryName(Integer categoryID) {

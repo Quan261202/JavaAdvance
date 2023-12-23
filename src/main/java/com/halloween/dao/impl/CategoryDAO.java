@@ -4,6 +4,7 @@ import com.halloween.dao.ICategoryDAO;
 import com.halloween.mapper.CategoryMapper;
 import com.halloween.model.CategoryModel;
 
+import java.util.Date;
 import java.util.List;
 
 public class CategoryDAO extends AbstractDAO<CategoryModel> implements ICategoryDAO{
@@ -28,12 +29,12 @@ public class CategoryDAO extends AbstractDAO<CategoryModel> implements ICategory
 
     @Override
     public Boolean delete(Integer categoryID) {
-        String sql = "delete from Category where categoryID = ?";
-		return updateOrDelete(sql, categoryID);
+        String sql = "update Category set isDeleted = ?, deletedDate = ? where categoryID = ?";
+		return updateOrDelete(sql, true, new Date(), categoryID);
     }
 
 	@Override
 	public boolean save(CategoryModel categoryModel) {
-		return insert("INSERT INTO Category(name, description) VALUES(?,?)", categoryModel.getCategoryName(), categoryModel.getDescription()) > 0;
+		return insert("INSERT INTO Category(categoryName, descriptions, createdDate) VALUES(?,?, ?)", categoryModel.getCategoryName(), categoryModel.getDescription(), new Date()) > 0;
 	}
 }

@@ -11,7 +11,7 @@ public class ProductDAO  extends AbstractDAO<Products> implements IProductDAO{
 
 	@Override
 	public List<Products> getAllByCategory(Integer categoryID) {
-		String sql = "SELECT  * FROM Products WHERE category = ?";
+		String sql = "SELECT  * FROM Products WHERE category = ? AND deletedAt IS null";
 		return query(sql, new ProductMapper(), categoryID);
 	}
 	
@@ -75,7 +75,7 @@ public class ProductDAO  extends AbstractDAO<Products> implements IProductDAO{
 		if(query == null) {
 			query = "";
 		}
-		String sql = "SELECT * FROM Products WHERE productName like '%" + query +  "%' AND category = ? LIMIT ? OFFSET ?";
+		String sql = "SELECT * FROM Products WHERE productName like '%" + query +  "%' AND category = ? AND deletedAt IS null LIMIT ? OFFSET ?";
 		return query(sql, new ProductMapper(), category, limit, offset);
 	}
 	

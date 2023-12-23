@@ -1,9 +1,17 @@
 package com.halloween.model;
 
+import java.util.Date;
+
 public class CategoryModel {
 	private Integer categoryID;
 	private String categoryName;
 	private String description;
+
+	private Date createdDate;
+
+	private Date deletedDate;
+
+	private boolean isDeleted;
 
 	public String getDescription() {
 		return description;
@@ -19,9 +27,8 @@ public class CategoryModel {
 		this.categoryName = categoryName;
 	}
 
-	public CategoryModel(Integer categoryID, String categoryName, String description) {
+	public CategoryModel(String categoryName, String description) {
 		super();
-		this.categoryID = categoryID;
 		this.categoryName = categoryName;
 		this.description = description;
 	}

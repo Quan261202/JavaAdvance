@@ -8,22 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AbstractDAO<T> implements GenericDAO<T> {
-    protected static Boolean check = false;
 
     public Connection getCon() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             return DriverManager.getConnection("jdbc:mysql://localhost:3306/java_advance", "root", "123456");
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
-    private Connection getConSQL() {
-        try {
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            String url = "jdbc:sqlserver://localhost:1433; databaseName=SHOPING";
-            return DriverManager.getConnection(url, "sa", "1");
         } catch (Exception e) {
             return null;
         }
@@ -60,8 +49,7 @@ public class AbstractDAO<T> implements GenericDAO<T> {
         PreparedStatement stm = null;
         ResultSet resultSet = null;
         try {
-            if (!check) con = getCon();
-            else con = getConSQL();
+            con = getCon();
             if(con != null)
             {
                 stm = con.prepareStatement(sql);
@@ -70,7 +58,6 @@ public class AbstractDAO<T> implements GenericDAO<T> {
                 resultSet = stm.executeQuery();
                 while (resultSet.next())
                     results.add(getParameter(resultSet, 1, gClass));
-                check = false;
                 return results;
             }
             return null;
@@ -162,10 +149,11 @@ public class AbstractDAO<T> implements GenericDAO<T> {
             Object param = params[i];
             if (param instanceof Long) stm.setLong(i + 1, (Long) param);
             else if (param instanceof Integer) stm.setInt(i + 1, (Integer) param);
+            else if (param instanceof Boolean) stm.setBoolean(i + 1, (Boolean) param);
             else if (param instanceof Float) stm.setFloat(i + 1, (Float) param);
             else if (param instanceof String) stm.setString(i + 1, (String) param);
             else if (param instanceof Double) stm.setDouble(i + 1, (Double) param);
-            else if (param instanceof java.util.Date) stm.setDate(i + 1, new java.sql.Date(((java.util.Date) param).getTime()));
+            else if (param instanceof java.util.Date date) stm.setTimestamp(i + 1, new Timestamp(date.getTime()));
             else if (param == null) stm.setNull(i + 1, java.sql.Types.NULL);
         }
     }

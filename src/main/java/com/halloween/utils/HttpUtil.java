@@ -24,9 +24,10 @@ public class HttpUtil {
 	public <T> T toModel(Class<T> tClass)
 	{
 		try {
+			System.out.println(this.value);
 			return new ObjectMapper().readValue(this.value, tClass);
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
 		return null;
 	}

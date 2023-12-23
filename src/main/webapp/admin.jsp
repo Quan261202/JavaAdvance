@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:url var="urlAPI" value="/api/product"></c:url>
 <c:url var="urlHome" value="/Controller"></c:url>
 <!DOCTYPE html>
@@ -64,6 +65,7 @@
 										<th scope="col">PRICE</th>
 										<th scope="col">QUANTITY</th>
 										<th scope="col">CREATED DATE</th>
+										<th scope="col">DELETED DATE</th>
 										<th colspan="2" scope="col">
 											FUNCTIONS
 											<a href="Controller?a=displayCreate" style="margin-left: 5px" data-toggle="tooltip" title="Add new product!">
@@ -81,7 +83,8 @@
 											<td><p>${item.productName}</p></td>
 											<td><p class="price">${item.price}</p></td>
 											<td><p class="quantity">${item.quantity}</p></td>
-											<td><p class="quantity">${item.createdDate}</p></td>
+											<td><p class="quantity"><fmt:formatDate value="${item.createdDate}" pattern="dd/MM/yyyy HH:mm:ss" /></p></td>
+											<td><p class="quantity"><fmt:formatDate value="${item.deletedDate}" pattern="dd/MM/yyyy HH:mm:ss" /></p></td>
 											<td>
 												<a data-id="${item.productID}" href="#" class="tm-product-delete-link deleteProduct">
 													<i class="far fa-trash-alt tm-product-delete-icon"></i>
