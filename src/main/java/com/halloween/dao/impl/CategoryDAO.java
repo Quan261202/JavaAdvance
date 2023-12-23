@@ -17,7 +17,7 @@ public class CategoryDAO extends AbstractDAO<CategoryModel> implements ICategory
 
 	@Override
 	public List<CategoryModel> getAllCategoryProduct() {
-		String sql = "SELECT * FROM Category";
+		String sql = "SELECT * FROM Category where deletedAt IS NULL";
 		return query(sql, new CategoryMapper());
 	}
 
