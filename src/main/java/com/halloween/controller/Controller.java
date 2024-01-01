@@ -27,7 +27,7 @@ public class Controller extends HttpServlet {
 	
 	private static final IProductService productService = new ProductService();
 	private static final ICategoryService categoryService = new CategoryService();
-	private static final int ITEM_PER_PAGE = 5;
+	private static final int ITEM_PER_PAGE = 15;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -93,6 +93,13 @@ public class Controller extends HttpServlet {
 					request.setAttribute("product", products);
 					request.setAttribute("type", "Update Product");
 					request.getRequestDispatcher("create.jsp").forward(request, response);
+				}
+				case "displayUpdateCategory" -> {
+					int id = Integer.parseInt(request.getParameter("categoryID"));
+					CategoryModel categoryModel = categoryService.findOne(id);
+					request.setAttribute("category", categoryModel);
+					request.setAttribute("type", "Update Category");
+					request.getRequestDispatcher("CreateCategory.jsp").forward(request, response);
 				}
 				case "Update" -> {
 					int id = Integer.parseInt(request.getParameter("id"));

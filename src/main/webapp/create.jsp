@@ -78,17 +78,11 @@
                                     onclick="document.getElementById('fileInput').click();"></em>
                             </c:if>
                             <c:if test="${not empty product}">
-                                <img onclick="document.getElementById('fileInput').click();" style="width: 100%;height: auto" src="${product.urlImage}">
+                                <img id="image" onclick="document.getElementById('fileInput').click();" style="width: 100%;height: auto" src="${product.urlImage}">
                             </c:if>
                         </div>
                         <div class="custom-file mt-3 mb-3">
                             <input id="fileInput" type="file" style="display:none;"/>
-                            <div id="progress-wrapper" class="d-none">
-                                <label id="progress-status">50% uploaded</label>
-                                <div class="progress mb-3">
-                                    <div id="progress" class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="25"></div>
-                                </div>
-                            </div>
                             <input id="uploadImage" type="button" class="btn btn-primary btn-block mx-auto"
                                    value="UPLOAD PRODUCT IMAGE"/>
                         </div>
@@ -140,6 +134,14 @@
                         if(request.status === 200)
                         {
                             isUploaded = true
+                            const reader = new FileReader();
+
+                            reader.onload = function (e) {
+                                $('#image').attr('src', e.target.result);
+                            };
+
+                            // Read the file as a data URL
+                            reader.readAsDataURL(file);
                         }
                     })
                     request.open("POST", "${urlUploadFile}")
@@ -163,6 +165,8 @@
                 if(file)
                 {
                     object["urlImage"] = file.name
+                } else {
+                    object["urlImage"] = $('#image').attr('src')
                 }
                 $.ajax({
                     type: method + '',
@@ -170,7 +174,7 @@
                     url: '${urlAPI}',
                     data: JSON.stringify(object),
                     success: (data) => {
-                        alert('Them thanh cong')
+                        alert(data)
                         window.location.href = '${urlHome}';
                     },
                     error: (error) => {

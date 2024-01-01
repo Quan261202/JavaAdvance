@@ -154,7 +154,6 @@ public class AbstractDAO<T> implements GenericDAO<T> {
             else if (param instanceof String) stm.setString(i + 1, (String) param);
             else if (param instanceof Double) stm.setDouble(i + 1, (Double) param);
             else if (param instanceof java.util.Date date) stm.setTimestamp(i + 1, new Timestamp(date.getTime()));
-            else if (param == null) stm.setNull(i + 1, java.sql.Types.NULL);
         }
     }
 

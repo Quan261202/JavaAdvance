@@ -22,9 +22,14 @@ public class CategoryServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String categoryID = req.getParameter("categoryID");
         String categoryName = req.getParameter("categoryName");
-        String description = req.getParameter("description");
-        CATEGORY_SERVICE.insert(new CategoryModel(categoryName, description));
+        String description = req.getParameter("descriptions");
+        if (categoryID == null) {
+            CATEGORY_SERVICE.insert(new CategoryModel(categoryName, description));
+        } else {
+            CATEGORY_SERVICE.update(categoryID, categoryName, description);
+        }
         resp.sendRedirect("Controller");
     }
 }

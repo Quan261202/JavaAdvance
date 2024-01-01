@@ -42,7 +42,7 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label for="description">Description</label>
-                                <textarea class="form-control validate" name="description" id="description" rows="3" required>${category.descriptions}</textarea>
+                                <textarea class="form-control validate" name="descriptions" id="description" rows="3" required>${category.descriptions}</textarea>
                             </div>
                         </div>
                     </div>
@@ -65,74 +65,6 @@
 <script src="JQUERY/bootstrap.min.js"></script>
 
 <script>
-    <%--$(document).ready(()=>{--%>
-    <%--    const type = $('#addOrUpdate').text();--%>
-    <%--    let isUploaded = false--%>
-
-    <%--    // xử lý upload image--%>
-    <%--    $('#uploadImage').on('click', ()=>{--%>
-    <%--        const file = $('#fileInput')[0].files[0]--%>
-    <%--        console.log(file)--%>
-    <%--        if(file)--%>
-    <%--        {--%>
-    <%--            let formData = new FormData()--%>
-    <%--            formData.append("file", file)--%>
-    <%--            const request = new XMLHttpRequest()--%>
-    <%--            request.responseType = 'json'--%>
-    <%--            request.upload.addEventListener("progress", (e)=>{--%>
-    <%--                let loaded = e.loaded--%>
-    <%--                let total = e.total--%>
-    <%--                const progressWrapper = $('#progress-wrapper')--%>
-    <%--                const progressStatus = $('#progress-status')--%>
-    <%--                const progress = $('#progress')--%>
-    <%--                $(progressWrapper).removeClass('d-none')--%>
-    <%--                const percentageComplete = loaded/total * 100--%>
-    <%--                progress.attr('style', 'width: ' + Math.floor(percentageComplete) + '%')--%>
-    <%--                progressStatus.text( Math.floor(percentageComplete) + `% uploaded`)--%>
-    <%--            })--%>
-    <%--            request.addEventListener("load", ()=>{--%>
-    <%--                if(request.status == 200)--%>
-    <%--                {--%>
-    <%--                    isUploaded = true--%>
-    <%--                }--%>
-    <%--            })--%>
-    <%--            request.open("POST", "${urlUploadFile}")--%>
-    <%--            request.send(formData)--%>
-    <%--        }--%>
-    <%--    })--%>
-
-    <%--    // xử lý update or create product--%>
-    <%--    $('#addOrUpdate').on('click', (e) => {--%>
-    <%--        e.preventDefault();--%>
-    <%--        const product = $('#form').serializeArray();--%>
-    <%--        const file = $('#fileInput')[0].files[0]--%>
-    <%--        const object = {}--%>
-    <%--        let method = "PUT"--%>
-    <%--        $.each(product, (index, value) => {--%>
-    <%--            object[value.name] = value.value;--%>
-    <%--        })--%>
-    <%--        if (type.indexOf('Update', 0) < 0) {--%>
-    <%--            if(file)--%>
-    <%--            {--%>
-    <%--                object["urlImage"] = file.name--%>
-    <%--                method = "POST"--%>
-    <%--            }--%>
-    <%--        }--%>
-    <%--        $.ajax({--%>
-    <%--            type: method + '',--%>
-    <%--            contentType: 'application/json',--%>
-    <%--            url: '${urlAPI}',--%>
-    <%--            data: JSON.stringify(object),--%>
-    <%--            success: (data) => {--%>
-    <%--                alert(data);--%>
-    <%--                window.location.href = '${urlHome}';--%>
-    <%--            },--%>
-    <%--            error: (error) => {--%>
-    <%--                alert(error)--%>
-    <%--            }--%>
-    <%--        })--%>
-    <%--    })--%>
-    <%--});--%>
 </script>
 </body>
 </html>

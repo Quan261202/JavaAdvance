@@ -35,6 +35,18 @@ public class CategoryDAO extends AbstractDAO<CategoryModel> implements ICategory
 
 	@Override
 	public boolean save(CategoryModel categoryModel) {
-		return insert("INSERT INTO Category(categoryName, descriptions, createdDate) VALUES(?,?, ?)", categoryModel.getCategoryName(), categoryModel.getDescription(), new Date()) > 0;
+		return insert("INSERT INTO Category(categoryName, descriptions, createdDate) VALUES(?,?, ?)", categoryModel.getCategoryName(), categoryModel.getDescriptions(), new Date()) > 0;
+	}
+
+	@Override
+	public CategoryModel findOne(int id) {
+		String sql = "SELECT * FROM Category WHERE categoryID = ?";
+		return query(sql, new CategoryMapper(),  id).get(0);
+	}
+
+	@Override
+	public void update(String categoryID, String categoryName, String description) {
+		String sql = "update Category set categoryName = ?, descriptions = ?, updatedDate = ? where categoryID = ?";
+		updateOrDelete(sql, categoryName, description, new Date(), categoryID);
 	}
 }

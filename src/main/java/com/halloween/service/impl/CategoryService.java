@@ -35,4 +35,14 @@ public class CategoryService implements ICategoryService{
 	public boolean insert(CategoryModel categoryModel) {
 		return newDAO.save(categoryModel);
 	}
+
+	@Override
+	public CategoryModel findOne(int id) {
+		return newDAO.findOne(id);
+	}
+
+	@Override
+	public void update(String categoryID, String categoryName, String description) {
+		newDAO.update(categoryID, categoryName, description);
+	}
 }

@@ -121,6 +121,9 @@
 										<tr>
 											<td class="tm-product-name"><a href="Controller?a=Category&id=${item.categoryID}">${item.categoryName}</a></td>
 											<td class="text-center">
+												<a href="Controller?a=displayUpdateCategory&categoryID=${item.categoryID}" class="tm-product-delete-link">
+													<i class="fas fa-pen-square tm-product-delete-icon"></i>
+												</a>
 												<a href="#${item.categoryID}" class="tm-product-delete-link deleteCategory" id="deleteCategory">
 													<i class="far fa-trash-alt tm-product-delete-icon"></i>
 												</a>

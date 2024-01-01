@@ -8,7 +8,6 @@ import com.halloween.service.impl.CategoryService;
 import com.halloween.service.impl.ProductService;
 import com.halloween.utils.HttpUtil;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,7 +26,7 @@ public class ProductAPI extends HttpServlet {
     private static final IProductService iProductService = new ProductService();
     private static final ICategoryService iCategoryService = new CategoryService();
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
         ObjectMapper mapper = new ObjectMapper();
@@ -39,37 +38,40 @@ public class ProductAPI extends HttpServlet {
         mapper.writeValue(response.getOutputStream(), jsons);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         ObjectMapper mapper = new ObjectMapper();
-        Products product = HttpUtil.of(request.getReader()).toModel(Products.class);
+        Products product = Objects.requireNonNull(HttpUtil.of(request.getReader())).toModel(Products.class);
         product.setUrlImage("image/" + product.getUrlImage());
         if (iProductService.save(product) != null) {
-            mapper.writeValue(response.getOutputStream(), "{Add Success}");
+            mapper.writeValue(response.getOutputStream(), "Add Success");
         } else {
-            mapper.writeValue(response.getOutputStream(), "{Error}");
+            mapper.writeValue(response.getOutputStream(), "Error");
         }
     }
 
-    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
-        ObjectMapper mapper = new ObjectMapper();	
+        ObjectMapper mapper = new ObjectMapper();
         Products product = Objects.requireNonNull(HttpUtil.of(request.getReader())).toModel(Products.class);
-        product.setUrlImage("image/" + product.getUrlImage());
+        if (Objects.nonNull(product.getUrlImage()) && !product.getUrlImage().contains("image/")) {
+            product.setUrlImage("image/" + product.getUrlImage());
+        }
         if (iProductService.update(product, product.getProductID())) {
-            mapper.writeValue(response.getOutputStream(), "{Update Success}");
+            mapper.writeValue(response.getOutputStream(), "Update Success");
         }
     }
 
-    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
         ObjectMapper mapper = new ObjectMapper();
         HttpUtil httpUtil = HttpUtil.of(request.getReader());
+        assert httpUtil != null;
         String json = httpUtil.getValue();
         boolean isSuccess = false;
         if(json.contains("categoryID"))

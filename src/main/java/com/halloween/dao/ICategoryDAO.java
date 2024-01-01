@@ -11,4 +11,7 @@ public interface ICategoryDAO extends GenericDAO<CategoryModel>{
 	Boolean delete(Integer categoryID);
 
     boolean save(CategoryModel categoryModel);
+
+    CategoryModel findOne(int id);
+	void update(String categoryID, String categoryName, String description);
 }

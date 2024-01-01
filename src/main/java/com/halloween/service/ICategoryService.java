@@ -11,4 +11,8 @@ public interface ICategoryService {
 	Boolean delete(Integer categoryID);
 
 	boolean insert(CategoryModel categoryModel);
+
+    CategoryModel findOne(int id);
+
+	void update(String categoryID, String categoryName, String description);
 }
