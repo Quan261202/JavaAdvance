@@ -50,6 +50,11 @@
 				<button type="button" id="search" class="btn btn-primary" data-mdb-ripple-init>
 					<i class="fas fa-search"></i>
 				</button>
+
+				<button type="button" id="export" class="btn btn-primary ml-3" data-mdb-ripple-init>
+					<i class="far fa-solid fa-file"></i>
+				</button>
+
 			</div>
 			<div class="row tm-content-row">
 				<div class="col-sm-12 col-md-12 col-lg-9 col-xl-9 tm-block-col">
@@ -166,6 +171,11 @@
 				$('#search').on('click', () => {
 					const value = $('#search-value').val()
 					window.location.href =buildSearchQuery(value)
+				})
+
+				$('#export').on('click', () => {
+					const query = new URLSearchParams(window.location.search)
+					window.location.href = '${urlAPI}?categoryId=' + query.getAll("id") + '&query=' + query.get("query");
 				})
 
 

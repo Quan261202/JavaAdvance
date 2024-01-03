@@ -99,6 +99,15 @@ public class ProductDAO  extends AbstractDAO<Products> implements IProductDAO{
 	}
 
 	@Override
+	public List<Products> getAllItemsByQuery(String categoryId, String query) {
+		if(query == null) {
+			query = "";
+		}
+		String sql = "SELECT * FROM Products WHERE productName like '%" + query +  "%' AND category = ? AND deletedDate IS null";
+		return query(sql, new ProductMapper(), Integer.parseInt(categoryId));
+	}
+
+	@Override
 	public List<Products> getAllItems() {
 		String sql = "SELECT * FROM Products";
 		return query(sql, new ProductMapper());

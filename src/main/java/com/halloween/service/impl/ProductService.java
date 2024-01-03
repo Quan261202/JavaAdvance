@@ -76,7 +76,12 @@ public class ProductService implements IProductService {
         return newDAO.getCountProductSold(productID);
     }
 
-    @Override
+	@Override
+	public List<Products> getAllItemsByQuery(String categoryId, String query) {
+		return newDAO.getAllItemsByQuery(categoryId, query);
+	}
+
+	@Override
 	public List<Products> getAllItems() {
 		return newDAO.getAllItems();
 	}

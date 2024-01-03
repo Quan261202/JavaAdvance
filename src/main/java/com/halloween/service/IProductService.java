@@ -32,4 +32,6 @@ public interface IProductService {
     List<Products> findByName(String name, Integer categoryID);
 
     Integer getCountProductSold(Integer productID);
+
+    List<Products> getAllItemsByQuery(String categoryId, String query);
 }

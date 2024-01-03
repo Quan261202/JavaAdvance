@@ -7,14 +7,19 @@ import com.halloween.service.IProductService;
 import com.halloween.service.impl.CategoryService;
 import com.halloween.service.impl.ProductService;
 import com.halloween.utils.HttpUtil;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.Serial;
-import java.util.HashMap;
+import java.lang.reflect.Field;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -27,15 +32,51 @@ public class ProductAPI extends HttpServlet {
     private static final ICategoryService iCategoryService = new CategoryService();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        request.setCharacterEncoding("UTF-8");
-        response.setContentType("application/json");
-        ObjectMapper mapper = new ObjectMapper();
-        List<Integer> integers = iCategoryService.getAllCategoryID();
-        HashMap<String, Object> data = new HashMap<>();
-        for (Integer categoryID : integers)
-            data.put("category" + categoryID, iProductService.getAllByCategory(categoryID));
-        String jsons = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(data);
-        mapper.writeValue(response.getOutputStream(), jsons);
+
+        String fileName = "products_" + new SimpleDateFormat("dd/MM/yyyy hh:mm:ss").format(new Date()).replaceAll("_", "/");
+
+        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+
+        response.setHeader("Content-Disposition", "attachment; filename=" + fileName + ".xlsx");
+
+        String categoryId = request.getParameter("categoryId");
+
+        String query = request.getParameter("query");
+
+        List<Products> products = iProductService.getAllItemsByQuery(categoryId == null ? "1" : categoryId, query);
+
+        try (OutputStream outputStream = response.getOutputStream(); Workbook workbook = new XSSFWorkbook()) {
+
+            Sheet sheet = workbook.createSheet("products");
+
+            Row header = sheet.createRow(0);
+
+            Font font = workbook.createFont();
+            font.setFontName("Arial");
+            font.setFontHeightInPoints((short) 16);
+            font.setBold(true);
+
+            Field[] fields = products.get(0).getClass().getDeclaredFields();
+
+            for (int j = 0; j < fields.length; ++j) {
+                Cell headerCell = header.createCell(j);
+                headerCell.setCellValue(fields[j].getName());
+            }
+
+            for (int i = 0; i < products.size(); ++i) {
+                Row row = sheet.createRow(i + 1);
+                for (int j = 0; j < fields.length; ++j) {
+                    fields[j].setAccessible(true);
+                    Object value = fields[j].get(products.get(i));
+                    Cell cell = row.createCell(j);
+                    cell.setCellValue(Objects.isNull(value) ? "" : value.toString());
+                }
+            }
+            workbook.write(outputStream);
+
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -74,13 +115,11 @@ public class ProductAPI extends HttpServlet {
         assert httpUtil != null;
         String json = httpUtil.getValue();
         boolean isSuccess = false;
-        if(json.contains("categoryID"))
-        {
+        if (json.contains("categoryID")) {
             Integer categoryID = Integer.parseInt(json.substring(json.indexOf(':') + 2, json.indexOf('}') - 1));
             isSuccess = iProductService.deleteByCategoryID(categoryID);
             iCategoryService.delete(categoryID);
-        }
-        else{
+        } else {
             if (json.indexOf('[') > 0) {
                 String[] integers = json.substring(json.indexOf('[') + 1, json.indexOf(']')).split(",");
                 for (String id : integers) {
