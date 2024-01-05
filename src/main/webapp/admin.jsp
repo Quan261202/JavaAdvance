@@ -175,7 +175,14 @@
 
 				$('#export').on('click', () => {
 					const query = new URLSearchParams(window.location.search)
-					window.location.href = '${urlAPI}?categoryId=' + query.getAll("id") + '&query=' + query.get("query");
+					let url = '${urlAPI}';
+					if(query.get("id") != null) {
+						url += '?categoryId=' + query.get("id") + '&';
+					}
+					if (query.get("query") != null) {
+						url += '?query=' + query.get("query") + '&';
+					}
+					window.location.href = url.substring(0, url.length - 1);
 				})
 
 
@@ -183,6 +190,7 @@
 				const deleteCategory = $('.deleteCategory')
 				for(let i = 0; i < deleteCategory.length; ++i)
 				{
+					// delete from the products.
 					$(deleteCategory[i]).on('click', (e)=>{
 						e.preventDefault()
 						const categoryID = $(deleteCategory[i]).attr('href')[1]

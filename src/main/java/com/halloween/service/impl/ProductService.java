@@ -15,11 +15,6 @@ public class ProductService implements IProductService {
 	public List<Products> getAllByCategory(Integer categoryID) {
 		return newDAO.getAllByCategory(categoryID);
 	}
-	
-	@Override
-	public Integer countProductByCategory(Integer categoryID) {
-		return newDAO.countProductByCategory("", categoryID);
-	}
 
 	@Override
 	public Integer save(Products products) {
@@ -60,21 +55,6 @@ public class ProductService implements IProductService {
 	public Integer countProductByCategory(String query, Integer categoryID) {
 		return newDAO.countProductByCategory(query, categoryID);
 	}
-
-	@Override
-	public Boolean updateAmountProduct(Integer productID, Integer quantity) {
-		return newDAO.updateAmountProduct(productID, quantity);
-	}
-
-	@Override
-	public List<Products> findByName(String name, Integer categoryID) {
-		return newDAO.findByName(name, categoryID);
-	}
-
-    @Override
-    public Integer getCountProductSold(Integer productID) {
-        return newDAO.getCountProductSold(productID);
-    }
 
 	@Override
 	public List<Products> getAllItemsByQuery(String categoryId, String query) {

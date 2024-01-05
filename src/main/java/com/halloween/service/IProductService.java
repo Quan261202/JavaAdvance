@@ -15,23 +15,15 @@ public interface IProductService {
 
     Integer countProductByCategory(String query, Integer categoryID);
 
-    Integer countProductByCategory(Integer categoryID);
-
     Integer save(Products products);
 
     Boolean update(Products products, Integer productID);
-
-    Boolean updateAmountProduct(Integer productID, Integer quantity);
 
     Boolean delete(Integer productID);
 
     boolean deleteByCategoryID(Integer categoryID);
 
     Products findOne(Integer productID);
-
-    List<Products> findByName(String name, Integer categoryID);
-
-    Integer getCountProductSold(Integer productID);
 
     List<Products> getAllItemsByQuery(String categoryId, String query);
 }

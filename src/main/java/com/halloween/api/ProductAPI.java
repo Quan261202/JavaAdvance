@@ -43,7 +43,7 @@ public class ProductAPI extends HttpServlet {
 
         String query = request.getParameter("query");
 
-        List<Products> products = iProductService.getAllItemsByQuery(categoryId == null ? "1" : categoryId, query);
+        List<Products> products = iProductService.getAllItemsByQuery(categoryId, query);
 
         try (OutputStream outputStream = response.getOutputStream(); Workbook workbook = new XSSFWorkbook()) {
 
@@ -130,7 +130,7 @@ public class ProductAPI extends HttpServlet {
                 isSuccess = iProductService.delete(id);
             }
         }
-        if (isSuccess) mapper.writeValue(response.getOutputStream(), "Delete Success");
+        if (isSuccess) mapper.writeValue(response.getOutputStream(), json.contains("categoryID") ? "Delete Category Success" : "Delete Product Success");
         else mapper.writeValue(response.getOutputStream(), "Error");
     }
 }

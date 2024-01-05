@@ -103,8 +103,12 @@ public class ProductDAO  extends AbstractDAO<Products> implements IProductDAO{
 		if(query == null) {
 			query = "";
 		}
-		String sql = "SELECT * FROM Products WHERE productName like '%" + query +  "%' AND category = ? AND deletedDate IS null";
-		return query(sql, new ProductMapper(), Integer.parseInt(categoryId));
+		String sql = "SELECT * FROM Products WHERE productName like '%" + query +  "%' AND deletedDate IS null";
+		if(categoryId != null) {
+			sql += " AND category = ?";
+			return query(sql, new ProductMapper(), Integer.parseInt(categoryId));
+		}
+		return query(sql, new ProductMapper());
 	}
 
 	@Override
